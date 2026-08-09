@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import GtaLayout from "./GtaLayout";
 import { useSearchParams } from "next/navigation";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
@@ -55,16 +55,16 @@ const PROJECTS = [
   }
 ];
 
-export default function ProjectsView() {
+// 1. Rename your main component so it is no longer the default export
+function ProjectsContent() {
   const [activeProject, setActiveProject] = useState(PROJECTS[0]);
   const carouselRef = useRef<HTMLDivElement>(null);
   
-  // 2. Initialize search params
+  // 2. Initialize search params (Now safe because it will be wrapped in Suspense)
   const searchParams = useSearchParams();
 
   useWasdNavigation(PROJECTS, setActiveProject, carouselRef);
 
-  // 3. ADDED: Read URL parameter on mount and update active project
   useEffect(() => {
     const activeId = searchParams.get("active");
     
@@ -74,10 +74,8 @@ export default function ProjectsView() {
       if (targetProject) {
         setActiveProject(targetProject);
         
-        // Optional: Automatically scroll the carousel to the targeted card on load
         const targetIndex = PROJECTS.findIndex(p => p.id === activeId);
         if (carouselRef.current && targetIndex !== -1) {
-          // Add a tiny delay to ensure the DOM has rendered the carousel children
           setTimeout(() => {
             const cardElement = carouselRef.current?.children[targetIndex] as HTMLElement;
             if (cardElement) {
@@ -89,15 +87,12 @@ export default function ProjectsView() {
     }
   }, [searchParams]);
 
-  // Track if the user is currently using the keyboard
   const isKeyboardMode = useRef(false);
 
   useEffect(() => {
-    // If the mouse physically moves, turn off keyboard mode
     const handleMouseMove = () => {
       isKeyboardMode.current = false;
     };
-    // If a key is pressed, turn on keyboard mode
     const handleKeyDown = () => {
       isKeyboardMode.current = true;
     };
@@ -163,7 +158,6 @@ export default function ProjectsView() {
           return (
             <div
               key={project.id}
-              // Only trigger the hover if we are NOT in keyboard mode!
               onMouseEnter={() => {
                 if (!isKeyboardMode.current) {
                   setActiveProject(project);
@@ -196,5 +190,14 @@ export default function ProjectsView() {
         })}
       </div>
     </GtaLayout>
+  );
+}
+
+// 3. Create a new default export that wraps your component in <Suspense>
+export default function ProjectsView() {
+  return (
+    <Suspense fallback={<div className="w-full h-screen bg-[#1a1a1a] text-white flex items-center justify-center">Loading Projects...</div>}>
+      <ProjectsContent />
+    </Suspense>
   );
 }
