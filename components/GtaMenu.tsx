@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GtaLayout from "./GtaLayout"; // Import our new wrapper
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
+import { useRouter } from "next/navigation";
 
 // Types
 export interface MenuCard {
   id: string;
   title: string;
+  subtitle?: string;
   badge?: string;
   badgeColor?: string;
   badgeTextColor?: string;
@@ -22,13 +24,15 @@ export interface MenuCard {
     s?: string; // Down
     d?: string; // Right
   };
+  link?: string;
 }
 
 // 7-Card Data
 const CARDS: MenuCard[] = [
   {
     id: "main-profile",
-    title: "FULL-STACK ENGINEER",
+    title: "Hazeeq Najmuddin",
+    subtitle: "Software Engineer | Full-Stack Developer | Testing & QA Specialist",
     badge: "2X EXP",
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
@@ -37,6 +41,7 @@ const CARDS: MenuCard[] = [
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-4",
     titleClass: "text-3xl md:text-5xl lg:text-6xl",
     nav: { d: "project-automate" }, // Right goes to the top-middle card
+    link: "/about", // Link to the AboutView page
   },
   {
     id: "project-automate",
@@ -48,7 +53,8 @@ const CARDS: MenuCard[] = [
     image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
     titleClass: "text-2xl md:text-4xl",
-    nav: { a: "main-profile", s: "qa-testing", d: "cloud-arch" }, 
+    nav: { a: "main-profile", s: "qa-testing", d: "cloud-arch" },
+    link: "/projects", // Link to the Projects page
   },
   {
     id: "qa-testing",
@@ -61,6 +67,7 @@ const CARDS: MenuCard[] = [
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-2xl md:text-4xl",
     nav: { w: "project-automate", a: "main-profile", d: "web-dev" },
+    link: "/projects?active=qa-suite" // Link to the QA & Automation page
   },
   {
     id: "cloud-arch",
@@ -73,6 +80,7 @@ const CARDS: MenuCard[] = [
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { a: "project-automate", s: "experience" },
+    link: "/certs", // Link to the Certifications page
   },
   {
     id: "experience",
@@ -82,32 +90,56 @@ const CARDS: MenuCard[] = [
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "cloud-arch", a: "project-automate", s: "web-dev" },
+    link: "/about?active=work-main" // Link to the QA & Automation page
   },
   {
     id: "web-dev",
-    title: "REACT & NEXT.JS",
-    description: "Frontend web applications, interactive UI designs, and portals.",
+    title: "My Education",
+    description: "Details about my academic background and educational achievements.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "experience", a: "qa-testing", s: "contact" },
+    link: "/about?active=edu-main" // Link to the Education page
   },
   {
     id: "contact",
     title: "CONNECT & SOCIALS",
     description: "Select to connect on LinkedIn, view my GitHub repositories, or send an email.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "web-dev", a: "qa-testing" },
+    link: "/connect", // Link to the Connect page
   },
 ];
 
 export default function GtaMenu() {
   const [hoveredCard, setHoveredCard] = useState<MenuCard>(CARDS[0]);
+  const router = useRouter(); // Initialize the Next.js router
   
   // The hook correctly receives the items array and the setter function
   useWasdNavigation(CARDS, setHoveredCard);
+
+  useEffect(() => {
+    const handleEnterPress = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "enter" && hoveredCard.link) {
+        e.preventDefault(); // Stop default browser behavior
+        
+        // Seamless internal routing
+        if (hoveredCard.link.startsWith("/")) {
+          router.push(hoveredCard.link);
+        } 
+        // Open external links in a new tab
+        else {
+          window.open(hoveredCard.link, "_blank", "noopener,noreferrer");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleEnterPress);
+    return () => window.removeEventListener("keydown", handleEnterPress);
+  }, [hoveredCard, router]); // Re-run this effect whenever hoveredCard changes
 
   return (
     <GtaLayout 
@@ -121,6 +153,18 @@ export default function GtaMenu() {
           <div
             key={card.id}
             onMouseEnter={() => setHoveredCard(card)}
+            onClick={() => {
+              if (card.link) {
+                // If it is an internal link (like "/about"), route seamlessly
+                if (card.link.startsWith("/")) {
+                  router.push(card.link);
+                } 
+                // If it is an external link (like GitHub or WhatsApp), open a new tab
+                else {
+                  window.open(card.link, "_blank", "noopener,noreferrer");
+                }
+              }
+            }}
             className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${card.gridClass} ${
               isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-75 hover:opacity-100"
             }`}
@@ -142,6 +186,11 @@ export default function GtaMenu() {
               <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none ${card.titleClass}`}>
                 {card.title}
               </h3>
+              {card.subtitle && (
+                <p className="text-gray-200 text-xs md:text-sm mt-1.5 font-medium drop-shadow-md">
+                  {card.subtitle}
+                </p>
+              )}
             </div>
           </div>
         );

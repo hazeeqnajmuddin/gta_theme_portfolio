@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import GtaLayout from "./GtaLayout";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 
@@ -21,19 +22,20 @@ export interface AboutCard {
     s?: string;
     d?: string;
   };
+  link?: string; // <-- Added to support seamless redirects
 }
 
 // -------------------------------------------------------------
-// NEW: HERO / TITLE CARD DATA
+// HERO / TITLE CARD DATA
 // -------------------------------------------------------------
 const HERO_CARD: AboutCard = {
   id: "hero-main",
   title: "THE STORY OF HAZEEQ NAJMUDDIN",
   description: "A brief look into the professional journey, technical expertise, and background of a full-stack engineer and automation specialist.",
   image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2000",
-  gridClass: "", // Handled custom in the JSX
+  gridClass: "", 
   titleClass: "",
-  nav: { s: "edu-main" } // Down goes to the education section
+  nav: { s: "edu-main" }
 };
 
 // SECTION 1: EDUCATION
@@ -45,7 +47,7 @@ const EDUCATION_CARDS: AboutCard[] = [
     image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1000",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-3",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
-    nav: { w: "hero-main", d: "edu-degree", s: "work-main" } // Added w: hero-main
+    nav: { w: "hero-main", d: "edu-degree", s: "work-main" } 
   },
   {
     id: "edu-degree",
@@ -57,7 +59,7 @@ const EDUCATION_CARDS: AboutCard[] = [
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-3",
     titleClass: "text-3xl md:text-5xl",
-    nav: { w: "hero-main", a: "edu-main", d: "edu-matrics", s: "work-intern" } // Added w: hero-main
+    nav: { w: "hero-main", a: "edu-main", d: "edu-matrics", s: "work-intern" } 
   },
   {
     id: "edu-matrics",
@@ -66,7 +68,7 @@ const EDUCATION_CARDS: AboutCard[] = [
     image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-xl md:text-3xl",
-    nav: { w: "hero-main", a: "edu-degree", s: "edu-high" } // Added w: hero-main
+    nav: { w: "hero-main", a: "edu-degree", s: "edu-high" } 
   },
   {
     id: "edu-high",
@@ -207,14 +209,38 @@ const LIFE_CARDS: AboutCard[] = [
   }
 ];
 
-// Add the HERO_CARD to the beginning of the ALL_CARDS array
 const ALL_CARDS = [HERO_CARD, ...EDUCATION_CARDS, ...WORK_CARDS, ...LIFE_CARDS];
 
-export default function AboutView() {
-  const [hoveredCard, setHoveredCard] = useState<AboutCard>(ALL_CARDS[0]); // Starts at Hero Card now
+// -------------------------------------------------------------
+// MAIN CONTENT COMPONENT
+// -------------------------------------------------------------
+function AboutContent() {
+  const [hoveredCard, setHoveredCard] = useState<AboutCard>(ALL_CARDS[0]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   useWasdNavigation(ALL_CARDS, setHoveredCard);
 
+  // Read URL parameters on load and highlight/scroll to the targeted card
+  useEffect(() => {
+    const activeId = searchParams.get("active");
+    if (activeId) {
+      const targetCard = ALL_CARDS.find(c => c.id === activeId);
+      if (targetCard) {
+        setHoveredCard(targetCard);
+        
+        // Timeout ensures DOM elements have rendered before auto-scrolling
+        setTimeout(() => {
+          const element = document.getElementById(activeId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }, 300);
+      }
+    }
+  }, [searchParams]);
+
+  // Handle standard WASD automatic scrolling
   useEffect(() => {
     if (hoveredCard?.id) {
       const element = document.getElementById(hoveredCard.id);
@@ -223,6 +249,23 @@ export default function AboutView() {
       }
     }
   }, [hoveredCard]);
+
+  // Keyboard "Enter" key redirect logic
+  useEffect(() => {
+    const handleEnterPress = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "enter" && hoveredCard.link) {
+        e.preventDefault();
+        if (hoveredCard.link.startsWith("/")) {
+          router.push(hoveredCard.link);
+        } else {
+          window.open(hoveredCard.link, "_blank", "noopener,noreferrer");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleEnterPress);
+    return () => window.removeEventListener("keydown", handleEnterPress);
+  }, [hoveredCard, router]);
 
   const footerText = hoveredCard 
     ? hoveredCard.description 
@@ -236,6 +279,16 @@ export default function AboutView() {
         id={card.id} 
         key={card.id}
         onMouseEnter={() => setHoveredCard(card)}
+        onClick={() => {
+          // Mouse click redirect logic
+          if (card.link) {
+            if (card.link.startsWith("/")) {
+              router.push(card.link);
+            } else {
+              window.open(card.link, "_blank", "noopener,noreferrer");
+            }
+          }
+        }}
         className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${card.gridClass} ${
           isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-75 hover:opacity-100"
         }`}
@@ -271,13 +324,18 @@ export default function AboutView() {
       footerText={footerText}
       mainContainerClass="flex-grow overflow-y-auto px-2 pb-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-y snap-mandatory scroll-smooth"
     >
-      {/* 
-        MAIN HERO CARD 
-        Now linked to WASD navigation state!
-      */}
       <div 
         id="hero-main"
         onMouseEnter={() => setHoveredCard(HERO_CARD)}
+        onClick={() => {
+          if (HERO_CARD.link) {
+            if (HERO_CARD.link.startsWith("/")) {
+              router.push(HERO_CARD.link);
+            } else {
+              window.open(HERO_CARD.link, "_blank", "noopener,noreferrer");
+            }
+          }
+        }}
         className={`snap-start snap-always relative w-full min-h-[calc(100vh-170px)] transition-colors duration-200 cursor-pointer mb-[20vh] ${
           isHeroActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-90 hover:opacity-100"
         }`}
@@ -310,21 +368,29 @@ export default function AboutView() {
         </div>
       </div>
 
-      {/* SECTION 1: EDUCATION */}
       <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-3 gap-2 md:gap-3">
         {EDUCATION_CARDS.map(renderCard)}
       </div>
 
-      {/* SECTION 2: WORK EXPERIENCES */}
       <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-4 gap-2 md:gap-3">
         {WORK_CARDS.map(renderCard)}
       </div>
 
-      {/* SECTION 3: LIFE EXPERIENCES */}
       <div className="snap-start snap-always w-full h-[75vh] min-h-[400px] mb-[10vh] grid grid-cols-3 grid-rows-2 gap-2 md:gap-3">
         {LIFE_CARDS.map(renderCard)}
       </div>
 
     </GtaLayout>
+  );
+}
+
+// -------------------------------------------------------------
+// EXPORT COMPONENT WRAPPED IN SUSPENSE
+// -------------------------------------------------------------
+export default function AboutView() {
+  return (
+    <Suspense fallback={<div className="h-screen w-full flex items-center justify-center text-white">Loading...</div>}>
+      <AboutContent />
+    </Suspense>
   );
 }

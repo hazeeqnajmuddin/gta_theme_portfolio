@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import GtaLayout from "./GtaLayout";
+import { useSearchParams } from "next/navigation";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 
 // Project Data
@@ -57,8 +58,36 @@ const PROJECTS = [
 export default function ProjectsView() {
   const [activeProject, setActiveProject] = useState(PROJECTS[0]);
   const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // 2. Initialize search params
+  const searchParams = useSearchParams();
 
   useWasdNavigation(PROJECTS, setActiveProject, carouselRef);
+
+  // 3. ADDED: Read URL parameter on mount and update active project
+  useEffect(() => {
+    const activeId = searchParams.get("active");
+    
+    if (activeId) {
+      const targetProject = PROJECTS.find((p) => p.id === activeId);
+      
+      if (targetProject) {
+        setActiveProject(targetProject);
+        
+        // Optional: Automatically scroll the carousel to the targeted card on load
+        const targetIndex = PROJECTS.findIndex(p => p.id === activeId);
+        if (carouselRef.current && targetIndex !== -1) {
+          // Add a tiny delay to ensure the DOM has rendered the carousel children
+          setTimeout(() => {
+            const cardElement = carouselRef.current?.children[targetIndex] as HTMLElement;
+            if (cardElement) {
+              cardElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+          }, 100);
+        }
+      }
+    }
+  }, [searchParams]);
 
   // Track if the user is currently using the keyboard
   const isKeyboardMode = useRef(false);
