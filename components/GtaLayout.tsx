@@ -17,47 +17,60 @@ interface GtaLayoutProps {
   footerText: string;
   rightBadge?: string;
   mainContainerClass?: string;
+  activeTab?: string;
+  onTabChange?: (path: string) => void;
 }
 
 export default function GtaLayout({ 
   children, 
   footerText, 
   rightBadge,
-  mainContainerClass = "flex-grow overflow-hidden" // Default class
+  mainContainerClass = "flex-grow overflow-hidden", // Default class
+  activeTab,
+  onTabChange
 }: GtaLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const currentPath = activeTab || pathname;
+
+  const handleTabClick = (path: string) => {
+    if (onTabChange) {
+      onTabChange(path);
+    } else {
+      router.push(path);
+    }
+  };
 
   // 1. SINGLE KEYBOARD LISTENER
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const currentIndex = TABS.findIndex((tab) => tab.path === pathname);
+      const currentIndex = TABS.findIndex((tab) => tab.path === currentPath);
       
       if (e.key.toLowerCase() === 'q') {
         const prevIndex = currentIndex > 0 ? currentIndex - 1 : TABS.length - 1;
-        router.push(TABS[prevIndex].path);
+        handleTabClick(TABS[prevIndex].path);
       } else if (e.key.toLowerCase() === 'e') {
         const nextIndex = currentIndex < TABS.length - 1 ? currentIndex + 1 : 0;
-        router.push(TABS[nextIndex].path);
+        handleTabClick(TABS[nextIndex].path);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [pathname, router]);
+  }, [currentPath, onTabChange, router]);
 
   return (
     <div className="h-screen bg-black text-white p-6 md:p-10 flex flex-col font-sans select-none overflow-hidden">
       
       {/* 2. SINGLE NAVIGATION BAR */}
-      <div className={`flex justify-between items-end mb-6 shrink-0 ${rightBadge ? 'border-b border-white/10 pb-2' : ''}`}>
+      <div className="flex justify-between items-end mb-6 shrink-0">
         <nav className="flex gap-6">
           {TABS.map((tab) => (
             <button
               key={tab.name}
-              onClick={() => router.push(tab.path)}
+              onClick={() => handleTabClick(tab.path)}
               className={`px-4 py-1 text-sm md:text-base font-medium tracking-wide transition-colors ${
-                pathname === tab.path
+                currentPath === tab.path
                   ? "bg-white text-black font-bold"
                   : "text-gray-300 hover:text-white"
               }`}
@@ -77,7 +90,7 @@ export default function GtaLayout({
 
       {/* 3. SINGLE ANIMATED PAGE WRAPPER */}
       <motion.div 
-        key={pathname} // This forces the animation to re-run on page changes!
+        key={currentPath} // This forces the animation to re-run on page changes!
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}

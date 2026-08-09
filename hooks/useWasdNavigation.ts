@@ -9,9 +9,12 @@ export function useWasdNavigation<
 >(
   items: T[],
   setActiveItem: React.Dispatch<React.SetStateAction<T>>,
-  carouselRef?: RefObject<HTMLDivElement | null>
+  carouselRef?: RefObject<HTMLDivElement | null>,
+  isDisabled: boolean = false
 ) {
   useEffect(() => {
+    if (isDisabled) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
       
@@ -65,5 +68,5 @@ export function useWasdNavigation<
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [items, setActiveItem, carouselRef]);
+  }, [items, setActiveItem, carouselRef, isDisabled]);
 }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Clean Dark Background with GTA Gold Border -->
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="#0c0d0e" stroke="#fabb15" stroke-width="24" />
+  
+  <!-- Bold Clean Centered Gold 'H' -->
+  <text 
+    x="256" 
+    y="355" 
+    font-family="system-ui, -apple-system, 'Impact', 'Bebas Neue', sans-serif" 
+    font-size="330" 
+    font-weight="900" 
+    fill="#fabb15" 
+    text-anchor="middle"
+  >H</text>
+</svg>

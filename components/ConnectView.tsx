@@ -94,7 +94,12 @@ const CARDS: ConnectCard[] = [
   },
 ];
 
-export default function ConnectView() {
+interface ConnectViewProps {
+  onNavigate?: (path: string) => void;
+  activeTab?: string;
+}
+
+export default function ConnectView({ onNavigate, activeTab = "/connect" }: ConnectViewProps) {
   const [hoveredCard, setHoveredCard] = useState<ConnectCard>(CARDS[0]);
 
   // Pass current card and data array to map the next move
@@ -105,16 +110,22 @@ export default function ConnectView() {
     const handleEnterPress = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === "enter" && hoveredCard.link) {
         e.preventDefault();
-        window.open(hoveredCard.link, "_blank", "noopener,noreferrer");
+        if (hoveredCard.link.startsWith("/") && onNavigate) {
+          onNavigate(hoveredCard.link);
+        } else {
+          window.open(hoveredCard.link, "_blank", "noopener,noreferrer");
+        }
       }
     };
 
     window.addEventListener("keydown", handleEnterPress);
     return () => window.removeEventListener("keydown", handleEnterPress);
-  }, [hoveredCard]);
+  }, [hoveredCard, onNavigate]);
 
   return (
     <GtaLayout
+      activeTab={activeTab}
+      onTabChange={(path) => onNavigate ? onNavigate(path) : undefined}
       footerText={hoveredCard.description}
       rightBadge="OPEN TO WORK"
       mainContainerClass="flex-grow grid grid-cols-3 grid-rows-4 gap-2 md:gap-3 mb-6 h-[65vh] min-h-[500px]"

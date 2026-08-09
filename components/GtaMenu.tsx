@@ -114,35 +114,46 @@ const CARDS: MenuCard[] = [
   },
 ];
 
-export default function GtaMenu() {
+interface GtaMenuProps {
+  onNavigate?: (path: string) => void;
+  activeTab?: string;
+}
+
+export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
   const [hoveredCard, setHoveredCard] = useState<MenuCard>(CARDS[0]);
   const router = useRouter(); // Initialize the Next.js router
   
   // The hook correctly receives the items array and the setter function
   useWasdNavigation(CARDS, setHoveredCard);
 
+  const handleLinkNavigation = (link: string) => {
+    if (link.startsWith("/")) {
+      if (onNavigate) {
+        onNavigate(link);
+      } else {
+        router.push(link);
+      }
+    } else {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
   useEffect(() => {
     const handleEnterPress = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === "enter" && hoveredCard.link) {
         e.preventDefault(); // Stop default browser behavior
-        
-        // Seamless internal routing
-        if (hoveredCard.link.startsWith("/")) {
-          router.push(hoveredCard.link);
-        } 
-        // Open external links in a new tab
-        else {
-          window.open(hoveredCard.link, "_blank", "noopener,noreferrer");
-        }
+        handleLinkNavigation(hoveredCard.link);
       }
     };
 
     window.addEventListener("keydown", handleEnterPress);
     return () => window.removeEventListener("keydown", handleEnterPress);
-  }, [hoveredCard, router]); // Re-run this effect whenever hoveredCard changes
+  }, [hoveredCard, onNavigate, router]); // Re-run this effect whenever hoveredCard changes
 
   return (
     <GtaLayout 
+      activeTab={activeTab}
+      onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
       footerText={hoveredCard.description}
       mainContainerClass="flex-grow grid grid-cols-3 grid-rows-4 gap-2 md:gap-3 mb-6 h-[65vh] min-h-[500px]"
     >
@@ -155,14 +166,7 @@ export default function GtaMenu() {
             onMouseEnter={() => setHoveredCard(card)}
             onClick={() => {
               if (card.link) {
-                // If it is an internal link (like "/about"), route seamlessly
-                if (card.link.startsWith("/")) {
-                  router.push(card.link);
-                } 
-                // If it is an external link (like GitHub or WhatsApp), open a new tab
-                else {
-                  window.open(card.link, "_blank", "noopener,noreferrer");
-                }
+                handleLinkNavigation(card.link);
               }
             }}
             className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${card.gridClass} ${
