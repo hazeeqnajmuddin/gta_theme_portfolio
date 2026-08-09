@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GtaLayout from "./GtaLayout";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 
@@ -100,6 +100,19 @@ export default function ConnectView() {
   // Pass current card and data array to map the next move
   useWasdNavigation(CARDS, setHoveredCard);
   
+  // ADDED: Enter key listener for keyboard navigation
+  useEffect(() => {
+    const handleEnterPress = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "enter" && hoveredCard.link) {
+        e.preventDefault();
+        window.open(hoveredCard.link, "_blank", "noopener,noreferrer");
+      }
+    };
+
+    window.addEventListener("keydown", handleEnterPress);
+    return () => window.removeEventListener("keydown", handleEnterPress);
+  }, [hoveredCard]);
+
   return (
     <GtaLayout
       footerText={hoveredCard.description}
