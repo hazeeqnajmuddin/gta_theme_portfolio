@@ -91,9 +91,9 @@ export default function GtaLayout({
 
       {/* 3. SINGLE ANIMATED PAGE WRAPPER */}
       <motion.div 
-        key={currentPath} // This forces the animation to re-run on page changes!
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
+        key={currentPath}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`${mainContainerClass} flex-1 min-h-0`}
       >

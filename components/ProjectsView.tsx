@@ -304,6 +304,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
       
       if (targetProject) {
         setActiveProject(targetProject);
+        setIsModalOpen(true);
         
         const targetIndex = PROJECTS.findIndex(p => p.id === activeId);
         if (carouselRef.current && targetIndex !== -1) {
@@ -337,27 +338,64 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
     };
   }, []);
 
-  // Listen for Enter / ESC key and enable WASD scrolling inside modal
+  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveLinkIndex(0);
+  }, [activeProject, isModalOpen]);
+
+  // Listen for keys inside open modal (W/S to scroll, A/D to select link, Enter/E to open link, ESC/Q to close)
   useEffect(() => {
     const handleKeyDownCapture = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
 
       if (isModalOpen) {
-        if (key === "escape") {
+        const modalLinks: { label: string; url: string; type: "demo" | "github" }[] = [];
+        if (activeProject.demoUrl) {
+          modalLinks.push({ label: "VISIT LIVE WEBSITE", url: activeProject.demoUrl, type: "demo" });
+        }
+        if (activeProject.githubLinks && activeProject.githubLinks.length > 0) {
+          activeProject.githubLinks.forEach((l) => modalLinks.push({ label: l.label, url: l.url, type: "github" }));
+        } else if (activeProject.githubUrl) {
+          modalLinks.push({ label: "OPEN GITHUB REPOSITORY", url: activeProject.githubUrl, type: "github" });
+        }
+
+        const hasLinks = modalLinks.length > 0;
+        const totalLinks = modalLinks.length;
+
+        if (key === "escape" || key === "q") {
           e.preventDefault();
           e.stopPropagation();
           setIsModalOpen(false);
-        } else if (key === "w" || key === "arrowup" || key === "a" || key === "arrowleft") {
+        } else if (key === "w" || key === "arrowup") {
           e.preventDefault();
           e.stopPropagation();
           modalBodyRef.current?.scrollBy({ top: -140, behavior: "smooth" });
-        } else if (key === "s" || key === "arrowdown" || key === "d" || key === "arrowright") {
+        } else if (key === "s" || key === "arrowdown") {
           e.preventDefault();
           e.stopPropagation();
           modalBodyRef.current?.scrollBy({ top: 140, behavior: "smooth" });
-        } else if (['q', 'e', 'enter'].includes(key)) {
+        } else if (key === "a" || key === "arrowleft") {
           e.preventDefault();
           e.stopPropagation();
+          if (hasLinks) {
+            setActiveLinkIndex((prev) => (prev > 0 ? prev - 1 : totalLinks - 1));
+          }
+        } else if (key === "d" || key === "arrowright") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (hasLinks) {
+            setActiveLinkIndex((prev) => (prev < totalLinks - 1 ? prev + 1 : 0));
+          }
+        } else if (key === "enter" || key === "e") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (hasLinks) {
+            const target = modalLinks[activeLinkIndex] || modalLinks[0];
+            window.open(target.url, "_blank", "noopener,noreferrer");
+          } else {
+            setIsModalOpen(false);
+          }
         }
       } else {
         if (key === "enter") {
@@ -448,7 +486,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
               key={project.id}
               onClick={() => handleCardClick(project)}
               onMouseEnter={() => {
-                if (!isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+                if (!isModalOpen && !isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
                   setActiveProject(project);
                 }
               }}
@@ -589,48 +627,47 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                 </div>
 
                 {/* External Action Links (Live Site & GitHub Repositories) */}
-                {(activeProject.demoUrl || activeProject.githubUrl || activeProject.githubLinks) && (
-                  <div className="pt-2 flex flex-wrap gap-3">
-                    {activeProject.demoUrl && (
-                      <a
-                        href={activeProject.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all hover:scale-105 active:scale-95"
-                      >
-                        <Globe className="w-4 h-4" />
-                        <span>VISIT LIVE WEBSITE</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {activeProject.githubLinks ? (
-                      activeProject.githubLinks.map((link, idx) => (
-                        <a
-                          key={idx}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md border border-white/20 transition-all hover:scale-105 active:scale-95"
-                        >
-                          <GithubIcon className="w-4 h-4" />
-                          <span>{link.label}</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      ))
-                    ) : activeProject.githubUrl ? (
-                      <a
-                        href={activeProject.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md border border-white/20 transition-all hover:scale-105 active:scale-95"
-                      >
-                        <GithubIcon className="w-4 h-4" />
-                        <span>OPEN GITHUB REPOSITORY</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    ) : null}
-                  </div>
-                )}
+                {(() => {
+                  const modalLinks: { label: string; url: string; type: "demo" | "github" }[] = [];
+                  if (activeProject.demoUrl) {
+                    modalLinks.push({ label: "VISIT LIVE WEBSITE", url: activeProject.demoUrl, type: "demo" });
+                  }
+                  if (activeProject.githubLinks && activeProject.githubLinks.length > 0) {
+                    activeProject.githubLinks.forEach((l) => modalLinks.push({ label: l.label, url: l.url, type: "github" }));
+                  } else if (activeProject.githubUrl) {
+                    modalLinks.push({ label: "OPEN GITHUB REPOSITORY", url: activeProject.githubUrl, type: "github" });
+                  }
+
+                  if (modalLinks.length === 0) return null;
+
+                  return (
+                    <div className="pt-2 flex flex-wrap gap-3">
+                      {modalLinks.map((link, idx) => {
+                        const isSelected = activeLinkIndex === idx;
+
+                        return (
+                          <a
+                            key={idx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-2 px-4 py-2 font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all font-bold ${
+                              isSelected
+                                ? "bg-white text-black border-2 border-[#fabb15] scale-105 shadow-xl ring-2 ring-[#fabb15]"
+                                : link.type === "demo"
+                                ? "bg-[#fabb15] hover:bg-[#e0a710] text-black hover:scale-105 active:scale-95"
+                                : "bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:scale-105 active:scale-95"
+                            }`}
+                          >
+                            {link.type === "demo" ? <Globe className="w-4 h-4" /> : <GithubIcon className="w-4 h-4" />}
+                            <span>{link.label}</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* Modal Footer */}
@@ -641,6 +678,19 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">S</kbd>
                   </div>
+                  {(activeProject.demoUrl || activeProject.githubUrl || activeProject.githubLinks) && (
+                    <>
+                      <div className="flex items-center gap-1">
+                        <span className="text-gray-400">Select Link:</span>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">A</kbd>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">D</kbd>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-gray-400">Open:</span>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">↵</kbd>
+                      </div>
+                    </>
+                  )}
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Exit:</span>
                     <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">ESC</kbd>

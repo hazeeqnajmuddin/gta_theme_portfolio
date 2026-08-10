@@ -11,13 +11,18 @@ import {
   Users, Building2, Briefcase, Smile, Package, PackageCheck, Zap, 
   Utensils, Clock, Receipt, Flame, Mic, Heart, Calendar, Code2, Award, 
   HeartHandshake, Leaf, Volume2, MessageSquare, UserPlus, ClipboardList, 
-  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText, Smartphone
+  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText, Smartphone, ExternalLink, FolderGit2
 } from "lucide-react";
 
 export interface AboutDetailHighlight {
   title: string;
   desc: string;
   icon: React.ReactNode;
+}
+
+export interface AboutProjectLink {
+  label: string;
+  path: string;
 }
 
 export interface AboutCard {
@@ -34,6 +39,7 @@ export interface AboutCard {
   overview: string;
   highlights: AboutDetailHighlight[];
   tags: string[];
+  projectLinks?: AboutProjectLink[];
   nav?: {
     w?: string;
     a?: string;
@@ -78,7 +84,7 @@ const HERO_CARD: AboutCard = {
     }
   ],
   tags: ["Software Engineering", "Full-Stack Dev", "QA Automation", "Laravel", "React / Next.js", "Flutter"],
-  nav: { s: "edu-main" }
+  nav: { s: "work-main" }
 };
 
 // SECTION 1: EDUCATION
@@ -115,7 +121,12 @@ const EDUCATION_CARDS: AboutCard[] = [
       }
     ],
     tags: ["UMPSA Software Eng", "KMKPh CGPA 3.92", "SM Teknik Melaka 7As", "SMK Taman Melawati"],
-    nav: { w: "hero-main", d: "edu-degree", s: "work-main" } 
+    projectLinks: [
+      { label: "AUTOMATE SYSTEM (FYP)", path: "/projects?active=automate" },
+      { label: "PREACHER MONITORING SYSTEM", path: "/projects?active=preacher" },
+      { label: "CHILLAX MOBILE APP", path: "/projects?active=chillax-app" }
+    ],
+    nav: { w: "work-main", d: "edu-degree", s: "life-main" } 
   },
   {
     id: "edu-degree",
@@ -147,7 +158,12 @@ const EDUCATION_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Software Engineering", "Laravel & Flutter", "Machine Learning", "Automated Testing", "System Design"],
-    nav: { w: "hero-main", a: "edu-main", d: "edu-matrics", s: "work-intern" } 
+    projectLinks: [
+      { label: "AUTOMATE SYSTEM (FYP)", path: "/projects?active=automate" },
+      { label: "PREACHER MONITORING SYSTEM", path: "/projects?active=preacher" },
+      { label: "CHILLAX MOBILE APP", path: "/projects?active=chillax-app" }
+    ],
+    nav: { w: "work-freelance", a: "edu-main", d: "edu-matrics", s: "life-volunteer" } 
   },
   {
     id: "edu-matrics",
@@ -179,7 +195,7 @@ const EDUCATION_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Electrical Engineering", "KMKPh Jengka", "CGPA 3.92", "Engineering Math", "Circuit Analysis"],
-    nav: { w: "hero-main", a: "edu-degree", s: "edu-high" } 
+    nav: { w: "work-waiter", a: "edu-degree", s: "edu-high" } 
   },
   {
     id: "edu-high",
@@ -243,7 +259,7 @@ const EDUCATION_CARDS: AboutCard[] = [
       }
     ],
     tags: ["SMK Taman Melawati", "Lower Secondary", "PT3 Foundation", "Form 1 - Form 3"],
-    nav: { w: "edu-high", a: "edu-degree", s: "work-skechers" }
+    nav: { w: "edu-high", a: "edu-degree", s: "life-youth" }
   }
 ];
 
@@ -276,7 +292,7 @@ const WORK_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Banking Tech Intern", "Quality Assurance", "Freelance Software", "Customer Service", "Logistics Operations"],
-    nav: { w: "edu-main", d: "work-intern", s: "life-main" }
+    nav: { w: "hero-main", d: "work-intern", s: "edu-main" }
   },
   {
     id: "work-intern",
@@ -313,35 +329,42 @@ const WORK_CARDS: AboutCard[] = [
       }
     ],
     tags: ["UOB Intermark", "Gientech", "Perfecto Mobile", "Tricentis Tosca", "Selenium", "Appium", "Banking QA"],
+    projectLinks: [
+      { label: "VIEW QA AUTOMATION SUITE PROJECT", path: "/projects?active=qa-suite" },
+      { label: "VIEW TOSCA AS1 & AS2 CERTIFICATIONS", path: "/certs?active=tosca-as1-as2" }
+    ],
     nav: { w: "edu-degree", a: "work-main", d: "work-skechers", s: "work-freelance" }
   },
   {
     id: "work-freelance",
-    title: "FREELANCE",
-    subtitle: "Freelance Web & Systems Developer",
-    description: "Role: Freelance Web & Systems Developer",
-    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000",
+    title: "FREELANCE FULL-STACK DEVELOPER",
+    subtitle: "Rahmah Consultancy Management System (RCMS)",
+    description: "Role: Freelance Full-Stack Web Developer",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-3xl md:text-4xl",
-    overview: "Provided freelance technical solutions including custom web application development, server setups, hardware diagnostics, and IT troubleshooting for small businesses and individual clients.",
+    overview: "Engineered and deployed the Rahmah Consultancy Management System (RCMS) — a PDPA-compliant full-stack Laravel platform on DigitalOcean. Digitized manual intake operations, built admin dashboards, automated PDF document bundle generation, and authored 50+ E2E test cases.",
     highlights: [
       {
-        title: "Web Application Development",
-        desc: "Custom Laravel, PHP, and responsive web interface design tailored to client requirements.",
-        icon: <Code2 className="w-4 h-4 text-[#fabb15]" />
+        title: "PDPA-Compliant Platform & DigitalOcean Deployment",
+        desc: "Digitized manual intake operations reducing client onboarding time by 40% with 100% data privacy compliance.",
+        icon: <ShieldCheck className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Hardware & Network Diagnostics",
-        desc: "PC assembly, OS optimization, local network configurations, and troubleshooting.",
-        icon: <Wrench className="w-4 h-4 text-[#00a8ff]" />
+        title: "Automated PDF Document Bundle Engine",
+        desc: "Built public submission portals & admin dashboards to merge PDF document bundles, reducing 50% manual administration.",
+        icon: <FileText className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Client Communications & Milestones",
-        desc: "Scoping project requirements, managing delivery milestones, and providing technical support.",
-        icon: <UserCheck className="w-4 h-4 text-[#2ecc71]" />
+        title: "15+ Responsive Interfaces & E2E Testing",
+        desc: "Architected submission portals and administrative tools, expediting platform deployment by 3 weeks with 50+ test cases.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
       }
     ],
-    tags: ["Freelance Developer", "Custom Web Apps", "Laravel", "Hardware Setup", "IT Support"],
+    tags: ["RCMS Full-Stack", "Laravel 10", "DigitalOcean", "PDPA Compliance", "PDF Engine", "E2E Testing"],
+    projectLinks: [
+      { label: "VIEW RCMS SYSTEM PROJECT", path: "/projects?active=rcms-crm" }
+    ],
     nav: { w: "work-intern", a: "work-main", d: "work-ole", s: "life-volunteer" }
   },
   {
@@ -438,7 +461,7 @@ const WORK_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Front of House", "Order Precision", "Multitasking", "Customer Care"],
-    nav: { w: "work-ole", a: "work-freelance", s: "life-youth" }
+    nav: { w: "work-ole", a: "work-freelance", s: "edu-matrics" }
   }
 ];
 
@@ -471,7 +494,7 @@ const LIFE_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Public Speaking", "Community Service", "Youth Mentorship", "Program Management"],
-    nav: { w: "work-main", d: "life-volunteer" }
+    nav: { w: "edu-main", d: "life-volunteer" }
   },
   {
     id: "life-volunteer",
@@ -495,7 +518,7 @@ const LIFE_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Community Outreach", "Volunteer Work", "Humanitarian Aid", "Social Responsibility"],
-    nav: { w: "work-freelance", a: "life-main", d: "life-youth", s: "life-speaker" }
+    nav: { w: "edu-degree", a: "life-main", d: "life-youth", s: "life-speaker" }
   },
   {
     id: "life-speaker",
@@ -543,7 +566,7 @@ const LIFE_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Youth Development", "Student Mentorship", "Leadership Coaching", "Skill Workshops"],
-    nav: { w: "work-waiter", a: "life-volunteer", s: "life-program" }
+    nav: { w: "edu-middle", a: "life-volunteer", s: "life-program" }
   },
   {
     id: "life-program",
@@ -571,7 +594,7 @@ const LIFE_CARDS: AboutCard[] = [
   }
 ];
 
-const ALL_CARDS = [HERO_CARD, ...EDUCATION_CARDS, ...WORK_CARDS, ...LIFE_CARDS];
+const ALL_CARDS = [HERO_CARD, ...WORK_CARDS, ...EDUCATION_CARDS, ...LIFE_CARDS];
 
 interface AboutViewProps {
   onNavigate?: (path: string) => void;
@@ -627,27 +650,55 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
     }
   }, [hoveredCard, isModalOpen]);
 
-  // Listen for Enter / ESC key and enable WASD scrolling inside modal
+  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveLinkIndex(0);
+  }, [hoveredCard, isModalOpen]);
+
+  // Listen for keys inside open modal (W/S to scroll, A/D to select link, Enter/E to open link, ESC/Q to close)
   useEffect(() => {
     const handleKeyDownCapture = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
 
       if (isModalOpen) {
-        if (key === "escape") {
+        const hasLinks = hoveredCard.projectLinks && hoveredCard.projectLinks.length > 0;
+        const totalLinks = hasLinks ? hoveredCard.projectLinks!.length : 0;
+
+        if (key === "escape" || key === "q") {
           e.preventDefault();
           e.stopPropagation();
           setIsModalOpen(false);
-        } else if (key === "w" || key === "arrowup" || key === "a" || key === "arrowleft") {
+        } else if (key === "w" || key === "arrowup") {
           e.preventDefault();
           e.stopPropagation();
           modalBodyRef.current?.scrollBy({ top: -140, behavior: "smooth" });
-        } else if (key === "s" || key === "arrowdown" || key === "d" || key === "arrowright") {
+        } else if (key === "s" || key === "arrowdown") {
           e.preventDefault();
           e.stopPropagation();
           modalBodyRef.current?.scrollBy({ top: 140, behavior: "smooth" });
-        } else if (['q', 'e', 'enter'].includes(key)) {
+        } else if (key === "a" || key === "arrowleft") {
           e.preventDefault();
           e.stopPropagation();
+          if (hasLinks) {
+            setActiveLinkIndex((prev) => (prev > 0 ? prev - 1 : totalLinks - 1));
+          }
+        } else if (key === "d" || key === "arrowright") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (hasLinks) {
+            setActiveLinkIndex((prev) => (prev < totalLinks - 1 ? prev + 1 : 0));
+          }
+        } else if (key === "enter" || key === "e") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (hasLinks) {
+            const targetLink = hoveredCard.projectLinks![activeLinkIndex] || hoveredCard.projectLinks![0];
+            setIsModalOpen(false);
+            handleLinkNavigation(targetLink.path);
+          } else {
+            setIsModalOpen(false);
+          }
         }
       } else {
         if (key === "enter") {
@@ -779,14 +830,14 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         </div>
       </div>
 
-      {/* Section 1: Education */}
-      <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-3 gap-2 md:gap-3">
-        {EDUCATION_CARDS.map(renderCard)}
-      </div>
-
-      {/* Section 2: Work Experiences */}
+      {/* Section 1: Work Experiences */}
       <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-4 gap-2 md:gap-3">
         {WORK_CARDS.map(renderCard)}
+      </div>
+
+      {/* Section 2: Education */}
+      <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-3 gap-2 md:gap-3">
+        {EDUCATION_CARDS.map(renderCard)}
       </div>
 
       {/* Section 3: Life Experiences */}
@@ -904,6 +955,38 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
                     </div>
                   </div>
                 )}
+
+                {/* Project System Action Links */}
+                {hoveredCard.projectLinks && hoveredCard.projectLinks.length > 0 && (
+                  <div className="pt-2 border-t border-white/10">
+                    <h3 className="font-gta text-xl text-[#fabb15] tracking-wider mb-3 uppercase flex items-center gap-2">
+                      <FolderGit2 className="w-4 h-4 text-[#00a8ff]" /> FEATURED PROJECTS & SYSTEMS
+                    </h3>
+                    <div className="flex flex-wrap gap-2.5">
+                      {hoveredCard.projectLinks.map((link, idx) => {
+                        const isSelected = activeLinkIndex === idx;
+
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => {
+                              setIsModalOpen(false);
+                              handleLinkNavigation(link.path);
+                            }}
+                            className={`inline-flex items-center gap-2 px-3.5 py-2 font-gta text-xs sm:text-sm tracking-wider rounded-sm shadow-md transition-all font-bold uppercase ${
+                              isSelected
+                                ? "bg-white text-black border-2 border-[#fabb15] scale-105 shadow-xl ring-2 ring-[#fabb15]"
+                                : "bg-[#fabb15] hover:bg-[#e0a710] text-black hover:scale-105 active:scale-95"
+                            }`}
+                          >
+                            <span>{link.label}</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Modal Footer */}
@@ -914,6 +997,19 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">S</kbd>
                   </div>
+                  {hoveredCard.projectLinks && hoveredCard.projectLinks.length > 0 && (
+                    <>
+                      <div className="flex items-center gap-1">
+                        <span className="text-gray-400">Select Link:</span>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">A</kbd>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">D</kbd>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-gray-400">Open:</span>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">↵</kbd>
+                      </div>
+                    </>
+                  )}
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Exit:</span>
                     <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">ESC</kbd>

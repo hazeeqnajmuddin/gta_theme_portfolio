@@ -355,14 +355,14 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
               className="relative w-full max-w-4xl max-h-[90vh] bg-[#121212] border-2 border-white/20 rounded shadow-2xl flex flex-col overflow-hidden z-10"
             >
               {/* Modal Header */}
-              <div className="p-4 sm:p-5 bg-gradient-to-r from-black via-zinc-900 to-black border-b border-white/10 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-6 bg-[#fabb15] rounded-sm" />
-                  <div>
-                    <h2 className="font-gta text-2xl sm:text-3xl md:text-4xl text-white tracking-wider uppercase leading-none">
+              <div className="p-3.5 sm:p-5 bg-gradient-to-r from-black via-zinc-900 to-black border-b border-white/10 flex items-start sm:items-center justify-between gap-3 shrink-0">
+                <div className="flex items-start sm:items-center gap-2.5 sm:gap-3 min-w-0 pr-2">
+                  <div className="w-2.5 h-6 bg-[#fabb15] rounded-sm shrink-0 mt-0.5 sm:mt-0" />
+                  <div className="min-w-0">
+                    <h2 className="font-gta text-xl sm:text-3xl md:text-4xl text-white tracking-wider uppercase leading-tight">
                       OTHER SOCIALS & PLATFORMS
                     </h2>
-                    <p className="text-gray-400 text-xs sm:text-sm font-medium mt-0.5">
+                    <p className="text-gray-400 text-[11px] sm:text-sm font-medium mt-0.5 line-clamp-2 sm:line-clamp-none">
                       Connect with Hazeeq across messaging apps, video portals, and developer communities
                     </p>
                   </div>
@@ -370,24 +370,24 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
 
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded transition-colors"
+                  className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded transition-colors shrink-0"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
               </div>
 
               {/* Modal Scroll Body */}
-              <div ref={modalScrollRef} className="p-4 sm:p-6 md:p-8 overflow-y-auto space-y-6 flex-1 custom-scrollbar">
+              <div ref={modalScrollRef} className="p-3.5 sm:p-6 md:p-8 overflow-y-auto space-y-5 sm:space-y-6 flex-1 custom-scrollbar">
                 {/* Image Banner */}
-                <div className="relative w-full h-44 sm:h-56 rounded-sm overflow-hidden border border-white/10 shadow-lg">
+                <div className="relative w-full h-36 sm:h-56 rounded-sm overflow-hidden border border-white/10 shadow-lg">
                   <img 
                     src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000" 
                     alt="Social Networks" 
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end p-4 sm:p-6" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                    <span className="px-2.5 py-1 bg-[#fabb15] text-black text-xs font-bold tracking-wider rounded-sm uppercase">
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between">
+                    <span className="px-2.5 py-1 bg-[#fabb15] text-black text-[10px] sm:text-xs font-bold tracking-wider rounded-sm uppercase">
                       ALL PLATFORMS
                     </span>
                     <span className="text-xs text-gray-300 font-medium hidden sm:inline">
@@ -398,43 +398,44 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
 
                 {/* Overview Paragraph */}
                 <div>
-                  <h3 className="font-gta text-lg text-[#fabb15] tracking-wider uppercase mb-2 flex items-center gap-2">
+                  <h3 className="font-gta text-base sm:text-lg text-[#fabb15] tracking-wider uppercase mb-2 flex items-center gap-2">
                     <Sparkles className="w-4 h-4" /> Connect & Engage
                   </h3>
-                  <p className="text-gray-200 text-sm sm:text-base leading-relaxed bg-white/5 p-4 rounded-sm border border-white/5 font-normal">
+                  <p className="text-gray-200 text-xs sm:text-base leading-relaxed bg-white/5 p-3 sm:p-4 rounded-sm border border-white/5 font-normal">
                     Explore all my official social profiles, professional networks, instant messaging channels, short-form tech content, and direct contact options below. Feel free to connect or reach out anytime!
                   </p>
                 </div>
 
                 {/* Social Links List */}
                 <div>
-                  <h3 className="font-gta text-lg text-[#fabb15] tracking-wider uppercase mb-3 flex items-center gap-2">
+                  <h3 className="font-gta text-base sm:text-lg text-[#fabb15] tracking-wider uppercase mb-3 flex items-center gap-2">
                     <Share2 className="w-4 h-4" /> Available Platforms & Channels
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                     {OTHER_SOCIALS_LIST.map((item, idx) => (
                       <div 
                         key={idx} 
-                        className="p-4 bg-white/5 border border-white/10 rounded-sm flex flex-col justify-between hover:border-white/30 transition-all hover:bg-white/[0.07] group"
+                        className="p-3.5 sm:p-4 bg-white/5 border border-white/10 rounded-sm flex flex-col justify-between hover:border-white/30 transition-all hover:bg-white/[0.07] group"
                       >
-                        <div className="flex items-start justify-between gap-3 mb-2">
-                          <div className="flex items-center gap-3">
-                            <div className="p-2 bg-black/50 rounded-sm border border-white/10 shrink-0">
+                        <div className="mb-2">
+                          <div className="flex items-start gap-3">
+                            <div className="p-2 bg-black/50 rounded-sm border border-white/10 shrink-0 mt-0.5">
                               {item.icon}
                             </div>
-                            <div>
-                              <h4 className="text-white text-base font-bold tracking-wide group-hover:text-[#fabb15] transition-colors">
-                                {item.name}
-                              </h4>
-                              <p className="text-gray-400 text-xs font-mono">
+                            <div className="min-w-0 flex-1">
+                              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0.5">
+                                <h4 className="text-white text-sm sm:text-base font-bold tracking-wide group-hover:text-[#fabb15] transition-colors">
+                                  {item.name}
+                                </h4>
+                                <span className={`px-2 py-0.5 text-[9px] sm:text-[10px] font-bold rounded-sm uppercase tracking-wider shrink-0 ${item.badgeColor}`}>
+                                  {item.category}
+                                </span>
+                              </div>
+                              <p className="text-gray-400 text-xs font-mono truncate">
                                 {item.handle}
                               </p>
                             </div>
                           </div>
-
-                          <span className={`px-2 py-0.5 text-[10px] font-bold rounded-sm uppercase tracking-wider shrink-0 ${item.badgeColor}`}>
-                            {item.category}
-                          </span>
                         </div>
 
                         <p className="text-gray-300 text-xs leading-relaxed mb-3">

@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, Suspense } from "react";
 import GtaLayout from "./GtaLayout";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, Cloud, Server, ShieldCheck, DollarSign, Building2, Code2, 
@@ -256,14 +256,18 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
 
   useWasdNavigation(CERTS, setActiveCert, carouselRef, isModalOpen);
 
+  const searchParams = useSearchParams();
+
   useEffect(() => {
-    if (initialActiveId) {
-      const targetCert = CERTS.find(c => c.id === initialActiveId);
+    const activeId = initialActiveId || searchParams.get("active");
+    if (activeId) {
+      const targetCert = CERTS.find(c => c.id === activeId);
       if (targetCert) {
         setActiveCert(targetCert);
+        setIsModalOpen(true);
       }
     }
-  }, [initialActiveId]);
+  }, [searchParams, initialActiveId]);
 
   const isKeyboardMode = useRef(false);
 
@@ -284,27 +288,61 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
     };
   }, []);
 
+  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveLinkIndex(0);
+  }, [activeCert, isModalOpen]);
+
   // Keyboard navigation & WASD scroll handler inside open modal
   useEffect(() => {
     const handleKeyDownCapture = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
 
       if (isModalOpen) {
-        if (key === "escape") {
+        const certLinks: { label: string; url: string }[] = [];
+        if (activeCert.badgeLinks && activeCert.badgeLinks.length > 0) {
+          activeCert.badgeLinks.forEach((l) => certLinks.push({ label: l.label, url: l.url }));
+        } else if (activeCert.badgeUrl) {
+          certLinks.push({ label: "VERIFY OFFICIAL BADGE", url: activeCert.badgeUrl });
+        }
+
+        const hasLinks = certLinks.length > 0;
+        const totalLinks = certLinks.length;
+
+        if (key === "escape" || key === "q") {
           e.preventDefault();
           e.stopPropagation();
           setIsModalOpen(false);
-        } else if (key === "w" || key === "arrowup" || key === "a" || key === "arrowleft") {
+        } else if (key === "w" || key === "arrowup") {
           e.preventDefault();
           e.stopPropagation();
           modalBodyRef.current?.scrollBy({ top: -140, behavior: "smooth" });
-        } else if (key === "s" || key === "arrowdown" || key === "d" || key === "arrowright") {
+        } else if (key === "s" || key === "arrowdown") {
           e.preventDefault();
           e.stopPropagation();
           modalBodyRef.current?.scrollBy({ top: 140, behavior: "smooth" });
-        } else if (['q', 'e', 'enter'].includes(key)) {
+        } else if (key === "a" || key === "arrowleft") {
           e.preventDefault();
           e.stopPropagation();
+          if (hasLinks) {
+            setActiveLinkIndex((prev) => (prev > 0 ? prev - 1 : totalLinks - 1));
+          }
+        } else if (key === "d" || key === "arrowright") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (hasLinks) {
+            setActiveLinkIndex((prev) => (prev < totalLinks - 1 ? prev + 1 : 0));
+          }
+        } else if (key === "enter" || key === "e") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (hasLinks) {
+            const target = certLinks[activeLinkIndex] || certLinks[0];
+            window.open(target.url, "_blank", "noopener,noreferrer");
+          } else {
+            setIsModalOpen(false);
+          }
         }
       } else {
         if (key === "enter") {
@@ -535,36 +573,42 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
                 </div>
 
                 {/* External Badge Verification Links */}
-                {(activeCert.badgeLinks || activeCert.badgeUrl) && (
-                  <div className="pt-2 flex flex-wrap gap-3">
-                    {activeCert.badgeLinks ? (
-                      activeCert.badgeLinks.map((link, idx) => (
-                        <a
-                          key={idx}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all hover:scale-105 active:scale-95"
-                        >
-                          <ShieldCheck className="w-4 h-4 text-black" />
-                          <span>{link.label}</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      ))
-                    ) : (
-                      <a
-                        href={activeCert.badgeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all hover:scale-105 active:scale-95"
-                      >
-                        <ShieldCheck className="w-4 h-4 text-black" />
-                        <span>VERIFY OFFICIAL BADGE</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                  </div>
-                )}
+                {(() => {
+                  const certLinks: { label: string; url: string }[] = [];
+                  if (activeCert.badgeLinks && activeCert.badgeLinks.length > 0) {
+                    activeCert.badgeLinks.forEach((l) => certLinks.push({ label: l.label, url: l.url }));
+                  } else if (activeCert.badgeUrl) {
+                    certLinks.push({ label: "VERIFY OFFICIAL BADGE", url: activeCert.badgeUrl });
+                  }
+
+                  if (certLinks.length === 0) return null;
+
+                  return (
+                    <div className="pt-2 flex flex-wrap gap-3">
+                      {certLinks.map((link, idx) => {
+                        const isSelected = activeLinkIndex === idx;
+
+                        return (
+                          <a
+                            key={idx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-2 px-4 py-2 font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all font-bold ${
+                              isSelected
+                                ? "bg-white text-black border-2 border-[#fabb15] scale-105 shadow-xl ring-2 ring-[#fabb15]"
+                                : "bg-[#fabb15] hover:bg-[#e0a710] text-black hover:scale-105 active:scale-95"
+                            }`}
+                          >
+                            <ShieldCheck className="w-4 h-4 text-black" />
+                            <span>{link.label}</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* Modal Footer */}
@@ -575,6 +619,19 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">S</kbd>
                   </div>
+                  {(activeCert.badgeLinks || activeCert.badgeUrl) && (
+                    <>
+                      <div className="flex items-center gap-1">
+                        <span className="text-gray-400">Select Link:</span>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">A</kbd>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">D</kbd>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-gray-400">Open:</span>
+                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">↵</kbd>
+                      </div>
+                    </>
+                  )}
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Exit:</span>
                     <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">ESC</kbd>
