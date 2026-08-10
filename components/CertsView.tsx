@@ -334,7 +334,7 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
             <div
               key={cert.id}
               onMouseEnter={() => {
-                if (!isKeyboardMode.current) {
+                if (!isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
                   setActiveCert(cert);
                 }
               }}

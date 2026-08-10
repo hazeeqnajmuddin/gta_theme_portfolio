@@ -387,7 +387,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
               key={project.id}
               onClick={() => handleCardClick(project)}
               onMouseEnter={() => {
-                if (!isKeyboardMode.current) {
+                if (!isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
                   setActiveProject(project);
                 }
               }}
