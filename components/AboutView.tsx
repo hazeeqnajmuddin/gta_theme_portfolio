@@ -251,12 +251,12 @@ const WORK_CARDS: AboutCard[] = [
   },
   {
     id: "work-intern",
-    title: "CORPORATE INTERNSHIPS",
-    subtitle: "Banking Tech Operations & Quality Assurance (UOB & CIMB)",
+    title: "GIENTECH (UOB PROJECT)",
+    subtitle: "Software QA & Test Analyst Intern",
     badge: "UOB",
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
-    description: "Professional internships focusing on corporate tech environments.",
+    description: "Role: Software QA & Testing Engineer Intern",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
     titleClass: "text-3xl md:text-4xl",
@@ -283,10 +283,10 @@ const WORK_CARDS: AboutCard[] = [
   },
   {
     id: "work-freelance",
-    title: "FREELANCE ENGINEERING",
-    subtitle: "Independent Systems & Custom Web Development",
-    description: "Independent projects, troubleshooting, and system setups.",
-    image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1000",
+    title: "FREELANCE",
+    subtitle: "Freelance Web & Systems Developer",
+    description: "Role: Freelance Web & Systems Developer",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-3xl md:text-4xl",
     overview: "Provided freelance technical solutions including custom web application development, server setups, hardware diagnostics, and IT troubleshooting for small businesses and individual clients.",
@@ -313,8 +313,8 @@ const WORK_CARDS: AboutCard[] = [
   {
     id: "work-skechers",
     title: "SKECHERS RETAIL",
-    subtitle: "Retail Customer Specialist & Inventory Operations",
-    description: "Retail operations and customer service.",
+    subtitle: "Retail Sales & Customer Specialist",
+    description: "Role: Retail Sales & Customer Specialist",
     image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-xl md:text-2xl",
@@ -336,9 +336,9 @@ const WORK_CARDS: AboutCard[] = [
   },
   {
     id: "work-shopee",
-    title: "SHOPEE LOGISTICS",
-    subtitle: "Warehouse Distribution & Package Sorting",
-    description: "Logistics and fast-paced warehouse organization.",
+    title: "SHOPEE HUB & LOGISTICS",
+    subtitle: "Logistics & Warehouse Operations Specialist",
+    description: "Role: Logistics & Warehouse Operations Specialist",
     image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-xl md:text-2xl",
@@ -361,12 +361,12 @@ const WORK_CARDS: AboutCard[] = [
   {
     id: "work-ole",
     title: "OLE OLE BALI",
-    subtitle: "F&B Operations & Front-of-House Dining",
-    description: "F&B hospitality and operational flow.",
-    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000",
+    subtitle: "Waiter & Kitchen Helper",
+    description: "Role: Waiter & Kitchen Helper",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-2xl",
-    overview: "Hospitality experience in upscale dining, delivering attentive table service, managing guest orders, and maintaining dining floor workflows.",
+    overview: "Hospitality experience in upscale dining, delivering attentive table service, managing guest orders, supporting kitchen food preparation, and maintaining dining floor workflows.",
     highlights: [
       {
         title: "Guest Hospitality & Dining",
@@ -374,19 +374,19 @@ const WORK_CARDS: AboutCard[] = [
         icon: <Utensils className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Operational Multitasking",
-        desc: "Coordinating orders with kitchen staff during peak lunch & dinner rush hours.",
+        title: "Kitchen Preparation Support",
+        desc: "Assisting kitchen staff with ingredient prep, food station organization, and cleanliness.",
         icon: <Clock className="w-4 h-4 text-[#00a8ff]" />
       }
     ],
-    tags: ["F&B Hospitality", "Dining Service", "Order Coordination", "Teamwork"],
+    tags: ["F&B Hospitality", "Dining Service", "Kitchen Prep", "Teamwork"],
     nav: { w: "work-shopee", a: "work-freelance", s: "work-waiter" }
   },
   {
     id: "work-waiter",
-    title: "STEAKHOUSE WAITER",
-    subtitle: "Front-of-House Dining & Service Flow",
-    description: "Front-of-house dining experience.",
+    title: "AZEEZAH AL-ANSAR STEAKHOUSE",
+    subtitle: "Steakhouse Dining Waiter & Service Staff",
+    description: "Role: Steakhouse Dining Waiter & Service Staff",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
     titleClass: "text-xl md:text-2xl",
@@ -465,10 +465,10 @@ const LIFE_CARDS: AboutCard[] = [
   },
   {
     id: "life-speaker",
-    title: "MOTIVATIONAL SPEAKER",
+    title: "PUBLIC SPEAKER",
     subtitle: "Public Speaking & Career Guidance",
     description: "Public speaking and sharing personal journeys.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-2 row-span-1",
     titleClass: "text-2xl md:text-4xl",
     overview: "Engaging as a motivational speaker and mentor, delivering inspiring presentations on overcoming challenges, technology careers, and personal development.",
@@ -492,7 +492,7 @@ const LIFE_CARDS: AboutCard[] = [
     title: "YOUTH DEVELOPMENT",
     subtitle: "Guiding & Empowering Younger Peers",
     description: "Mentoring and guiding younger peers.",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-2xl md:text-3xl",
     overview: "Dedicated to mentoring youth through technical guidance, study strategies, skill development workshops, and leadership coaching.",
@@ -516,7 +516,7 @@ const LIFE_CARDS: AboutCard[] = [
     title: "PROGRAM MANAGEMENT",
     subtitle: "Event Planning & Operational Execution",
     description: "Organizing and leading structured events.",
-    image: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-2xl md:text-3xl",
     overview: "Organizing and managing structured programs, workshops, and youth gatherings from initial planning to execution and post-event evaluation.",
@@ -676,6 +676,11 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
           <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none ${card.titleClass}`}>
             {card.title}
           </h3>
+          {card.id !== "work-main" && card.id.startsWith("work-") && card.subtitle && (
+            <p className="text-[#fabb15] text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide drop-shadow-md mt-1 line-clamp-1 uppercase">
+              {card.subtitle}
+            </p>
+          )}
         </div>
       </div>
     );

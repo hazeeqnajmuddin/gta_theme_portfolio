@@ -8,8 +8,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, Wrench, Cpu, Smartphone, Server, CheckCircle2, 
   Code2, Layers, ShieldCheck, Calendar, LayoutDashboard, Lock, 
-  Database, Tag, FileText, ShieldAlert, Search, Video, Mic, Sliders, Tv 
+  Database, Tag, FileText, ShieldAlert, Search, Video, Mic, Sliders, Tv,
+  BarChart3, Users, ExternalLink, Globe
 } from "lucide-react";
+
+const GithubIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
 
 export interface ProjectDetailModule {
   title: string;
@@ -31,6 +39,8 @@ export interface ProjectItem {
   overview: string;
   modules: ProjectDetailModule[];
   technologies: string[];
+  githubUrl?: string;
+  demoUrl?: string;
 }
 
 // Project Data
@@ -39,11 +49,11 @@ const PROJECTS: ProjectItem[] = [
     id: "automate",
     title: "AUTOMATE SYSTEM",
     subtitle: "Vehicle & Workshop Management Platform",
-    badge: "NEW",
+    badge: "FYP",
     badgeColor: "bg-[#fabb15]",
     badgeText: "text-black",
     description1: "Select to view the AutoMate vehicle and workshop management platform.",
-    description2: "An intelligent system built using Laravel, PHP, and Flutter. This project features data preprocessing and decision tree models integrated directly into a responsive web platform to streamline mechanical adjustments and maintain precise vehicle service records.",
+    description2: "An intelligent system built using Laravel, PHP, and MySQL. This project features data preprocessing and decision tree models integrated directly into a responsive web platform to streamline mechanical adjustments and maintain precise vehicle service records.",
     image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600",
     overview: "AutoMate is an intelligent end-to-end vehicle service and workshop management platform. Developed using Laravel (PHP) and Flutter, it bridges car owners, mechanics, and workshop managers into a single unified ecosystem with intelligent diagnostic assistance.",
@@ -73,15 +83,15 @@ const PROJECTS: ProjectItem[] = [
   },
   {
     id: "qa-suite",
-    title: "QA AUTOMATION SUITE",
+    title: "QA & TEST AUTOMATION",
     subtitle: "Enterprise Software Quality Assurance & Automated Testing",
     badge: "ENTERPRISE",
     badgeColor: "bg-[#4a90e2]",
     badgeText: "text-white",
     description1: "Select to explore enterprise-grade automated test scripts and software quality assurance.",
     description2: "Developed utilizing Selenium, Maven, and Tricentis Tosca. Designed to ensure robust performance and reliability for critical software deliveries during professional operations.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600",
+    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600",
     overview: "Comprehensive enterprise automated test execution framework built with Selenium WebDriver, Java/Maven, and Tricentis Tosca. Ensures seamless regression testing, API validation, and quality benchmarks for critical corporate software releases.",
     modules: [
       {
@@ -115,9 +125,9 @@ const PROJECTS: ProjectItem[] = [
     badgeColor: "bg-emerald-600",
     badgeText: "text-white",
     description1: "Select to view the Preacher Management System.",
-    description2: "A dedicated administrative backend constructed using the Laravel framework and PHP, facilitating organized data structuring and operational management workflows.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600",
+    description2: "A dedicated administrative backend constructed using the MVC framework and Flutter, facilitating organized data structuring and operational management workflows.",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600",
     overview: "A dedicated administrative web application constructed using the Laravel framework and PHP. Facilitates organized data structuring, schedule management, content cataloging, and operational workflows for administrative staff.",
     modules: [
       {
@@ -144,76 +154,115 @@ const PROJECTS: ProjectItem[] = [
     technologies: ["Laravel 10", "PHP 8.2", "MySQL", "Blade Templates", "REST APIs", "Bootstrap", "Composer"]
   },
   {
-    id: "asset-tracking",
-    title: "ASSET TRACKING SYSTEM",
-    subtitle: "Administrative Asset Tracking & Lifecycle Verification",
-    badge: "VERIFIED",
-    badgeColor: "bg-[#fabb15]",
-    badgeText: "text-black",
-    description1: "Select to view the administrative asset tracking protocol.",
-    description2: "Processed verification steps and lifecycle tracking for organizational assets under reference number UMA729072025001361.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600",
-    overview: "Administrative asset verification protocol and lifecycle tracking for organizational inventory under reference number UMA729072025001361. Streamlines asset allocation, audit trails, and status verification across departments.",
+    id: "telecom-analytics",
+    title: "TELECOM DATA ANALYTICS",
+    subtitle: "INFINI Technology: 1.4M+ Transactions Data Science Capstone",
+    badge: "DATA ANALYTICS",
+    badgeColor: "bg-purple-600",
+    badgeText: "text-white",
+    description1: "Select to view the INFINI Telecom Data Analytics Capstone project.",
+    description2: "Analyzed over 1.4M+ transaction records using Pareto analysis, K-Means clustering, and interactive Power BI dashboards tracking RM931.05M in total revenue.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600",
+    overview: "A comprehensive Telecommunications Data Analytics Capstone for INFINI Technology. Ingested and cleaned 1.4M+ raw transaction records into a master dataset, applied Pareto Analysis (80/20 rule) across 150,000+ items, and performed K-Means clustering on 4,000+ customer accounts to deliver interactive Power BI dashboards driving RM931.05M in total revenue insights.",
+    githubUrl: "https://github.com/hazeeqnajmuddin/GIFT_DA_Capstone",
     modules: [
       {
-        title: "Asset Registration & Tagging",
-        desc: "Digital tracking numbers, barcode/QR assignment, and hardware categorization.",
-        icon: <Tag className="w-4 h-4 text-[#fabb15]" />
+        title: "1.4M+ Data Ingestion & Cleaning",
+        desc: "Processed, cleaned, and merged over 1.4 million raw transaction records into a unified master dataset.",
+        icon: <Database className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Lifecycle Audit Trail",
-        desc: "Complete movement logs tracking asset transfers, custodian sign-offs, and maintenance history.",
-        icon: <FileText className="w-4 h-4 text-[#00a8ff]" />
+        title: "Pareto 80/20 Revenue Analysis",
+        desc: "Isolated core revenue-generating product categories and top sales drivers across 150,000+ line items.",
+        icon: <BarChart3 className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Verification Protocol",
-        desc: "Structured approval workflows for asset disposal, repair requests, and transfers.",
-        icon: <ShieldAlert className="w-4 h-4 text-[#2ecc71]" />
+        title: "K-Means Customer Clustering",
+        desc: "Segmented 4,000+ unique customer accounts using the Elbow Method (Cluster 3: 57.68% total revenue).",
+        icon: <Users className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Real-Time Inventory Search",
-        desc: "Fast search indexing across asset IDs, serial numbers, and department locations.",
-        icon: <Search className="w-4 h-4 text-purple-400" />
+        title: "Power BI Executive Dashboards",
+        desc: "Built interactive dashboards tracking RM931.05M revenue and actionable 15% ARPA growth strategies.",
+        icon: <LayoutDashboard className="w-4 h-4 text-purple-400" />
       }
     ],
-    technologies: ["PHP", "Laravel", "MySQL", "Barcode/QR Protocol", "Audit Logging", "TailwindCSS"]
+    technologies: ["Python", "Pandas", "K-Means Clustering", "Power BI", "Pareto Analysis", "Jupyter", "Data Science", "Git"]
   },
   {
-    id: "content-setup",
-    title: "CONTENT CAPTURE SETUP",
-    subtitle: "Broadcast Integration & Media Streaming Pipeline",
-    badge: "MEDIA ENGINE",
-    badgeColor: "bg-red-600",
+    id: "chillax-app",
+    title: "CHILLAX MOBILE APP",
+    subtitle: "Native Android Mobile Experience & Lifestyle Platform",
+    badge: "ANDROID APP",
+    badgeColor: "bg-emerald-600",
     badgeText: "text-white",
-    description1: "Select to review the broadcast integration configurations.",
-    description2: "Configured face cameras, capture cards, and audio recording pipelines to capture mobile and PC gameplay for high-quality distribution on YouTube and TikTok.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600",
-    overview: "Professional broadcast integration configurations and multi-input media production pipelines. Configured face cameras, capture cards, and audio processing workflows to record mobile and PC gameplay for high-quality distribution on YouTube and TikTok.",
+    description1: "Select to view the Chillax Mobile Application project.",
+    description2: "Developed using Android Studio and Kotlin. Designed for seamless mobile user interaction, responsive UI layouts, and structured Kotlin Android architecture.",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600",
+    overview: "A native Android mobile application engineered using Kotlin and Android Studio. Features structured Kotlin architecture, responsive user interface layouts, Gradle build automation, and smooth mobile user workflows designed for modern smartphone experiences.",
+    githubUrl: "https://github.com/hazeeqnajmuddin/ChillaxApp",
     modules: [
       {
-        title: "Multi-Camera & Capture Cards",
-        desc: "Dual camera feeds via Elgato Cam Link, HDMI pass-through, and mobile device mirroring.",
-        icon: <Video className="w-4 h-4 text-[#fabb15]" />
+        title: "Kotlin Android Architecture",
+        desc: "Engineered with clean Kotlin architecture, activity lifecycles, and Jetpack components.",
+        icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Digital Audio Processing",
-        desc: "Multi-track audio separation, noise suppression, and real-time voice filters using OBS plugins.",
-        icon: <Mic className="w-4 h-4 text-[#00a8ff]" />
+        title: "Responsive Mobile UI",
+        desc: "Smooth UI layouts tailored for various Android screen sizes and densities.",
+        icon: <Code2 className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "OBS Scene Orchestration",
-        desc: "Custom overlay scenes, alert triggers, and seamless hotkey scene transitions.",
-        icon: <Sliders className="w-4 h-4 text-[#2ecc71]" />
+        title: "Gradle Build System",
+        desc: "Configured with Kotlin DSL (build.gradle.kts) for modular build automation.",
+        icon: <Layers className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Hardware Encoding Setup",
-        desc: "NVENC hardware encoding setups for 1080p60 crystal clear local recording and live stream output.",
-        icon: <Tv className="w-4 h-4 text-purple-400" />
+        title: "Mobile Resource Pipeline",
+        desc: "Optimized asset management, vector drawables, and application resource indexing.",
+        icon: <LayoutDashboard className="w-4 h-4 text-purple-400" />
       }
     ],
-    technologies: ["OBS Studio", "Elgato Cam Link", "NVENC Codec", "Audio Routing", "NDI Protocol", "Multi-Track Audio"]
+    technologies: ["Kotlin", "Android Studio", "Android SDK", "Gradle (KTS)", "Jetpack", "Mobile Dev", "Git"]
+  },
+  {
+    id: "rcms-crm",
+    title: "RCMS - LEAD CRM & PIPELINE",
+    subtitle: "Relationship & Customer Lead Pipeline Engine",
+    badge: "FULL-STACK",
+    badgeColor: "bg-[#fabb15]",
+    badgeText: "text-black",
+    description1: "Select to view the RCMS Lead CRM & Pipeline Platform.",
+    description2: "A full-stack Laravel application engineered for customer lead acquisition, multi-stage sales pipeline tracking, document merging, and business analytics.",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600",
+    overview: "A comprehensive full-stack Relationship and Customer Lead Management System (RCMS) constructed with Laravel 10, PHP 8.2, MySQL, and TailwindCSS. Streamlines multi-channel lead acquisition, logs sales pipeline transitions, categorizes customer issues, automates compliance document merging, and provides real-time executive dashboard analytics.",
+    demoUrl: "https://rahmahconsultancy.com/",
+    modules: [
+      {
+        title: "Multi-Channel Lead Intake",
+        desc: "Dynamic public lead intake forms with real-time validation and automated thank-you routing.",
+        icon: <Users className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Sales Funnel & Stage Pipeline",
+        desc: "Tracks customer leads across multi-stage pipelines with issue logging and acquisition source attribution.",
+        icon: <Layers className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Automated Document Merging",
+        desc: "Compliance document management with automated file merging and PDF attachment compilation.",
+        icon: <FileText className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Analytics & Conversion Reports",
+        desc: "Real-time performance metrics, lead conversion reporting, and CSV data export engines.",
+        icon: <BarChart3 className="w-4 h-4 text-purple-400" />
+      }
+    ],
+    technologies: ["Laravel 10", "PHP 8.2", "MySQL", "TailwindCSS", "Vite", "Blade", "PDF Engine", "Git"]
   }
 ];
 
@@ -526,6 +575,36 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                     ))}
                   </div>
                 </div>
+
+                {/* External Action Links (Live Site & GitHub) */}
+                {(activeProject.demoUrl || activeProject.githubUrl) && (
+                  <div className="pt-2 flex flex-wrap gap-3">
+                    {activeProject.demoUrl && (
+                      <a
+                        href={activeProject.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all hover:scale-105 active:scale-95"
+                      >
+                        <Globe className="w-4 h-4" />
+                        <span>VISIT LIVE WEBSITE</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {activeProject.githubUrl && (
+                      <a
+                        href={activeProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md border border-white/20 transition-all hover:scale-105 active:scale-95"
+                      >
+                        <GithubIcon className="w-4 h-4" />
+                        <span>OPEN GITHUB REPOSITORY</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Modal Footer */}

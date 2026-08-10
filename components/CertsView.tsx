@@ -8,13 +8,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, Cloud, Server, ShieldCheck, DollarSign, Building2, Code2, 
   Award, Briefcase, CheckCircle2, Terminal, Layers, FileCheck, 
-  GraduationCap, Laptop, Building, BookOpen 
+  GraduationCap, Laptop, Building, BookOpen, ExternalLink
 } from "lucide-react";
 
 export interface CertDetailHighlight {
   title: string;
   desc: string;
   icon: React.ReactNode;
+}
+
+export interface CertBadgeLink {
+  label: string;
+  url: string;
 }
 
 export interface CertItem {
@@ -31,6 +36,8 @@ export interface CertItem {
   overview: string;
   highlights: CertDetailHighlight[];
   skills: string[];
+  badgeUrl?: string;
+  badgeLinks?: CertBadgeLink[];
 }
 
 // Certifications Data
@@ -38,146 +45,200 @@ const CERTS: CertItem[] = [
   {
     id: "aws-cloud",
     title: "AWS CLOUD PRACTITIONER",
-    subtitle: "Amazon Web Services Official Certification",
+    subtitle: "Amazon Web Services Official Certification (Apr 2026)",
     badge: "VERIFIED",
     badgeColor: "bg-[#fabb15]",
     badgeText: "text-black",
     description1: "Select or press ENTER to view AWS Certified Cloud Practitioner credentials.",
-    description2: "Successfully passed the professional certification exam, demonstrating foundational knowledge of cloud concepts, AWS services, security, architecture, pricing, and support ecosystems.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600",
-    overview: "Successfully earned the official AWS Certified Cloud Practitioner certification, validating foundational knowledge of cloud architecture fundamentals, core AWS infrastructure services, security compliance, pricing models, and support resources.",
+    description2: "Officially certified by Amazon Web Services (AWS). Demonstrates foundational expertise in cloud architecture concepts, core AWS services, IAM security governance, billing models, and infrastructure reliability.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600",
+    overview: "Successfully earned the official AWS Certified Cloud Practitioner certification in April 2026. Validates core cloud engineering knowledge across EC2 compute, S3 storage, RDS databases, VPC network isolation, IAM security policies, and cost optimization strategies.",
     highlights: [
       {
-        title: "Cloud Concepts & Infrastructure",
+        title: "Cloud Architecture & Global Infrastructure",
         desc: "AWS Global Regions, Availability Zones, Edge Locations, and Shared Responsibility Security Model.",
         icon: <Cloud className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Core AWS Infrastructure Services",
-        desc: "EC2 compute instances, S3 storage buckets, RDS databases, VPC networking, and IAM security governance.",
+        title: "Core Infrastructure & Database Services",
+        desc: "EC2 virtual servers, S3 object storage, RDS relational databases, VPC networking, and IAM access controls.",
         icon: <Server className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Security & Governance",
-        desc: "AWS KMS encryption, Security Groups, Network ACLs, IAM roles, and AWS WAF protective measures.",
+        title: "Security, Compliance & IAM Governance",
+        desc: "AWS KMS key encryption, Security Groups, Network ACLs, IAM roles, and AWS WAF protective measures.",
         icon: <ShieldCheck className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Billing & Cost Optimization",
+        title: "Billing, Cost Management & Budgets",
         desc: "AWS Cost Explorer, Budgets, Savings Plans, Reserved Instances, and Pricing Calculator strategies.",
         icon: <DollarSign className="w-4 h-4 text-purple-400" />
       }
     ],
-    skills: ["AWS Cloud", "EC2 & S3", "IAM Security", "VPC Architecture", "CloudWatch", "Cost Optimization"]
+    skills: ["AWS Cloud", "EC2 & S3", "IAM Security", "VPC Architecture", "CloudWatch", "Cost Optimization"],
+    badgeUrl: "https://www.credly.com/badges/a19f3ba4-96ce-404a-a085-b9701bf76496/linked_in_profile",
+    badgeLinks: [
+      { label: "VERIFY CREDLY BADGE", url: "https://www.credly.com/badges/a19f3ba4-96ce-404a-a085-b9701bf76496/linked_in_profile" }
+    ]
+  },
+  {
+    id: "tosca-as1-as2",
+    title: "TRICENTIS TOSCA AS1 & AS2",
+    subtitle: "Tricentis Tosca Automation Specialist 1 & 2 (Mar 2026)",
+    badge: "AUTOMATION",
+    badgeColor: "bg-[#4a90e2]",
+    badgeText: "text-white",
+    description1: "Select or press ENTER to view Tricentis Tosca AS1 & AS2 certifications.",
+    description2: "Dual certification in Tricentis Tosca: AS1 (Automating Web Application Testing) and AS2 (Optimizing Test Automation with Centralized Test Data).",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600",
+    overview: "Earned dual professional certifications from Tricentis Tosca in March 2026: Automating Web Application Testing (AS1) and Optimizing Test Automation with Centralized Test Data (AS2). Demonstrates high proficiency in model-based test automation, dynamic test data management, and banking QA execution.",
+    highlights: [
+      {
+        title: "AS1: Automating Web Application Testing",
+        desc: "Model-based test creation, scanning web elements, automated GUI navigation, and execution lists.",
+        icon: <CheckCircle2 className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "AS2: Centralized Test Data Optimization",
+        desc: "Dynamic Test Data Management (TDM), Test Data Service (TDS), and reusable data sheets.",
+        icon: <Terminal className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Enterprise Quality Assurance & Banking QA",
+        desc: "Applied in enterprise banking projects (UOB) achieving 98% test stability and zero-failure codebases.",
+        icon: <Layers className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Automated Regression & API Execution",
+        desc: "Continuous regression test execution, test case documentation, and defect reporting workflows.",
+        icon: <FileCheck className="w-4 h-4 text-purple-400" />
+      }
+    ],
+    skills: ["Tricentis Tosca AS1", "Tricentis Tosca AS2", "Model-Based Testing", "Test Data Management", "Regression QA"],
+    badgeLinks: [
+      { label: "VERIFY TOSCA AS1 BADGE", url: "https://academy.tricentis.com/share/gamification/badges/external/82ed3197-9658-4132-972f-25249ec9a79b?lang=en" },
+      { label: "VERIFY TOSCA AS2 BADGE", url: "https://academy.tricentis.com/share/gamification/badges/external/e3b59e31-96fd-42ae-a31e-df04830930b9?lang=en" }
+    ]
+  },
+  {
+    id: "google-ux",
+    title: "GOOGLE UX DESIGN CERTIFICATION",
+    subtitle: "Google via Coursera UX Professional Courses (Jun - Jul 2026)",
+    badge: "GOOGLE UX",
+    badgeColor: "bg-purple-600",
+    badgeText: "text-white",
+    description1: "Select or press ENTER to view Google UX Design certifications.",
+    description2: "Certified by Google via Coursera in Foundations of User Experience (UX) Design (Jun 2026) and Start the UX Design Process: Empathize, Define, and Ideate (Jul 2026).",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600",
+    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026) and 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026). Covers user-centered design, empathy mapping, user personas, wireframing, and interactive prototyping.",
+    highlights: [
+      {
+        title: "Foundations of User Experience (UX) Design",
+        desc: "Core UX principles, accessibility standards, user research methodologies, and design thinking frameworks.",
+        icon: <Award className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Empathize, Define & Ideate Process",
+        desc: "Conducting user interviews, creating user personas, mapping user journeys, and problem statement definition.",
+        icon: <Briefcase className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Wireframing & High-Fidelity Prototyping",
+        desc: "Building low-fidelity paper wireframing and high-fidelity interactive digital prototypes in Figma.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Usability Testing & Iterative Design",
+        desc: "Executing usability studies, gathering user feedback, and refining user interface interactions.",
+        icon: <Laptop className="w-4 h-4 text-purple-400" />
+      }
+    ],
+    skills: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Usability Testing"],
+    badgeLinks: [
+      { label: "VERIFY FOUNDATIONS OF UX", url: "https://www.coursera.org/account/accomplishments/verify/85A0AOC3RPPJ" },
+      { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" }
+    ]
   },
   {
     id: "k-youth",
     title: "K-YOUTH x GIFT PROGRAMME",
-    subtitle: "MTDC Talent Acceleration & Corporate Placement",
+    subtitle: "Khazanah Nasional & MTDC Talent Acceleration (Dec 2025 - Jul 2026)",
     badge: "COMPLETED",
     badgeColor: "bg-[#2ecc71]",
     badgeText: "text-black",
     description1: "Select or press ENTER to view the K-Youth x GIFT Programme completion.",
-    description2: "Accepted into the inaugural cohort of the MTDC GIFT training program, leading directly to a professional placement within the UOB Intermark office.",
+    description2: "Completed the intensive K-Youth x GIFT talent accelerator by Khazanah Nasional & MTDC, culminating in a professional placement as Test Analyst Intern at Gientech / UOB Bank.",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600",
-    overview: "Accepted into the inaugural cohort of the Malaysian Technology Development Corporation (MTDC) GIFT training program, undergoing intensive professional upskilling that led directly to a software engineering placement within the UOB Intermark office.",
+    overview: "Selected for the prestigious K-Youth x GIFT Programme funded by Khazanah Nasional & MTDC (Dec 2025 - Jul 2026). Completed multi-industry domain training (Cinergi strategic analysis, Grab data visualization, Maybank customer personas, IHH Healthcare GenAI tools, and Infini 1.4M row telecom data analytics capstone) leading to an enterprise placement at UOB Bank.",
     highlights: [
       {
-        title: "Enterprise Corporate Placement",
-        desc: "Embedded directly within UOB financial institution tech operations at Intermark tower, Kuala Lumpur.",
+        title: "Data Analytics Capstone (Infini)",
+        desc: "Engineered 1.4M+ row telecommunications dataset using Jupyter, K-Means clustering, and Power BI.",
         icon: <Building2 className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Software Engineering Upskilling",
-        desc: "Specialized modules on modern software engineering practices, agile methodologies, and enterprise tools.",
+        title: "Corporate Placement (UOB Intermark)",
+        desc: "Embedded directly into Gientech / UOB Bank core banking technology quality assurance team.",
         icon: <Code2 className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Professional Development",
-        desc: "Corporate communication, technical problem-solving, and cross-functional team collaboration.",
+        title: "GenAI & Digital Innovation (IHH)",
+        desc: "Utilized Copilot GenAI and video automation tools to optimize training workflows.",
         icon: <Award className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Fintech Domain Insights",
-        desc: "Exposure to banking workflows, compliance frameworks, enterprise security, and software delivery.",
+        title: "Customer Centricity & Strategy (Maybank)",
+        desc: "Authored formal executive memos and developed Maybank customer personas for loan pitching.",
         icon: <Briefcase className="w-4 h-4 text-purple-400" />
       }
     ],
-    skills: ["MTDC GIFT", "Enterprise Tech", "UOB Operations", "Agile Methodology", "Corporate Software"]
-  },
-  {
-    id: "qa-tosca",
-    title: "AUTOMATION & QA TOOLING",
-    subtitle: "Enterprise Test Execution & Quality Assurance Proficiency",
-    badge: "TECHNICAL",
-    badgeColor: "bg-[#4a90e2]",
-    badgeText: "text-white",
-    description1: "Select or press ENTER to view QA automation proficiency.",
-    description2: "Extensive hands-on experience and proficiency in Tricentis Tosca, Selenium, and Maven for enterprise software quality assurance and automated test execution.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600",
-    overview: "Extensive hands-on experience and proficiency in Tricentis Tosca, Selenium WebDriver, and Maven for enterprise software quality assurance, automated regression testing, and quality gate validation.",
-    highlights: [
-      {
-        title: "Tricentis Tosca Model-Based Testing",
-        desc: "Building reusable test modules, execution lists, and automated API validation scripts.",
-        icon: <CheckCircle2 className="w-4 h-4 text-[#fabb15]" />
-      },
-      {
-        title: "Selenium & Page Object Model",
-        desc: "Writing robust cross-browser test automation scripts in Java with Maven build management.",
-        icon: <Terminal className="w-4 h-4 text-[#00a8ff]" />
-      },
-      {
-        title: "CI/CD Quality Gates",
-        desc: "Integrating automated test suites into continuous integration pipelines to catch defects early.",
-        icon: <Layers className="w-4 h-4 text-[#2ecc71]" />
-      },
-      {
-        title: "Test Strategy & Reports",
-        desc: "Creating comprehensive test plans, traceability matrices, and detailed execution logs.",
-        icon: <FileCheck className="w-4 h-4 text-purple-400" />
-      }
-    ],
-    skills: ["Tricentis Tosca", "Selenium WebDriver", "Java", "Maven", "Test Automation", "Regression Testing"]
+    skills: ["MTDC GIFT", "Khazanah K-Youth", "UOB Enterprise", "Power BI", "GenAI Copilot", "Data Analytics"],
+    badgeLinks: [
+      { label: "VIEW LINKEDIN CREDENTIALS", url: "https://www.linkedin.com/in/hazeeqnajmuddin/details/certifications/" }
+    ]
   },
   {
     id: "degree",
     title: "SOFTWARE ENGINEERING DEGREE",
-    subtitle: "Bachelor of Computer Science (Software Engineering)",
+    subtitle: "Bachelor of Computer Science (Software Engineering) with Honours",
     badge: "DEGREE",
     badgeColor: "bg-[#4a90e2]",
     badgeText: "text-white",
     description1: "Select or press ENTER to view academic background.",
-    description2: "Final-year Software Engineering student. Developed the AutoMate Final Year Project and completed enterprise-level internships at CIMB and UOB.",
+    description2: "Universiti Malaysia Pahang Al-Sultan Abdullah (Oct 2022 - Present). Matriculation Engineering CGPA 3.92, SPM 7As.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600",
-    overview: "Final-year Software Engineering student with a strong academic foundation in algorithms, system design, web development, and software testing. Developed the AutoMate Final Year Project and completed corporate tech internships at CIMB and UOB.",
+    overview: "Pursuing Bachelor of Computer Science (Software Engineering) with Honours at Universiti Malaysia Pahang Al-Sultan Abdullah (Oct 2022 - Present). Previously achieved CGPA 3.92 in Electrical & Electronic Engineering at Kolej Matrikulasi Kejuruteraan Pahang and 7As in SPM at SMT Melaka.",
     highlights: [
       {
-        title: "Software Engineering Foundation",
-        desc: "Data structures, object-oriented design, database engineering, and software architecture.",
+        title: "Software Engineering Core",
+        desc: "Data structures, algorithms, object-oriented design, database engineering, and software architecture.",
         icon: <GraduationCap className="w-4 h-4 text-[#fabb15]" />
       },
       {
         title: "Final Year Project (AutoMate)",
-        desc: "Designed and built AutoMate vehicle management system with decision tree diagnostic AI.",
+        desc: "Architected AutoMate vehicle recommendation platform with decision tree ML and Laravel MVC.",
         icon: <Laptop className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Banking Tech Internships (UOB & CIMB)",
-        desc: "Real-world banking tech internships focusing on quality assurance, system testing, and full-stack development.",
+        title: "Electrical Engineering CGPA 3.92",
+        desc: "Kolej Matrikulasi Kejuruteraan Pahang (Aug 2021 - Mar 2022) with high academic honors.",
         icon: <Building className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Academic Excellence",
-        desc: "Consistently demonstrated strong technical competency across coding, documentation, and team projects.",
+        title: "SPM Excellence (7As)",
+        desc: "Sekolah Menengah Teknik Melaka (Jan 2016 - Feb 2021) in technical STEM curriculum.",
         icon: <BookOpen className="w-4 h-4 text-purple-400" />
       }
     ],
-    skills: ["Software Engineering", "Full-Stack Development", "System Design", "Laravel & Flutter", "Testing & QA"]
+    skills: ["Software Engineering", "Full-Stack Development", "System Architecture", "Laravel & Flutter", "Machine Learning"],
+    badgeLinks: [
+      { label: "VIEW LINKEDIN EDUCATION", url: "https://www.linkedin.com/in/hazeeqnajmuddin/details/education/" }
+    ]
   }
 ];
 
@@ -471,6 +532,38 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
                     ))}
                   </div>
                 </div>
+
+                {/* External Badge Verification Links */}
+                {(activeCert.badgeLinks || activeCert.badgeUrl) && (
+                  <div className="pt-2 flex flex-wrap gap-3">
+                    {activeCert.badgeLinks ? (
+                      activeCert.badgeLinks.map((link, idx) => (
+                        <a
+                          key={idx}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all hover:scale-105 active:scale-95"
+                        >
+                          <ShieldCheck className="w-4 h-4 text-black" />
+                          <span>{link.label}</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      ))
+                    ) : (
+                      <a
+                        href={activeCert.badgeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all hover:scale-105 active:scale-95"
+                      >
+                        <ShieldCheck className="w-4 h-4 text-black" />
+                        <span>VERIFY OFFICIAL BADGE</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Modal Footer */}
