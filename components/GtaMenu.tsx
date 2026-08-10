@@ -36,7 +36,7 @@ const CARDS: MenuCard[] = [
     badge: "2X EXP",
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
-    description: "Select to view my complete timeline, from my Final Year Project to enterprise software engineering.",
+    description: "Select to view my complete timeline and professional journey.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-4",
     titleClass: "text-3xl md:text-5xl lg:text-6xl",
@@ -155,7 +155,7 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
       footerText={hoveredCard.description}
-      mainContainerClass="flex-grow flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-3 md:mb-6 overflow-y-auto md:overflow-hidden h-[68vh] md:h-[65vh] min-h-[420px] md:min-h-[500px] pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      mainContainerClass="flex-1 flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-2 md:mb-3 min-h-0 overflow-y-auto md:overflow-hidden pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
       {CARDS.map((card) => {
         const isActive = hoveredCard.id === card.id;

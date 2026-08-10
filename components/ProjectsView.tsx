@@ -333,7 +333,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
       footerText="Select or press ENTER to inspect project details."
-      mainContainerClass="flex-grow flex flex-col gap-1 overflow-hidden"
+      mainContainerClass="flex-1 flex flex-col gap-1.5 md:gap-2 min-h-0 overflow-hidden mb-2 md:mb-3"
     >
       {/* Top Hero Section */}
       <div 

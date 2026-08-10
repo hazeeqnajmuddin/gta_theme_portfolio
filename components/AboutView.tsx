@@ -577,7 +577,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         setTimeout(() => {
           const element = document.getElementById(activeId);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         }, 300);
       }
@@ -588,7 +588,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
     if (hoveredCard?.id && !isModalOpen) {
       const element = document.getElementById(hoveredCard.id);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
   }, [hoveredCard, isModalOpen]);

@@ -60,10 +60,10 @@ export default function GtaLayout({
   }, [currentPath, onTabChange, router]);
 
   return (
-    <div className="h-screen h-[100dvh] bg-black text-white p-3 sm:p-6 md:p-10 flex flex-col font-sans select-none overflow-hidden">
+    <div className="h-screen h-[100dvh] bg-black text-white p-3 sm:p-5 md:p-6 flex flex-col font-sans select-none overflow-hidden">
       
       {/* 2. SINGLE NAVIGATION BAR */}
-      <div className="flex justify-between items-center mb-3 sm:mb-6 shrink-0 gap-2 overflow-hidden">
+      <div className="flex justify-between items-center mb-2 sm:mb-4 shrink-0 gap-2 overflow-hidden">
         <nav className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto [&::-webkit-scrollbar]:hidden shrink py-1">
           {TABS.map((tab) => (
             <button
@@ -95,25 +95,25 @@ export default function GtaLayout({
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={mainContainerClass}
+        className={`${mainContainerClass} flex-1 min-h-0`}
       >
         {children}
       </motion.div>
 
       {/* 4. SINGLE FOOTER */}
-      <footer className="flex justify-between items-end shrink-0 mt-auto pt-2 border-t border-transparent gap-2">
-        <div className="text-gray-200 text-xs sm:text-sm md:text-base max-w-2xl min-h-[1.5rem] line-clamp-2 md:line-clamp-none">
+      <footer className="flex justify-between items-center shrink-0 mt-auto pt-2 border-t border-white/10 gap-2 min-h-[36px]">
+        <div className="text-gray-200 text-xs sm:text-sm md:text-base max-w-2xl line-clamp-2 md:line-clamp-none font-medium">
           {footerText}
         </div>
         
-        {/* Static Keyboard Controls */}
-        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300 shrink-0">
-          <div className="flex items-center gap-2">
+        {/* Static Keyboard Controls for Desktop */}
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm font-medium text-gray-300 shrink-0">
+          <div className="flex items-center gap-1.5">
             <span>Quit</span><span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">Esc</span>
           </div>
           
           {/* WASD CONTROLS */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <span className="mr-1">Navigate</span>
             <span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">W</span>
             <span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">A</span>
@@ -121,18 +121,18 @@ export default function GtaLayout({
             <span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">D</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <span>Move Tab</span>
             <span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">Q</span>
             <span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">E</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <span>Select</span><span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">↵</span>
           </div>
         </div>
 
-        {/* Mobile touch tip */}
-        <div className="md:hidden text-[10px] text-gray-400 font-medium shrink-0">
+        {/* Compact touch tip for smaller screens */}
+        <div className="lg:hidden text-[10px] text-gray-400 font-medium shrink-0">
           <span className="bg-white/20 text-white px-1.5 py-0.5 rounded font-bold">TAP CARD</span>
         </div>
       </footer>
