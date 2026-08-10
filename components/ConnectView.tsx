@@ -128,7 +128,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
       onTabChange={(path) => onNavigate ? onNavigate(path) : undefined}
       footerText={hoveredCard.description}
       rightBadge="OPEN TO WORK"
-      mainContainerClass="flex-grow grid grid-cols-3 grid-rows-4 gap-2 md:gap-3 mb-6 h-[65vh] min-h-[500px]"
+      mainContainerClass="flex-grow flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-3 md:mb-6 overflow-y-auto md:overflow-hidden h-[68vh] md:h-[65vh] min-h-[420px] md:min-h-[500px] pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
       {CARDS.map((card) => {
         const isActive = hoveredCard.id === card.id;
@@ -139,12 +139,11 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
               key={card.id}
               onMouseEnter={() => setHoveredCard(card)}
               onClick={() => {
-                // Check if the card has a link, then open it in a new tab
                 if (card.link) {
                   window.open(card.link, "_blank", "noopener,noreferrer");
                 }
               }}
-              className={`relative overflow-hidden cursor-pointer transition-all duration-200 flex items-center justify-center ${card.gridClass} ${
+              className={`relative overflow-hidden cursor-pointer transition-all duration-200 min-h-[90px] md:min-h-0 shrink-0 md:shrink rounded-sm flex items-center justify-center ${card.gridClass} ${
                 isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
               }`}
             >
@@ -156,7 +155,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
                 draggable={false}
               />
               <div className="absolute inset-0 bg-black/40" />
-              <h2 className="relative z-10 font-gta text-3xl md:text-5xl text-white tracking-widest drop-shadow-lg text-center">
+              <h2 className="relative z-10 font-gta text-2xl md:text-5xl text-white tracking-widest drop-shadow-lg text-center">
                 {card.title}
               </h2>
             </div>
@@ -168,12 +167,15 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
             key={card.id}
             onMouseEnter={() => setHoveredCard(card)}
             onClick={() => {
-                // Check if the card has a link, then open it in a new tab
                 if (card.link) {
-                  window.open(card.link, "_blank", "noopener,noreferrer");
+                  if (card.link.startsWith("/") && onNavigate) {
+                    onNavigate(card.link);
+                  } else {
+                    window.open(card.link, "_blank", "noopener,noreferrer");
+                  }
                 }
               }}
-            className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${card.gridClass} ${
+            className={`relative overflow-hidden cursor-pointer transition-all duration-200 min-h-[110px] md:min-h-0 shrink-0 md:shrink rounded-sm ${card.gridClass} ${
               isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
             }`}
           >
@@ -187,17 +189,17 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
             {card.badge && (
-              <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider ${card.badgeColor} ${card.badgeTextColor}`}>
+              <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
                 {card.badge}
               </div>
             )}
 
-            <div className="absolute bottom-4 left-4 right-4">
+            <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4">
               <h3 className="font-gta text-2xl md:text-3xl text-white tracking-wide uppercase drop-shadow-lg leading-none">
                 {card.title}
               </h3>
               {card.subtitle && (
-                <p className="text-gray-200 text-xs md:text-sm mt-1.5 font-medium drop-shadow-md">
+                <p className="text-gray-200 text-xs md:text-sm mt-1 font-medium drop-shadow-md line-clamp-1">
                   {card.subtitle}
                 </p>
               )}

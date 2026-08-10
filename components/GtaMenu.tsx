@@ -155,7 +155,7 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
       footerText={hoveredCard.description}
-      mainContainerClass="flex-grow grid grid-cols-3 grid-rows-4 gap-2 md:gap-3 mb-6 h-[65vh] min-h-[500px]"
+      mainContainerClass="flex-grow flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-3 md:mb-6 overflow-y-auto md:overflow-hidden h-[68vh] md:h-[65vh] min-h-[420px] md:min-h-[500px] pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
       {CARDS.map((card) => {
         const isActive = hoveredCard.id === card.id;
@@ -169,8 +169,8 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
                 handleLinkNavigation(card.link);
               }
             }}
-            className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${card.gridClass} ${
-              isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-75 hover:opacity-100"
+            className={`relative overflow-hidden cursor-pointer transition-all duration-200 min-h-[110px] md:min-h-0 shrink-0 md:shrink rounded-sm ${card.gridClass} ${
+              isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-85 hover:opacity-100"
             }`}
           >
             <img
@@ -182,16 +182,16 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
             {card.badge && (
-              <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider ${card.badgeColor} ${card.badgeTextColor}`}>
+              <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
                 {card.badge}
               </div>
             )}
             <div className="absolute bottom-2 left-3 right-3">
-              <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none ${card.titleClass}`}>
+              <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none text-2xl md:text-3xl ${card.titleClass}`}>
                 {card.title}
               </h3>
               {card.subtitle && (
-                <p className="text-gray-200 text-xs md:text-sm mt-1.5 font-medium drop-shadow-md">
+                <p className="text-gray-200 text-xs md:text-sm mt-1 font-medium drop-shadow-md line-clamp-1">
                   {card.subtitle}
                 </p>
               )}
