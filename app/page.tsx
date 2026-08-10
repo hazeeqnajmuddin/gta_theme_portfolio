@@ -7,6 +7,7 @@ import AboutView from "@/components/AboutView";
 import ProjectsView from "@/components/ProjectsView";
 import CertsView from "@/components/CertsView";
 import ConnectView from "@/components/ConnectView";
+import GtaWelcomeModal from "@/components/GtaWelcomeModal";
 
 function MainPortfolioApp() {
   const searchParams = useSearchParams();
@@ -63,7 +64,12 @@ function MainPortfolioApp() {
     }
   };
 
-  return <main>{renderActiveView()}</main>;
+  return (
+    <main>
+      <GtaWelcomeModal />
+      {renderActiveView()}
+    </main>
+  );
 }
 
 export default function Home() {
