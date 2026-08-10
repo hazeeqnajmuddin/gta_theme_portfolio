@@ -440,7 +440,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                   setActiveProject(project);
                 }
               }}
-              className={`relative flex-shrink-0 w-72 md:w-80 h-full cursor-pointer overflow-hidden transition-all duration-200 ${
+              className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 ${
                 isActive 
                   ? "border-[3px] border-white z-10 scale-[1.02]" 
                   : "border-[3px] border-transparent opacity-60 hover:opacity-100"

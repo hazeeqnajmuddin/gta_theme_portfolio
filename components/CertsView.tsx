@@ -386,7 +386,7 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
       <div 
         ref={carouselRef}
         onWheel={handleScroll}
-        className="h-[22vh] min-h-[160px] shrink-0 flex gap-1 md:gap-1.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory pt-1 pb-2"
+        className="h-44 md:h-52 w-full flex gap-3 overflow-x-auto overflow-y-hidden pb-2 select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         {CERTS.map((cert) => {
           const isActive = activeCert.id === cert.id;
@@ -400,8 +400,10 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
                 }
               }}
               onClick={() => handleCardClick(cert)}
-              className={`relative shrink-0 w-[320px] md:w-[400px] lg:w-[460px] h-full cursor-pointer snap-start transition-all duration-200 ${
-                isActive ? "border-[3px] border-white scale-[0.98] z-10" : "border-[3px] border-transparent opacity-60 hover:opacity-100"
+              className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 ${
+                isActive 
+                  ? "border-[3px] border-white z-10 scale-[1.02]" 
+                  : "border-[3px] border-transparent opacity-60 hover:opacity-100"
               }`}
             >
               <img
