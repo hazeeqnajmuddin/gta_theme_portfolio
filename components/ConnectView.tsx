@@ -270,7 +270,6 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : undefined}
       footerText={hoveredCard.description}
-      rightBadge="OPEN TO WORK"
       mainContainerClass="flex-1 flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-2 md:mb-3 min-h-0 overflow-y-auto md:overflow-hidden pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
       {CARDS.map((card) => {

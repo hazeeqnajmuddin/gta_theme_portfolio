@@ -688,7 +688,6 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
       footerText={footerText}
-      rightBadge="OPEN TO WORK"
       mainContainerClass="flex-grow overflow-y-auto px-2 pb-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-y snap-mandatory scroll-smooth"
     >
       {/* Hero Section */}
