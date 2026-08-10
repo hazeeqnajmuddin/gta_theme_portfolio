@@ -736,7 +736,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
             className="shrink-0 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-lg md:text-xl tracking-wider rounded-sm shadow-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
           >
             <span>INSPECT STORY DETAILS</span>
-            <span className="text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">↵ ENTER</span>
+            <span className="hidden md:inline-block text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">↵ ENTER</span>
           </button>
         </div>
       </div>
@@ -870,7 +870,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
 
               {/* Modal Footer */}
               <div className="p-4 bg-black/60 border-t border-white/10 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-4 text-xs text-gray-300 font-medium">
+                <div className="hidden md:flex items-center gap-4 text-xs text-gray-300 font-medium">
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Scroll:</span>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>

@@ -531,7 +531,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
 
               {/* Modal Footer */}
               <div className="p-4 bg-black/60 border-t border-white/10 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-4 text-xs text-gray-300 font-medium">
+                <div className="hidden md:flex items-center gap-4 text-xs text-gray-300 font-medium">
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Scroll:</span>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>
