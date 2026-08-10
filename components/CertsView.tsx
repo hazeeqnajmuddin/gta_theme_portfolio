@@ -272,7 +272,6 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
       setIsModalOpen(true);
     } else {
       setActiveCert(cert);
-      setIsModalOpen(true);
     }
   };
 

@@ -324,7 +324,6 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
       setIsModalOpen(true);
     } else {
       setActiveProject(project);
-      setIsModalOpen(true);
     }
   };
 
