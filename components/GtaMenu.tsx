@@ -100,17 +100,20 @@ const CARDS: MenuCard[] = [
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "experience", a: "qa-testing", s: "contact" },
-    link: "/about?active=edu-main" // Link to the Education page
+    link: "/about?active=edu-main" // Link to the Full Stack Projects page
   },
   {
     id: "contact",
-    title: "CONNECT & SOCIALS",
-    description: "Select to connect on LinkedIn, view my GitHub repositories, or send an email.",
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000",
+    title: "GET IN TOUCH",
+    badge: "AVAILABLE",
+    badgeColor: "bg-[#2ecc71]",
+    badgeTextColor: "text-white",
+    description: "Contact information, GitHub, LinkedIn, and social links.",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "web-dev", a: "qa-testing" },
-    link: "/connect", // Link to the Connect page
+    link: "/connect", // Link to the ConnectView page
   },
 ];
 
@@ -187,7 +190,7 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
               </div>
             )}
             <div className="absolute bottom-2 left-3 right-3">
-              <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none text-2xl md:text-3xl ${card.titleClass}`}>
+              <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none ${card.titleClass}`}>
                 {card.title}
               </h3>
               {card.subtitle && (
