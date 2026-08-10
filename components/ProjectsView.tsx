@@ -2,6 +2,8 @@
 
 import React, { useState, useRef, useEffect, Suspense } from "react";
 import GtaLayout from "./GtaLayout";
+import GtaModal from "./GtaModal";
+import { useInputDeviceMode } from "@/hooks/useInputDeviceMode";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -278,6 +280,8 @@ const PROJECTS: ProjectItem[] = [
   }
 ];
 
+
+
 interface ProjectsViewProps {
   onNavigate?: (path: string) => void;
   activeTab?: string;
@@ -288,126 +292,39 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
   const [activeProject, setActiveProject] = useState(PROJECTS[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const modalBodyRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  
-  const searchParams = useSearchParams();
 
-  // Pass isModalOpen so background WASD navigation is disabled while modal is open
   useWasdNavigation(PROJECTS, setActiveProject, carouselRef, isModalOpen);
+
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const activeId = initialActiveId || searchParams.get("active");
-    
     if (activeId) {
-      const targetProject = PROJECTS.find((p) => p.id === activeId);
-      
+      const targetProject = PROJECTS.find(p => p.id === activeId);
       if (targetProject) {
         setActiveProject(targetProject);
         setIsModalOpen(true);
-        
-        const targetIndex = PROJECTS.findIndex(p => p.id === activeId);
-        if (carouselRef.current && targetIndex !== -1) {
-          setTimeout(() => {
-            const cardElement = carouselRef.current?.children[targetIndex] as HTMLElement;
-            if (cardElement) {
-              cardElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
-          }, 100);
-        }
       }
     }
   }, [searchParams, initialActiveId]);
 
-  const isKeyboardMode = useRef(false);
+  const isKeyboardMode = useInputDeviceMode();
 
-  useEffect(() => {
-    const handleMouseMove = () => {
-      isKeyboardMode.current = false;
-    };
-    const handleKeyDown = () => {
-      isKeyboardMode.current = true;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
-  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
-
-  useEffect(() => {
-    setActiveLinkIndex(0);
-  }, [activeProject, isModalOpen]);
-
-  // Listen for keys inside open modal (W/S to scroll, A/D to select link, Enter/E to open link, ESC/Q to close)
+  // Background key listener for Enter to open modal when modal is closed
   useEffect(() => {
     const handleKeyDownCapture = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
-
-      if (isModalOpen) {
-        const modalLinks: { label: string; url: string; type: "demo" | "github" }[] = [];
-        if (activeProject.demoUrl) {
-          modalLinks.push({ label: "VISIT LIVE WEBSITE", url: activeProject.demoUrl, type: "demo" });
-        }
-        if (activeProject.githubLinks && activeProject.githubLinks.length > 0) {
-          activeProject.githubLinks.forEach((l) => modalLinks.push({ label: l.label, url: l.url, type: "github" }));
-        } else if (activeProject.githubUrl) {
-          modalLinks.push({ label: "OPEN GITHUB REPOSITORY", url: activeProject.githubUrl, type: "github" });
-        }
-
-        const hasLinks = modalLinks.length > 0;
-        const totalLinks = modalLinks.length;
-
-        if (key === "escape" || key === "q") {
-          e.preventDefault();
-          e.stopPropagation();
-          setIsModalOpen(false);
-        } else if (key === "w" || key === "arrowup") {
-          e.preventDefault();
-          e.stopPropagation();
-          modalBodyRef.current?.scrollBy({ top: -140, behavior: "smooth" });
-        } else if (key === "s" || key === "arrowdown") {
-          e.preventDefault();
-          e.stopPropagation();
-          modalBodyRef.current?.scrollBy({ top: 140, behavior: "smooth" });
-        } else if (key === "a" || key === "arrowleft") {
-          e.preventDefault();
-          e.stopPropagation();
-          if (hasLinks) {
-            setActiveLinkIndex((prev) => (prev > 0 ? prev - 1 : totalLinks - 1));
-          }
-        } else if (key === "d" || key === "arrowright") {
-          e.preventDefault();
-          e.stopPropagation();
-          if (hasLinks) {
-            setActiveLinkIndex((prev) => (prev < totalLinks - 1 ? prev + 1 : 0));
-          }
-        } else if (key === "enter" || key === "e") {
-          e.preventDefault();
-          e.stopPropagation();
-          if (hasLinks) {
-            const target = modalLinks[activeLinkIndex] || modalLinks[0];
-            window.open(target.url, "_blank", "noopener,noreferrer");
-          } else {
-            setIsModalOpen(false);
-          }
-        }
-      } else {
-        if (key === "enter") {
-          e.preventDefault();
-          setIsModalOpen(true);
-        }
+      if (!isModalOpen && e.key.toLowerCase() === "enter") {
+        e.preventDefault();
+        setIsModalOpen(true);
       }
     };
 
     window.addEventListener("keydown", handleKeyDownCapture, { capture: true });
     return () => window.removeEventListener("keydown", handleKeyDownCapture, { capture: true });
   }, [isModalOpen]);
+
+
 
   const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     if (carouselRef.current) {
@@ -519,195 +436,25 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
       </div>
 
       {/* GTA V STYLED POP-UP MODAL */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-black/85 backdrop-blur-md">
-            {/* Modal Backdrop Click to Close */}
-            <div 
-              className="absolute inset-0" 
-              onClick={() => setIsModalOpen(false)}
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="relative z-10 w-full max-w-3xl max-h-[85vh] bg-[#16181c] border-2 border-white/20 rounded-sm shadow-2xl overflow-hidden flex flex-col text-white"
-            >
-              {/* Header Image Banner */}
-              <div className="relative h-48 md:h-56 shrink-0 overflow-hidden bg-black">
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.title}
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#16181c] via-black/40 to-transparent" />
-                
-                {/* Top Badge */}
-                <div className="absolute top-4 left-6 flex items-center gap-2">
-                  {activeProject.badge && (
-                    <span className={`px-2 py-0.5 text-xs font-bold tracking-wider rounded-sm ${activeProject.badgeColor} ${activeProject.badgeText}`}>
-                      {activeProject.badge}
-                    </span>
-                  )}
-                  <span className="px-2 py-0.5 bg-white/20 text-white text-xs font-bold tracking-wider rounded-sm backdrop-blur-sm">
-                    PROJECT SPECS
-                  </span>
-                </div>
-
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-4 right-4 bg-black/60 hover:bg-white text-white hover:text-black p-2 rounded-sm transition-colors border border-white/20 flex items-center gap-1 text-xs font-bold"
-                >
-                  <X className="w-4 h-4" />
-                  <span className="hidden md:inline">ESC</span>
-                </button>
-
-                {/* Title Overlay */}
-                <div className="absolute bottom-4 left-6 right-6">
-                  <h2 className="font-gta text-4xl md:text-5xl tracking-wide text-white drop-shadow-lg uppercase leading-none">
-                    {activeProject.title}
-                  </h2>
-                  <p className="text-gray-300 text-xs md:text-sm font-medium mt-1">
-                    {activeProject.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Modal Body Content */}
-              <div 
-                ref={modalBodyRef}
-                className="p-6 overflow-y-auto space-y-6 flex-grow scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-white/20"
-              >
-                {/* Overview */}
-                <div>
-                  <h3 className="font-gta text-xl text-[#fabb15] tracking-wider mb-2 uppercase">
-                    SYSTEM OVERVIEW
-                  </h3>
-                  <p className="text-gray-200 text-sm md:text-base leading-relaxed">
-                    {activeProject.overview}
-                  </p>
-                </div>
-
-                {/* Core Modules Grid */}
-                <div>
-                  <h3 className="font-gta text-xl text-[#fabb15] tracking-wider mb-3 uppercase">
-                    CORE MODULES & CAPABILITIES
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {activeProject.modules.map((module, idx) => (
-                      <div key={idx} className="p-3.5 bg-black/50 border border-white/10 rounded-sm">
-                        <div className="flex items-center gap-2 text-white font-semibold text-sm mb-1">
-                          {module.icon}
-                          <span>{module.title}</span>
-                        </div>
-                        <p className="text-gray-300 text-xs leading-normal">
-                          {module.desc}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tech Stack Pills */}
-                <div>
-                  <h3 className="font-gta text-xl text-[#fabb15] tracking-wider mb-2 uppercase">
-                    TECHNOLOGIES USED
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {activeProject.technologies.map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 bg-white/10 text-white text-xs font-semibold rounded-sm border border-white/10 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3 h-3 text-[#2ecc71]" />
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* External Action Links (Live Site & GitHub Repositories) */}
-                {(() => {
-                  const modalLinks: { label: string; url: string; type: "demo" | "github" }[] = [];
-                  if (activeProject.demoUrl) {
-                    modalLinks.push({ label: "VISIT LIVE WEBSITE", url: activeProject.demoUrl, type: "demo" });
-                  }
-                  if (activeProject.githubLinks && activeProject.githubLinks.length > 0) {
-                    activeProject.githubLinks.forEach((l) => modalLinks.push({ label: l.label, url: l.url, type: "github" }));
-                  } else if (activeProject.githubUrl) {
-                    modalLinks.push({ label: "OPEN GITHUB REPOSITORY", url: activeProject.githubUrl, type: "github" });
-                  }
-
-                  if (modalLinks.length === 0) return null;
-
-                  return (
-                    <div className="pt-2 flex flex-wrap gap-3">
-                      {modalLinks.map((link, idx) => {
-                        const isSelected = activeLinkIndex === idx;
-
-                        return (
-                          <a
-                            key={idx}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`inline-flex items-center gap-2 px-4 py-2 font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md transition-all font-bold ${
-                              isSelected
-                                ? "bg-white text-black border-2 border-[#fabb15] scale-105 shadow-xl ring-2 ring-[#fabb15]"
-                                : link.type === "demo"
-                                ? "bg-[#fabb15] hover:bg-[#e0a710] text-black hover:scale-105 active:scale-95"
-                                : "bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:scale-105 active:scale-95"
-                            }`}
-                          >
-                            {link.type === "demo" ? <Globe className="w-4 h-4" /> : <GithubIcon className="w-4 h-4" />}
-                            <span>{link.label}</span>
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Modal Footer */}
-              <div className="p-4 bg-black/60 border-t border-white/10 flex items-center justify-between shrink-0">
-                <div className="hidden md:flex items-center gap-4 text-xs text-gray-300 font-medium">
-                  <div className="flex items-center gap-1">
-                    <span className="text-gray-400">Scroll:</span>
-                    <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>
-                    <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">S</kbd>
-                  </div>
-                  {(activeProject.demoUrl || activeProject.githubUrl || activeProject.githubLinks) && (
-                    <>
-                      <div className="flex items-center gap-1">
-                        <span className="text-gray-400">Select Link:</span>
-                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">A</kbd>
-                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">D</kbd>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <span className="text-gray-400">Open:</span>
-                        <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">↵</kbd>
-                      </div>
-                    </>
-                  )}
-                  <div className="flex items-center gap-1">
-                    <span className="text-gray-400">Exit:</span>
-                    <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">ESC</kbd>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-1.5 bg-white hover:bg-gray-200 text-black font-gta text-base tracking-wider rounded-sm transition-colors"
-                >
-                  CLOSE
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <GtaModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        card={activeProject ? {
+          id: activeProject.id,
+          title: activeProject.title,
+          subtitle: activeProject.subtitle,
+          badge: activeProject.badge,
+          badgeColor: activeProject.badgeColor,
+          badgeText: activeProject.badgeText,
+          image: activeProject.image,
+          overview: activeProject.overview,
+          highlights: activeProject.modules,
+          tags: activeProject.technologies,
+          demoUrl: activeProject.demoUrl,
+          githubUrl: activeProject.githubUrl,
+          githubLinks: activeProject.githubLinks,
+        } : null}
+      />
     </GtaLayout>
   );
 }
