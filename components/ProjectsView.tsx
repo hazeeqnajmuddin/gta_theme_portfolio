@@ -25,6 +25,11 @@ export interface ProjectDetailModule {
   icon: React.ReactNode;
 }
 
+export interface ProjectGithubLink {
+  label: string;
+  url: string;
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -41,6 +46,7 @@ export interface ProjectItem {
   technologies: string[];
   githubUrl?: string;
   demoUrl?: string;
+  githubLinks?: ProjectGithubLink[];
 }
 
 // Project Data
@@ -48,38 +54,44 @@ const PROJECTS: ProjectItem[] = [
   {
     id: "automate",
     title: "AUTOMATE SYSTEM",
-    subtitle: "Vehicle & Workshop Management Platform",
-    badge: "FYP",
+    subtitle: "Degree FYP Thesis & Vehicle Workshop Platform",
+    badge: "DEGREE FYP",
     badgeColor: "bg-[#fabb15]",
     badgeText: "text-black",
     description1: "Select to view the AutoMate vehicle and workshop management platform.",
-    description2: "An intelligent system built using Laravel, PHP, and MySQL. This project features data preprocessing and decision tree models integrated directly into a responsive web platform to streamline mechanical adjustments and maintain precise vehicle service records.",
+    description2: "An intelligent full-stack system built using Laravel 10, PHP, MySQL, and Python ML microservices. Developed as a Bachelor's Degree Final Year Project (FYP) accompanied by an academic thesis on Decision Tree AI diagnostics.",
     image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600",
-    overview: "AutoMate is an intelligent end-to-end vehicle service and workshop management platform. Developed using Laravel (PHP) and Flutter, it bridges car owners, mechanics, and workshop managers into a single unified ecosystem with intelligent diagnostic assistance.",
+    overview: "AutoMate is an intelligent end-to-end vehicle service and workshop management platform engineered for Hazeeq's Software Engineering Bachelor's Degree Final Year Project (FYP). Backed by a formal academic thesis, the system utilizes a multi-repository architecture connecting a main Laravel 10 MVC web app with Python Flask AI microservices executing Scikit-Learn Decision Tree classification algorithms for vehicle fault prediction.",
     modules: [
       {
-        title: "Workshop Management",
-        desc: "Digital service history tracking, job card scheduling, parts inventory management, and automated invoicing.",
+        title: "Workshop Management System",
+        desc: "Digital service history tracking, job card scheduling, parts inventory management, and automated customer invoicing.",
         icon: <Wrench className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Decision Tree Diagnostic AI",
-        desc: "Data preprocessing and machine learning decision tree models integrated to assist mechanics with maintenance prediction.",
+        title: "Decision Tree Diagnostic AI Engine",
+        desc: "Integrated Scikit-Learn decision tree classification models assisting mechanics with fault detection and predictive maintenance.",
         icon: <Cpu className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Flutter Mobile App",
-        desc: "Real-time service updates, appointment booking, and push notifications for vehicle owners.",
-        icon: <Smartphone className="w-4 h-4 text-[#2ecc71]" />
+        title: "Degree Thesis & Academic Research",
+        desc: "Authored formal degree thesis detailing system architecture, machine learning model evaluation, and diagnostic accuracy benchmarks.",
+        icon: <FileText className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Laravel Admin Backend",
-        desc: "Robust RESTful API architecture with role-based access control (RBAC) and real-time dashboard analytics.",
+        title: "Laravel 10 Admin & Microservice REST API",
+        desc: "Robust MVC architecture connecting web clients to isolated Python Flask AI microservice API endpoints.",
         icon: <Server className="w-4 h-4 text-purple-400" />
       }
     ],
-    technologies: ["Laravel 10", "PHP 8.2", "Flutter", "Dart", "MySQL", "Decision Tree ML", "REST APIs", "TailwindCSS"]
+    technologies: ["Laravel 10", "PHP 8.2", "Python Flask API", "Decision Tree AI", "Scikit-Learn", "MySQL", "Degree Thesis", "RESTful Microservices"],
+    githubUrl: "https://github.com/hazeeqnajmuddin/automate",
+    githubLinks: [
+      { label: "MAIN WEB REPO", url: "https://github.com/hazeeqnajmuddin/automate" },
+      { label: "AI MICROSERVICE API", url: "https://github.com/hazeeqnajmuddin/automate-ai-api" },
+      { label: "DECISION TREE AI MODEL", url: "https://github.com/hazeeqnajmuddin/automate_dt_ai" }
+    ]
   },
   {
     id: "qa-suite",
@@ -89,69 +101,69 @@ const PROJECTS: ProjectItem[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeText: "text-white",
     description1: "Select to explore enterprise-grade automated test scripts and software quality assurance.",
-    description2: "Developed utilizing Selenium, Maven, and Tricentis Tosca. Designed to ensure robust performance and reliability for critical software deliveries during professional operations.",
+    description2: "Developed utilizing Perfecto Mobile Cloud, Selenium WebDriver, Maven, and Tricentis Tosca. Designed to ensure robust performance and reliability for critical software deliveries during UOB banking operations.",
     image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600",
-    overview: "Comprehensive enterprise automated test execution framework built with Selenium WebDriver, Java/Maven, and Tricentis Tosca. Ensures seamless regression testing, API validation, and quality benchmarks for critical corporate software releases.",
+    overview: "Comprehensive enterprise automated test execution framework built with Perforce Perfecto Mobile Cloud, Selenium WebDriver, Java/Maven, and Tricentis Tosca (AS1 & AS2). Ensures seamless regression testing, real device mobile validation, and quality benchmarks for banking releases.",
     modules: [
+      {
+        title: "Perfecto Mobile Cloud Testing",
+        desc: "Automated real-device testing for iOS and Android native/web apps on Perforce Perfecto Cloud.",
+        icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
+      },
       {
         title: "Tosca Automation Engine",
         desc: "Automated model-based GUI & API test execution for complex enterprise business workflows.",
-        icon: <CheckCircle2 className="w-4 h-4 text-[#fabb15]" />
+        icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
       },
       {
         title: "Selenium WebDriver Suite",
         desc: "Cross-browser web automation scripts written in Java utilizing Page Object Model (POM) design patterns.",
-        icon: <Code2 className="w-4 h-4 text-[#00a8ff]" />
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
       },
       {
         title: "Maven & CI/CD Pipelines",
         desc: "Automated build scripts and test execution runners integrated into Jenkins & Azure DevOps pipelines.",
-        icon: <Layers className="w-4 h-4 text-[#2ecc71]" />
-      },
-      {
-        title: "Defect Reporting & QA Logs",
-        desc: "Detailed execution reports, bug tracing, and automated screenshot attachments for audit trail compliance.",
-        icon: <ShieldCheck className="w-4 h-4 text-purple-400" />
+        icon: <Layers className="w-4 h-4 text-purple-400" />
       }
     ],
-    technologies: ["Tricentis Tosca", "Selenium WebDriver", "Java", "Maven", "JUnit", "Jenkins", "API Testing", "POM Design"]
+    technologies: ["Perfecto Mobile", "Tricentis Tosca", "Selenium WebDriver", "Java", "Maven", "Appium", "JUnit", "Jenkins"]
   },
   {
     id: "preacher",
-    title: "PREACHER MANAGEMENT",
-    subtitle: "Administrative Backend & Operational Workflow Platform",
-    badge: "MOBILE APPLICATION",
-    badgeColor: "bg-emerald-600",
+    title: "PREACHER MONITORING SYSTEM",
+    subtitle: "Flutter Mobile App & Firebase Realtime Cloud Backend",
+    badge: "FLUTTER MOBILE",
+    badgeColor: "bg-[#00a8ff]",
     badgeText: "text-white",
-    description1: "Select to view the Preacher Management System.",
-    description2: "A dedicated administrative backend constructed using the MVC framework and Flutter, facilitating organized data structuring and operational management workflows.",
+    description1: "Select to view the Preacher Monitoring System (PMS).",
+    description2: "A mobile & web Preacher Monitoring System (PMS) constructed with Flutter, Firebase Cloud Database, and Laravel backend. Features real-time schedule tracking, preacher assignment monitoring, and instant cloud data sync.",
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600",
-    overview: "A dedicated administrative web application constructed using the Laravel framework and PHP. Facilitates organized data structuring, schedule management, content cataloging, and operational workflows for administrative staff.",
+    overview: "The Preacher Monitoring System (PMS) is a multi-platform mobile application engineered with Flutter, Firebase NoSQL Cloud Database, and Firebase Authentication. Enables real-time schedule tracking, preacher assignment monitoring, lecture topic cataloging, and instant cloud data synchronization.",
     modules: [
       {
-        title: "Schedule & Event Booking",
-        desc: "Digital scheduling and allocation tools for event assignments and venue bookings.",
-        icon: <Calendar className="w-4 h-4 text-[#fabb15]" />
+        title: "Flutter Cross-Platform Mobile App",
+        desc: "Mobile client application built with Flutter & Dart for real-time preacher assignment tracking and schedule alerts.",
+        icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Administrative Portal",
-        desc: "Centralized portal for managing profiles, credentials, and activity logs.",
-        icon: <LayoutDashboard className="w-4 h-4 text-[#00a8ff]" />
+        title: "Firebase Realtime Cloud Database",
+        desc: "Real-time data synchronization powered by Firebase Cloud Database for instant schedule updates and roster sync.",
+        icon: <Database className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Role-Based Access Control",
-        desc: "Multi-tier user authorization separating admin, moderator, and general user permissions.",
-        icon: <Lock className="w-4 h-4 text-[#2ecc71]" />
+        title: "Preacher Schedule & Event Monitoring",
+        desc: "Digital tracking tools for monitoring preacher assignments, event locations, and live schedule statuses.",
+        icon: <Calendar className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "Data Indexing & Reports",
-        desc: "Filterable record querying, CSV export capabilities, and audit log generation.",
-        icon: <Database className="w-4 h-4 text-purple-400" />
+        title: "Firebase Auth & Security Rules",
+        desc: "Multi-tier user authentication using Firebase Auth with secure cloud database security rules.",
+        icon: <Lock className="w-4 h-4 text-purple-400" />
       }
     ],
-    technologies: ["Laravel 10", "PHP 8.2", "MySQL", "Blade Templates", "REST APIs", "Bootstrap", "Composer"]
+    technologies: ["Flutter", "Dart", "Firebase", "Cloud Firestore", "Firebase Auth", "Laravel", "REST APIs", "Git"]
   },
   {
     id: "telecom-analytics",
@@ -576,8 +588,8 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                   </div>
                 </div>
 
-                {/* External Action Links (Live Site & GitHub) */}
-                {(activeProject.demoUrl || activeProject.githubUrl) && (
+                {/* External Action Links (Live Site & GitHub Repositories) */}
+                {(activeProject.demoUrl || activeProject.githubUrl || activeProject.githubLinks) && (
                   <div className="pt-2 flex flex-wrap gap-3">
                     {activeProject.demoUrl && (
                       <a
@@ -591,7 +603,21 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     )}
-                    {activeProject.githubUrl && (
+                    {activeProject.githubLinks ? (
+                      activeProject.githubLinks.map((link, idx) => (
+                        <a
+                          key={idx}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-gta text-sm md:text-base tracking-wider rounded-sm shadow-md border border-white/20 transition-all hover:scale-105 active:scale-95"
+                        >
+                          <GithubIcon className="w-4 h-4" />
+                          <span>{link.label}</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      ))
+                    ) : activeProject.githubUrl ? (
                       <a
                         href={activeProject.githubUrl}
                         target="_blank"
@@ -602,7 +628,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
                         <span>OPEN GITHUB REPOSITORY</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
-                    )}
+                    ) : null}
                   </div>
                 )}
               </div>

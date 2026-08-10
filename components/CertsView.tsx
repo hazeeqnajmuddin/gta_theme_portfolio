@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, Cloud, Server, ShieldCheck, DollarSign, Building2, Code2, 
   Award, Briefcase, CheckCircle2, Terminal, Layers, FileCheck, 
-  GraduationCap, Laptop, Building, BookOpen, ExternalLink
+  GraduationCap, Laptop, Building, BookOpen, ExternalLink, BarChart3, FileText
 } from "lucide-react";
 
 export interface CertDetailHighlight {
@@ -170,36 +170,38 @@ const CERTS: CertItem[] = [
     badgeColor: "bg-[#2ecc71]",
     badgeText: "text-black",
     description1: "Select or press ENTER to view the K-Youth x GIFT Programme completion.",
-    description2: "Completed the intensive K-Youth x GIFT talent accelerator by Khazanah Nasional & MTDC, culminating in a professional placement as Test Analyst Intern at Gientech / UOB Bank.",
+    description2: "Completed the intensive K-Youth x GIFT talent accelerator funded by Khazanah Nasional & MTDC, specializing in Strategic Analysis, Data Visualization, Customer Centricity, Digital Innovation, and 1.4M Row Telecom Data Analytics.",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000",
     thumb: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600",
-    overview: "Selected for the prestigious K-Youth x GIFT Programme funded by Khazanah Nasional & MTDC (Dec 2025 - Jul 2026). Completed multi-industry domain training (Cinergi strategic analysis, Grab data visualization, Maybank customer personas, IHH Healthcare GenAI tools, and Infini 1.4M row telecom data analytics capstone) leading to an enterprise placement at UOB Bank.",
+    overview: "Selected for the prestigious K-Youth x GIFT Programme funded by Khazanah Nasional & MTDC (Dec 2025 - Jul 2026). Completed five intensive industry domain projects spanning Cinergi strategic analysis, Grab data visualization, Maybank customer persona pitching, IHH Healthcare GenAI video workflows, and Infini 1.4M row telecom data analytics capstone.",
     highlights: [
       {
+        title: "Strategic Analysis (Cinergi)",
+        desc: "Authored a comprehensive business report and formal executive memo, demonstrating professional technical writing and corporate analysis skills.",
+        icon: <FileText className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Data Visualization (Grab)",
+        desc: "Processed large datasets using Microsoft Excel, developing pivot tables and pivot charts to identify trends and provide data-driven solutions.",
+        icon: <BarChart3 className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Customer Centricity (Maybank)",
+        desc: "Developed a comprehensive customer persona for Maybank to tailor a balanced-loan pitch, focusing on stakeholder needs and persuasion.",
+        icon: <Briefcase className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Digital Innovation (IHH Healthcare)",
+        desc: "Designed detailed employee onboarding workflows and utilized GenAI video tools to automate training content generation.",
+        icon: <Award className="w-4 h-4 text-purple-400" />
+      },
+      {
         title: "Data Analytics Capstone (Infini)",
-        desc: "Engineered 1.4M+ row telecommunications dataset using Jupyter, K-Means clustering, and Power BI.",
+        desc: "Data analytics using Jupyter Notebook and Power BI on 1.4 Million rows of raw data, applying K-Means Clustering and interactive dashboards.",
         icon: <Building2 className="w-4 h-4 text-[#fabb15]" />
-      },
-      {
-        title: "Corporate Placement (UOB Intermark)",
-        desc: "Embedded directly into Gientech / UOB Bank core banking technology quality assurance team.",
-        icon: <Code2 className="w-4 h-4 text-[#00a8ff]" />
-      },
-      {
-        title: "GenAI & Digital Innovation (IHH)",
-        desc: "Utilized Copilot GenAI and video automation tools to optimize training workflows.",
-        icon: <Award className="w-4 h-4 text-[#2ecc71]" />
-      },
-      {
-        title: "Customer Centricity & Strategy (Maybank)",
-        desc: "Authored formal executive memos and developed Maybank customer personas for loan pitching.",
-        icon: <Briefcase className="w-4 h-4 text-purple-400" />
       }
     ],
-    skills: ["MTDC GIFT", "Khazanah K-Youth", "UOB Enterprise", "Power BI", "GenAI Copilot", "Data Analytics"],
-    badgeLinks: [
-      { label: "VIEW LINKEDIN CREDENTIALS", url: "https://www.linkedin.com/in/hazeeqnajmuddin/details/certifications/" }
-    ]
+    skills: ["Strategic Analysis", "Excel Visualization", "Customer Personas", "GenAI Video Tools", "Power BI", "K-Means Clustering"]
   },
   {
     id: "degree",
@@ -208,37 +210,34 @@ const CERTS: CertItem[] = [
     badge: "DEGREE",
     badgeColor: "bg-[#4a90e2]",
     badgeText: "text-white",
-    description1: "Select or press ENTER to view academic background.",
-    description2: "Universiti Malaysia Pahang Al-Sultan Abdullah (Oct 2022 - Present). Matriculation Engineering CGPA 3.92, SPM 7As.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600",
-    overview: "Pursuing Bachelor of Computer Science (Software Engineering) with Honours at Universiti Malaysia Pahang Al-Sultan Abdullah (Oct 2022 - Present). Previously achieved CGPA 3.92 in Electrical & Electronic Engineering at Kolej Matrikulasi Kejuruteraan Pahang and 7As in SPM at SMT Melaka.",
+    description1: "Select or press ENTER to view degree specialization details.",
+    description2: "Universiti Malaysia Pahang Al-Sultan Abdullah (Oct 2022 - Present). Specializing in Full-Stack Web/Mobile Architecture, Machine Learning, and Software QA.",
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2000",
+    thumb: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600",
+    overview: "Pursuing Bachelor of Computer Science (Software Engineering) with Honours at Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA, Pekan) from Oct 2022 - Present. Specialized degree curriculum focusing on enterprise full-stack development, database architecture, machine learning integration, software testing methodologies, and UI/UX design.",
     highlights: [
       {
-        title: "Software Engineering Core",
-        desc: "Data structures, algorithms, object-oriented design, database engineering, and software architecture.",
+        title: "Software Engineering & Data Structures",
+        desc: "Object-oriented programming (OOP), data structures, algorithms, relational database engineering (MySQL/MariaDB), and software architecture.",
         icon: <GraduationCap className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Final Year Project (AutoMate)",
-        desc: "Architected AutoMate vehicle recommendation platform with decision tree ML and Laravel MVC.",
+        title: "Degree Final Year Project & Thesis (AutoMate)",
+        desc: "Architected API-driven AutoMate platform with Decision Tree AI model (96% prediction accuracy) and authored formal degree research thesis.",
         icon: <Laptop className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Electrical Engineering CGPA 3.92",
-        desc: "Kolej Matrikulasi Kejuruteraan Pahang (Aug 2021 - Mar 2022) with high academic honors.",
-        icon: <Building className="w-4 h-4 text-[#2ecc71]" />
+        title: "Full-Stack Development & UI/UX Design",
+        desc: "Designing responsive interfaces in Figma (20+ wireframes) and engineering full-stack applications with Laravel, React, and REST APIs.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
       },
       {
-        title: "SPM Excellence (7As)",
-        desc: "Sekolah Menengah Teknik Melaka (Jan 2016 - Feb 2021) in technical STEM curriculum.",
-        icon: <BookOpen className="w-4 h-4 text-purple-400" />
+        title: "Software Quality Assurance & Testing",
+        desc: "Specialized coursework and practical implementation in automated test execution, Selenium WebDriver, Tricentis Tosca, and unit testing.",
+        icon: <ShieldCheck className="w-4 h-4 text-purple-400" />
       }
     ],
-    skills: ["Software Engineering", "Full-Stack Development", "System Architecture", "Laravel & Flutter", "Machine Learning"],
-    badgeLinks: [
-      { label: "VIEW LINKEDIN EDUCATION", url: "https://www.linkedin.com/in/hazeeqnajmuddin/details/education/" }
-    ]
+    skills: ["Software Engineering", "Full-Stack Web Dev", "System Architecture", "Laravel & React", "Machine Learning", "Software QA"]
   }
 ];
 

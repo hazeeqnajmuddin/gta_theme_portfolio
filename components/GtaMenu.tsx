@@ -109,7 +109,7 @@ const CARDS: MenuCard[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Contact information, GitHub, LinkedIn, and social links.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "web-dev", a: "qa-testing" },

@@ -11,7 +11,7 @@ import {
   Users, Building2, Briefcase, Smile, Package, PackageCheck, Zap, 
   Utensils, Clock, Receipt, Flame, Mic, Heart, Calendar, Code2, Award, 
   HeartHandshake, Leaf, Volume2, MessageSquare, UserPlus, ClipboardList, 
-  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText
+  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText, Smartphone
 } from "lucide-react";
 
 export interface AboutDetailHighlight {
@@ -68,7 +68,7 @@ const HERO_CARD: AboutCard = {
     },
     {
       title: "Banking Sector Internships",
-      desc: "Corporate internship experience embedded within financial technology divisions at UOB Intermark & CIMB.",
+      desc: "Corporate internship experience embedded within financial technology divisions at UOB Intermark.",
       icon: <Building2 className="w-4 h-4 text-[#2ecc71]" />
     },
     {
@@ -86,36 +86,41 @@ const EDUCATION_CARDS: AboutCard[] = [
   {
     id: "edu-main",
     title: "EDUCATION OVERVIEW",
-    subtitle: "Academic Journey & Computer Science Foundations",
+    subtitle: "Academic Journey & Computer Science Studies",
     description: "My academic background and foundations.",
     image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1000",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-3",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
-    overview: "A comprehensive summary of Hazeeq's educational journey from secondary school science stream and pre-university matriculation to a Bachelor's Degree in Software Engineering.",
+    overview: "A comprehensive summary of Hazeeq's complete educational journey from lower secondary at SMK Taman Melawati and specialized Electrical Engineering technical stream at SM Teknik Melaka (7As SPM), to pre-university Electrical Engineering matriculation at KMKPh (CGPA 3.92) and a Bachelor's Degree in Software Engineering at UMPSA.",
     highlights: [
       {
-        title: "Bachelor of Computer Science (Software Engineering)",
-        desc: "Specialized degree curriculum covering software design, database systems, AI diagnostics, and testing.",
+        title: "Bachelor of Computer Science (Software Engineering) With Honors",
+        desc: "Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA). Full-stack development, AI models, and QA.",
         icon: <GraduationCap className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Pre-University Matriculation Program",
-        desc: "Strong STEM foundation specializing in Physical Science, Advanced Mathematics, and Computer Science.",
+        title: "Electrical Engineering Matriculation (CGPA 3.92)",
+        desc: "Kolej Matrikulasi Kejuruteraan Pahang (KMKPh) 1-year fast-track program in Jengka with high honors.",
         icon: <BookOpen className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Secondary School (Pure Science Stream)",
-        desc: "Pure Science SPM credentials with focus on Additional Mathematics, Physics, and Chemistry.",
+        title: "Technical High School (SM Teknik Melaka - 7As SPM)",
+        desc: "2-year Electrical & Electronic Engineering technical stream (Grade A in Pengajian Kejuruteraan Elektrik & Elektronik).",
         icon: <School className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Lower Secondary Foundation (SMK Taman Melawati)",
+        desc: "3-year Form 1 to Form 3 academic foundation building STEM logic and co-curricular skills.",
+        icon: <BookMarked className="w-4 h-4 text-purple-400" />
       }
     ],
-    tags: ["Software Engineering", "Computer Science", "STEM Foundation", "High Academic Standing"],
+    tags: ["UMPSA Software Eng", "KMKPh CGPA 3.92", "SM Teknik Melaka 7As", "SMK Taman Melawati"],
     nav: { w: "hero-main", d: "edu-degree", s: "work-main" } 
   },
   {
     id: "edu-degree",
     title: "SOFTWARE ENGINEERING DEGREE",
-    subtitle: "Bachelor of Computer Science (Software Engineering)",
+    subtitle: "Bachelor of Computer Science (Software Engineering) With Honors",
     badge: "CURRENT",
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
@@ -146,74 +151,98 @@ const EDUCATION_CARDS: AboutCard[] = [
   },
   {
     id: "edu-matrics",
-    title: "PRE-U MATRICULATION",
-    subtitle: "Physical Science & Computer Science Track",
-    description: "Pre-university matriculation program.",
+    title: "ENGINEERING MATRICULATION",
+    subtitle: "Kolej Matrikulasi Kejuruteraan Pahang (Aug 2021 - Mar 2022)",
+    badge: "CGPA 3.92",
+    badgeColor: "bg-[#fabb15]",
+    badgeTextColor: "text-black",
+    description: "Electrical Engineering 1-Year Fast-Track Program (CGPA 3.92).",
     image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-xl md:text-3xl",
-    overview: "Completed intensive pre-university matriculation program specializing in Physical Science, Mathematics, Computer Science, and Physics.",
+    overview: "Completed an intensive 1-year Electrical Engineering fast-track matriculation program at Kolej Matrikulasi Kejuruteraan Pahang (KMKPh) in Jengka, Pahang. Achieved an outstanding CGPA of 3.92 with high academic distinction.",
     highlights: [
       {
-        title: "Physical Science & Mathematics",
-        desc: "Mastery of advanced calculus, linear algebra, and physics principles.",
+        title: "Electrical & Electronic Engineering (CGPA 3.92)",
+        desc: "Specialized 1-year engineering track in Jengka, Pahang, achieving near-perfect 3.92 CGPA honors.",
         icon: <Calculator className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Introduction to Computer Science",
-        desc: "Fundamental programming logic, algorithm design, and problem solving.",
+        title: "Engineering Mathematics & Circuit Logic",
+        desc: "Mastery of advanced calculus, linear algebra, circuit analysis, and digital electronics fundamentals.",
         icon: <Terminal className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Technical STEM Foundation",
+        desc: "Formed a strong analytical and problem-solving bridge leading into Computer Science & Software Engineering.",
+        icon: <Cpu className="w-4 h-4 text-[#2ecc71]" />
       }
     ],
-    tags: ["Pre-University", "Physical Science", "Advanced Math", "Computer Science Logic"],
+    tags: ["Electrical Engineering", "KMKPh Jengka", "CGPA 3.92", "Engineering Math", "Circuit Analysis"],
     nav: { w: "hero-main", a: "edu-degree", s: "edu-high" } 
   },
   {
     id: "edu-high",
-    title: "HIGH SCHOOL (SPM)",
-    subtitle: "Secondary Education - Pure Science Stream",
-    description: "Secondary education credentials.",
+    title: "TECHNICAL HIGH SCHOOL (SPM)",
+    subtitle: "SM Teknik Melaka (Jan 2016 - Feb 2021)",
+    badge: "7As DISTINCTION",
+    badgeColor: "bg-[#fabb15]",
+    badgeTextColor: "text-black",
+    description: "Electrical & Electronic Engineering 2-Year Technical Stream (7As SPM).",
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-xl md:text-3xl",
-    overview: "Completed SPM secondary education with distinction in Pure Science stream (Additional Mathematics, Physics, Chemistry, Biology).",
+    overview: "Completed a 2-year specialized Electrical & Electronic Engineering technical stream at Sekolah Menengah Teknik Melaka (Bukit Piatu). Achieved an outstanding SPM 2020 result of 7As across 10 subjects.",
     highlights: [
       {
-        title: "Pure Science Stream",
-        desc: "Academic foundation in analytical thinking, scientific methodology, and problem solving.",
-        icon: <FlaskConical className="w-4 h-4 text-[#fabb15]" />
+        title: "Electrical & Electronic Engineering (Grade A)",
+        desc: "Specialized technical coursework in Pengajian Kejuruteraan Elektrik & Elektronik and Lukisan Kejuruteraan.",
+        icon: <Wrench className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Student Leadership & Co-Curriculars",
-        desc: "Active participant in school societies, sports, and student leadership councils.",
+        title: "7As SPM Distinction (10 Subjects)",
+        desc: "Distinctions in English (A, GCE-O 3B), Mathematics (A), Physics (A-), Sejarah (A), BM (A-), Agama (A).",
         icon: <Medal className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Advanced Technical STEM Stream",
+        desc: "2-year intensive technical curriculum building engineering drawing, circuit principles, and analytical math.",
+        icon: <FlaskConical className="w-4 h-4 text-[#2ecc71]" />
       }
     ],
-    tags: ["SPM Science Stream", "Additional Mathematics", "Physics & Chemistry", "Student Leadership"],
+    tags: ["SM Teknik Melaka", "Electrical Engineering", "7As SPM", "Engineering Drawing", "Physics & Add Math"],
     nav: { w: "edu-matrics", a: "edu-degree", s: "edu-middle" }
   },
   {
     id: "edu-middle",
-    title: "MIDDLE SCHOOL (PT3)",
-    subtitle: "Lower Secondary Academic Foundation",
-    description: "Early education years.",
+    title: "LOWER SECONDARY (PT3)",
+    subtitle: "SMK Taman Melawati (3-Year Program)",
+    // badge: "FOUNDATION",
+    // badgeColor: "bg-[#4a90e2]",
+    // badgeTextColor: "text-white",
+    description: "Lower Secondary Education (Form 1 - Form 3) at SMK Taman Melawati (SMKTM).",
     image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-3xl",
-    overview: "Foundation years in lower secondary education building academic excellence, discipline, and team collaboration skills.",
+    overview: "Completed 3 years of lower secondary education (Form 1 to Form 3) at Sekolah Menengah Kebangsaan Taman Melawati (SMKTM), building a strong academic foundation in science, mathematics, and co-curricular leadership before transitioning to SM Teknik Melaka.",
     highlights: [
       {
-        title: "Core Academic Curriculum",
-        desc: "Solid foundation across mathematics, science, languages, and humanities.",
-        icon: <BookMarked className="w-4 h-4 text-[#fabb15]" />
+        title: "3-Year Lower Secondary Studies",
+        desc: "Form 1 to Form 3 academic curriculum at SMK Taman Melawati (SMKTM).",
+        icon: <School className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Co-Curricular Engagement",
-        desc: "Participation in uniformed bodies, sports tournaments, and club leadership.",
-        icon: <Users className="w-4 h-4 text-[#00a8ff]" />
+        title: "PT3 Academic Foundation",
+        desc: "Built core foundations in mathematics, science, language literacy, and technical thinking.",
+        icon: <BookMarked className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Co-Curricular & Student Clubs",
+        desc: "Active engagement in school societies, uniformed bodies, and student team activities.",
+        icon: <Users className="w-4 h-4 text-[#2ecc71]" />
       }
     ],
-    tags: ["Lower Secondary", "Core Curriculum", "Co-Curriculars", "Teamwork"],
+    tags: ["SMK Taman Melawati", "Lower Secondary", "PT3 Foundation", "Form 1 - Form 3"],
     nav: { w: "edu-high", a: "edu-degree", s: "work-skechers" }
   }
 ];
@@ -228,11 +257,11 @@ const WORK_CARDS: AboutCard[] = [
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-4",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
-    overview: "Comprehensive professional journey spanning corporate banking tech internships (UOB, CIMB), freelance engineering, logistics, customer service, and hospitality.",
+    overview: "Comprehensive professional journey spanning corporate banking tech internships (UOB), freelance engineering, logistics, customer service, and hospitality.",
     highlights: [
       {
         title: "Corporate Tech Internships",
-        desc: "Banking technology operations, quality assurance testing, and system verification at UOB & CIMB.",
+        desc: "Banking technology operations, quality assurance testing, and system verification for UOB.",
         icon: <Building2 className="w-4 h-4 text-[#fabb15]" />
       },
       {
@@ -260,25 +289,30 @@ const WORK_CARDS: AboutCard[] = [
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
     titleClass: "text-3xl md:text-4xl",
-    overview: "Professional software engineering internships embedded within enterprise banking environments at UOB (Intermark) and CIMB, focusing on automated software quality assurance, system testing, and corporate workflows.",
+    overview: "Embedded within Gientech at UOB Intermark as a Software QA & Test Analyst Intern. Executed enterprise mobile & web automated testing using Perfecto Mobile Cloud, Selenium WebDriver, Tricentis Tosca (AS1 & AS2), and Java Maven pipelines for banking operations.",
     highlights: [
       {
-        title: "UOB Intermark Tech Operations",
-        desc: "Software testing, test execution runs, and defect verification in corporate banking tech division.",
-        icon: <Building2 className="w-4 h-4 text-[#fabb15]" />
+        title: "Perfecto Mobile & Cloud Testing",
+        desc: "Automated & manual cloud-based mobile testing across iOS & Android real devices using Perforce Perfecto platform.",
+        icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "CIMB Banking Internship",
-        desc: "Enterprise software workflows, user acceptance testing (UAT), and system documentation.",
-        icon: <Briefcase className="w-4 h-4 text-[#00a8ff]" />
+        title: "Tricentis Tosca AS1 & AS2 Automation",
+        desc: "Model-based test automation, dynamic Test Data Management (TDM), and automated regression runs.",
+        icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Automated QA Execution",
-        desc: "Hands-on test script execution using Selenium WebDriver, Maven, and Tricentis Tosca.",
-        icon: <CheckCircle2 className="w-4 h-4 text-[#2ecc71]" />
+        title: "Selenium WebDriver & Java Maven",
+        desc: "Developed cross-browser web testing automation frameworks with Java Maven build runners.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "UOB Corporate Banking QA",
+        desc: "Defect logging, test case design, and regression suite execution for core enterprise banking applications.",
+        icon: <Building2 className="w-4 h-4 text-purple-400" />
       }
     ],
-    tags: ["UOB Intermark", "CIMB Banking", "Enterprise QA", "Tricentis Tosca", "Selenium", "System Testing"],
+    tags: ["UOB Intermark", "Gientech", "Perfecto Mobile", "Tricentis Tosca", "Selenium", "Appium", "Banking QA"],
     nav: { w: "edu-degree", a: "work-main", d: "work-skechers", s: "work-freelance" }
   },
   {
