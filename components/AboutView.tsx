@@ -499,7 +499,7 @@ const LIFE_CARDS: AboutCard[] = [
   },
   {
     id: "life-volunteer",
-    title: "VOLUNTEERING",
+    title: "VOLUNTEER",
     subtitle: "Community Outreach & Charitable Initiatives",
     description: "Giving back through organized community efforts.",
     image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1000",
@@ -547,7 +547,7 @@ const LIFE_CARDS: AboutCard[] = [
   },
   {
     id: "life-youth",
-    title: "YOUTH DEVELOPMENT",
+    title: "YOUTH DEVELOPER",
     subtitle: "Guiding & Empowering Younger Peers",
     description: "Mentoring and guiding younger peers.",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000",
@@ -571,7 +571,7 @@ const LIFE_CARDS: AboutCard[] = [
   },
   {
     id: "life-program",
-    title: "PROGRAM MANAGEMENT",
+    title: "PROGRAM MANAGER",
     subtitle: "Event Planning & Operational Execution",
     description: "Organizing and leading structured events.",
     image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000",
@@ -681,7 +681,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
     ? "Select or press ENTER to inspect details for " + hoveredCard.title
     : "Scroll down to discover my background, current roles, and technical journey.";
 
-  const renderCard = (card: AboutCard) => {
+  const renderCard = (card: AboutCard, customClass?: string) => {
     const isActive = hoveredCard?.id === card.id;
 
     return (
@@ -690,7 +690,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         key={card.id}
         onMouseEnter={() => setHoveredCard(card)}
         onClick={() => handleCardClick(card)}
-        className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${card.gridClass} ${
+        className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} ${
           isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-75 hover:opacity-100"
         }`}
       >
@@ -704,17 +704,17 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         
         {card.badge && (
-          <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider ${card.badgeColor} ${card.badgeTextColor}`}>
+          <div className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 px-1.5 py-0.5 text-[9px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
             {card.badge}
           </div>
         )}
         
-        <div className="absolute bottom-2 left-3 right-3">
-          <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none ${card.titleClass}`}>
+        <div className="absolute bottom-1.5 left-2 right-2 md:bottom-2 md:left-3 md:right-3">
+          <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none text-xs sm:text-sm md:text-3xl ${card.titleClass}`}>
             {card.title}
           </h3>
-          {card.id !== "work-main" && card.id.startsWith("work-") && card.subtitle && (
-            <p className="text-[#fabb15] text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide drop-shadow-md mt-1 line-clamp-1 uppercase">
+          {card.id !== "work-main" && card.id !== "edu-main" && card.id !== "life-main" && card.subtitle && (
+            <p className="text-[#fabb15] text-[9px] sm:text-xs md:text-sm font-semibold tracking-wide drop-shadow-md mt-0.5 md:mt-1 line-clamp-3 leading-tight uppercase">
               {card.subtitle}
             </p>
           )}
@@ -806,18 +806,111 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
       </div>
 
       {/* Section 1: Work Experiences */}
-      <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-4 gap-2 md:gap-3">
-        {WORK_CARDS.map(renderCard)}
+      {/* DESKTOP VIEW (md and up: 3 columns, 4 rows) */}
+      <div className="hidden md:grid snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid-cols-3 grid-rows-4 gap-2 md:gap-3">
+        {WORK_CARDS.map((card) => renderCard(card))}
+      </div>
+
+      {/* MOBILE VIEW ONLY (below md: 1 top header card + 2 column split matching user sketch) */}
+      <div className="md:hidden snap-start snap-always w-full mb-[20vh] flex flex-col gap-2">
+        {/* Top Header Card: WORK EXPERIENCES */}
+        <div className="w-full h-24 sm:h-32">
+          {renderCard(WORK_CARDS[0], "w-full h-full")}
+        </div>
+
+        {/* 2-Column Grid matching sketch */}
+        <div className="grid grid-cols-2 gap-2 h-[520px] sm:h-[600px]">
+          {/* Left Column: GIENTECH (UOB) & FREELANCE */}
+          <div className="grid grid-rows-2 gap-2 h-full">
+            <div className="w-full h-full">
+              {renderCard(WORK_CARDS[1], "w-full h-full")}
+            </div>
+            <div className="w-full h-full">
+              {renderCard(WORK_CARDS[2], "w-full h-full")}
+            </div>
+          </div>
+
+          {/* Right Column: SKECHERS, SHOPEE, OLE OLE BALI, AL-ANSAR STEAKHOUSE */}
+          <div className="grid grid-rows-4 gap-2 h-full">
+            <div className="w-full h-full">
+              {renderCard(WORK_CARDS[3], "w-full h-full")}
+            </div>
+            <div className="w-full h-full">
+              {renderCard(WORK_CARDS[4], "w-full h-full")}
+            </div>
+            <div className="w-full h-full">
+              {renderCard(WORK_CARDS[5], "w-full h-full")}
+            </div>
+            <div className="w-full h-full">
+              {renderCard(WORK_CARDS[6], "w-full h-full")}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Section 2: Education */}
-      <div className="snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid grid-cols-3 grid-rows-3 gap-2 md:gap-3">
-        {EDUCATION_CARDS.map(renderCard)}
+      {/* DESKTOP VIEW (md and up: 3 columns, 3 rows) */}
+      <div className="hidden md:grid snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid-cols-3 grid-rows-3 gap-2 md:gap-3">
+        {EDUCATION_CARDS.map((card) => renderCard(card))}
+      </div>
+
+      {/* MOBILE VIEW ONLY (below md: 1 top header card + 2 column split matching user sketch) */}
+      <div className="md:hidden snap-start snap-always w-full mb-[20vh] flex flex-col gap-2">
+        {/* Top Header Card: EDUCATION OVERVIEW */}
+        <div className="w-full h-24 sm:h-32">
+          {renderCard(EDUCATION_CARDS[0], "w-full h-full")}
+        </div>
+
+        {/* 2-Column Grid matching sketch */}
+        <div className="grid grid-cols-2 gap-2 h-[520px] sm:h-[600px]">
+          {/* Left Column: SOFTWARE ENGINEERING DEGREE (Full height tall card) */}
+          <div className="w-full h-full">
+            {renderCard(EDUCATION_CARDS[1], "w-full h-full")}
+          </div>
+
+          {/* Right Column: MATRICULATION (50%), MIDDLE SCHOOL (25%), HIGH SCHOOL (25%) */}
+          <div className="grid grid-rows-4 gap-2 h-full">
+            <div className="row-span-2 w-full h-full">
+              {renderCard(EDUCATION_CARDS[2], "w-full h-full")}
+            </div>
+            <div className="row-span-1 w-full h-full">
+              {renderCard(EDUCATION_CARDS[4], "w-full h-full")}
+            </div>
+            <div className="row-span-1 w-full h-full">
+              {renderCard(EDUCATION_CARDS[3], "w-full h-full")}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Section 3: Life Experiences */}
-      <div className="snap-start snap-always w-full h-[75vh] min-h-[400px] mb-[10vh] grid grid-cols-3 grid-rows-2 gap-2 md:gap-3">
-        {LIFE_CARDS.map(renderCard)}
+      {/* DESKTOP VIEW (md and up: 3 columns, 2 rows) */}
+      <div className="hidden md:grid snap-start snap-always w-full h-[75vh] min-h-[400px] mb-[10vh] grid-cols-3 grid-rows-2 gap-2 md:gap-3">
+        {LIFE_CARDS.map((card) => renderCard(card))}
+      </div>
+
+      {/* MOBILE VIEW ONLY (below md: 1 top header card + 2x2 grid matching user sketch) */}
+      <div className="md:hidden snap-start snap-always w-full mb-[10vh] flex flex-col gap-2">
+        {/* Top Header Card: LIFE EXPERIENCES */}
+        <div className="w-full h-24 sm:h-32">
+          {renderCard(LIFE_CARDS[0], "w-full h-full")}
+        </div>
+
+        {/* 2x2 Grid matching sketch */}
+        <div className="grid grid-cols-2 grid-rows-2 gap-2 h-[420px] sm:h-[480px]">
+          <div className="w-full h-full">
+            {renderCard(LIFE_CARDS[1], "w-full h-full")}
+          </div>
+          <div className="w-full h-full">
+            {renderCard(LIFE_CARDS[2], "w-full h-full")}
+          </div>
+          <div className="w-full h-full">
+            {renderCard(LIFE_CARDS[3], "w-full h-full")}
+          </div>
+          <div className="w-full h-full">
+            {renderCard(LIFE_CARDS[4], "w-full h-full")}
+          </div>
+        </div>
       </div>
 
       {/* GTA V STYLED POP-UP MODAL */}
