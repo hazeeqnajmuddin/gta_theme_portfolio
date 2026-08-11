@@ -45,7 +45,7 @@ jobs:
     name: 🚀 Deploy to Vercel
     needs: quality-check
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    if: github.event_name == 'push'
 
     steps:
       - name: 📥 Checkout Repository
@@ -55,30 +55,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
 
       - name: 📦 Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: 🔗 Link Vercel Project
-        run: |
-          mkdir -p .vercel
-          echo '{"orgId":"'"$VERCEL_ORG_ID"'","projectId":"'"$VERCEL_PROJECT_ID"'"}' > .vercel/project.json
+      - name: 🚀 Deploy to Vercel
+        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: 📥 Pull Vercel Environment Information
-        run: vercel pull --yes --environment=${{ (github.ref_name == 'main' || github.ref_name == 'master') && 'production' || 'preview' }} --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: 🏗️ Build Project Artifacts
-        run: vercel build ${{ (github.ref_name == 'main' || github.ref_name == 'master') && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: 🚀 Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt ${{ (github.ref_name == 'main' || github.ref_name == 'master') && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
