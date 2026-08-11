@@ -58,4 +58,4 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-args: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' && '--prod' || '' }}
+          vercel-args: ${{ (github.ref_name == 'main' || github.ref_name == 'master') && '--prod' || '' }}
