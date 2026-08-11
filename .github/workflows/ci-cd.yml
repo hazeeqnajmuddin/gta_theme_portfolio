@@ -51,6 +51,9 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
+      - name: 🧹 Clean Stale Vercel Directory
+        run: rm -rf .vercel
+
       - name: 🚀 Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
