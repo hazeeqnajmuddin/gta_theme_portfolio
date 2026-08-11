@@ -139,6 +139,7 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
 
     window.addEventListener("keydown", handleKeyDownCapture, { capture: true });
     return () => window.removeEventListener("keydown", handleKeyDownCapture, { capture: true });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, card, activeLinkIndex]);
 
   if (!card) return null;
@@ -246,7 +247,9 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
               {actionLinks.length > 0 && (
                 <div className="pt-2 border-t border-white/10">
                   <h3 className="font-gta text-xl text-[#fabb15] tracking-wider mb-3 uppercase flex items-center gap-2">
-                    <FolderGit2 className="w-4 h-4 text-[#00a8ff]" /> FEATURED ACTIONS & LINKS
+                    <FolderGit2 className="w-4 h-4 text-[#00a8ff]" />
+                    <span>FEATURED ACTIONS & LINKS</span>
+                    <GithubIcon className="w-4 h-4 text-white opacity-80" />
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {actionLinks.map((link, idx) => {
@@ -264,16 +267,17 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
                       return (
                         <button
                           key={idx}
+                          onMouseEnter={() => setActiveLinkIndex(idx)}
                           onClick={handleLinkClick}
-                          className={`inline-flex items-center gap-2 px-3.5 py-2 font-gta text-xs sm:text-sm tracking-wider rounded-sm shadow-md transition-all font-bold uppercase ${
+                          className={`inline-flex items-center gap-2 px-3.5 py-2 font-gta text-xs sm:text-sm tracking-wider rounded-sm shadow-md transition-all duration-150 font-bold uppercase cursor-pointer ${
                             isSelected
-                              ? "bg-white text-black border-2 border-[#fabb15] scale-105 shadow-xl ring-2 ring-[#fabb15]"
+                              ? "bg-[#fabb15] text-black border-2 border-white scale-105 shadow-[0_0_20px_rgba(250,187,21,0.4)] z-10 ring-2 ring-white/50"
                               : link.type === "demo" || link.type === "project" || link.type === "cert"
-                              ? "bg-[#fabb15] hover:bg-[#e0a710] text-black hover:scale-105 active:scale-95"
-                              : "bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:scale-105 active:scale-95"
+                              ? "bg-[#fabb15]/80 text-black border-2 border-transparent opacity-90"
+                              : "bg-white/10 text-white border-2 border-white/20 opacity-80"
                           }`}
                         >
-                          {link.type === "demo" ? <Globe className="w-4 h-4" /> : link.type === "github" ? <GithubIcon className="w-4 h-4" /> : <ExternalLink className="w-3.5 h-3.5" />}
+                          {link.type === "demo" ? <Globe className="w-4 h-4" /> : null}
                           <span>{link.label}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
                         </button>
@@ -301,7 +305,7 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
                     </div>
                     <div className="flex items-center gap-1">
                       <span className="text-gray-400">Open:</span>
-                      <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">↵</kbd>
+                      <kbd className="bg-[#fabb15] text-black px-1.5 py-0.5 rounded text-[10px] font-bold">ENTER</kbd>
                     </div>
                   </>
                 )}

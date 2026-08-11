@@ -202,12 +202,31 @@ interface ConnectViewProps {
 export default function ConnectView({ onNavigate, activeTab = "/connect" }: ConnectViewProps) {
   const [hoveredCard, setHoveredCard] = useState<ConnectCard>(CARDS[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedSocialIndex, setSelectedSocialIndex] = useState(-1);
   const modalScrollRef = useRef<HTMLDivElement>(null);
+  const socialItemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Pass current card, data array, and modal status to disable background card movement when modal is open
   useWasdNavigation(CARDS, setHoveredCard, undefined, isModalOpen);
+
+  // Reset selected index when modal opens (-1 = no card highlighted by default)
+  useEffect(() => {
+    if (isModalOpen) {
+      setSelectedSocialIndex(-1);
+    }
+  }, [isModalOpen]);
+
+  // Auto-scroll selected social card into view when navigating via WASD
+  useEffect(() => {
+    if (isModalOpen && selectedSocialIndex >= 0 && socialItemRefs.current[selectedSocialIndex]) {
+      socialItemRefs.current[selectedSocialIndex]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [selectedSocialIndex, isModalOpen]);
   
-  // Enter key & click handler
+  // Enter key & click handler for main view cards
   const handleCardTrigger = (card: ConnectCard) => {
     setHoveredCard(card);
     if (card.id === "socials") {
@@ -241,17 +260,31 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
           e.preventDefault();
           e.stopPropagation();
           setIsModalOpen(false);
-        } else if (key === "w" || key === "arrowup" || key === "a" || key === "arrowleft") {
+        } else if (key === "w" || key === "arrowup") {
           e.preventDefault();
           e.stopPropagation();
-          modalScrollRef.current?.scrollBy({ top: -140, behavior: "smooth" });
-        } else if (key === "s" || key === "arrowdown" || key === "d" || key === "arrowright") {
+          setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev - 2 >= 0 ? prev - 2 : prev));
+        } else if (key === "s" || key === "arrowdown") {
           e.preventDefault();
           e.stopPropagation();
-          modalScrollRef.current?.scrollBy({ top: 140, behavior: "smooth" });
-        } else if (['q', 'e', 'enter'].includes(key)) {
+          setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev + 2 < OTHER_SOCIALS_LIST.length ? prev + 2 : prev));
+        } else if (key === "a" || key === "arrowleft") {
           e.preventDefault();
           e.stopPropagation();
+          setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev % 2 === 1 ? prev - 1 : prev));
+        } else if (key === "d" || key === "arrowright") {
+          e.preventDefault();
+          e.stopPropagation();
+          setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev % 2 === 0 && prev + 1 < OTHER_SOCIALS_LIST.length ? prev + 1 : prev));
+        } else if (key === "enter" || key === "e") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (selectedSocialIndex >= 0) {
+            const target = OTHER_SOCIALS_LIST[selectedSocialIndex];
+            if (target) {
+              window.open(target.link, "_blank", "noopener,noreferrer");
+            }
+          }
         }
       } else {
         if (key === "enter") {
@@ -263,7 +296,8 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
 
     window.addEventListener("keydown", handleKeyDownCapture, { capture: true });
     return () => window.removeEventListener("keydown", handleKeyDownCapture, { capture: true });
-  }, [hoveredCard, isModalOpen, onNavigate]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hoveredCard, isModalOpen, selectedSocialIndex, onNavigate]);
 
   return (
     <GtaLayout
@@ -412,45 +446,62 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
                     <Share2 className="w-4 h-4" /> Available Platforms & Channels
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    {OTHER_SOCIALS_LIST.map((item, idx) => (
-                      <div 
-                        key={idx} 
-                        className="p-3.5 sm:p-4 bg-white/5 border border-white/10 rounded-sm flex flex-col justify-between hover:border-white/30 transition-all hover:bg-white/[0.07] group"
-                      >
-                        <div className="mb-2">
-                          <div className="flex items-start gap-3">
-                            <div className="p-2 bg-black/50 rounded-sm border border-white/10 shrink-0 mt-0.5">
-                              {item.icon}
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0.5">
-                                <h4 className="text-white text-sm sm:text-base font-bold tracking-wide group-hover:text-[#fabb15] transition-colors">
-                                  {item.name}
-                                </h4>
-                                <span className={`px-2 py-0.5 text-[9px] sm:text-[10px] font-bold rounded-sm uppercase tracking-wider shrink-0 ${item.badgeColor}`}>
-                                  {item.category}
-                                </span>
+                    {OTHER_SOCIALS_LIST.map((item, idx) => {
+                      const isSelected = idx === selectedSocialIndex;
+                      return (
+                        <div 
+                          key={idx}
+                          ref={(el) => { socialItemRefs.current[idx] = el; }}
+                          onMouseEnter={() => setSelectedSocialIndex(idx)}
+                          className={`p-3.5 sm:p-4 rounded-sm flex flex-col justify-between transition-all duration-150 cursor-pointer group ${
+                            isSelected 
+                              ? "border-2 border-[#fabb15] bg-white/10 z-10 shadow-[0_0_15px_rgba(250,187,21,0.25)] scale-[1.01]" 
+                              : "border border-white/10 bg-white/5 opacity-85 hover:opacity-100 hover:border-white/30"
+                          }`}
+                        >
+                          <div className="mb-2">
+                            <div className="flex items-start gap-3">
+                              <div className={`p-2 rounded-sm border transition-colors shrink-0 mt-0.5 ${
+                                isSelected ? "bg-[#fabb15]/20 border-[#fabb15]" : "bg-black/50 border-white/10"
+                              }`}>
+                                {item.icon}
                               </div>
-                              <p className="text-gray-400 text-xs font-mono truncate">
-                                {item.handle}
-                              </p>
+                              <div className="min-w-0 flex-1">
+                                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0.5">
+                                  <h4 className={`text-sm sm:text-base font-bold tracking-wide transition-colors ${
+                                    isSelected ? "text-[#fabb15]" : "text-white group-hover:text-[#fabb15]"
+                                  }`}>
+                                    {item.name}
+                                  </h4>
+                                  <span className={`px-2 py-0.5 text-[9px] sm:text-[10px] font-bold rounded-sm uppercase tracking-wider shrink-0 ${item.badgeColor}`}>
+                                    {item.category}
+                                  </span>
+                                </div>
+                                <p className="text-gray-400 text-xs font-mono truncate">
+                                  {item.handle}
+                                </p>
+                              </div>
                             </div>
                           </div>
+
+                          <p className="text-gray-300 text-xs leading-relaxed mb-3">
+                            {item.description}
+                          </p>
+
+                          <button
+                            onClick={() => window.open(item.link, "_blank", "noopener,noreferrer")}
+                            className={`w-full py-2 px-3 font-gta text-xs tracking-wider rounded-sm flex items-center justify-center gap-2 transition-all font-bold ${
+                              isSelected
+                                ? "bg-[#fabb15] text-black shadow-md"
+                                : "bg-white/10 hover:bg-white text-white hover:text-black"
+                            }`}
+                          >
+                            <span>VISIT PLATFORM</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </button>
                         </div>
-
-                        <p className="text-gray-300 text-xs leading-relaxed mb-3">
-                          {item.description}
-                        </p>
-
-                        <button
-                          onClick={() => window.open(item.link, "_blank", "noopener,noreferrer")}
-                          className="w-full py-2 px-3 bg-white/10 hover:bg-white text-white hover:text-black font-gta text-xs tracking-wider rounded-sm flex items-center justify-center gap-2 transition-all font-bold"
-                        >
-                          <span>VISIT PLATFORM</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -467,9 +518,15 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
               <div className="p-4 bg-black/60 border-t border-white/10 flex items-center justify-between shrink-0">
                 <div className="hidden md:flex items-center gap-4 text-xs text-gray-300 font-medium">
                   <div className="flex items-center gap-1">
-                    <span className="text-gray-400">Scroll:</span>
+                    <span className="text-gray-400">Navigate:</span>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">W</kbd>
+                    <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">A</kbd>
                     <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">S</kbd>
+                    <kbd className="bg-white text-black px-1.5 py-0.5 rounded text-[10px] font-bold">D</kbd>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-gray-400">Open Link:</span>
+                    <kbd className="bg-[#fabb15] text-black px-1.5 py-0.5 rounded text-[10px] font-bold">ENTER</kbd>
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Exit:</span>

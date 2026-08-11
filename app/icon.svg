@@ -1,52 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Dark Carbon Shield Background -->
-    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#181c24" />
-      <stop offset="100%" stop-color="#0a0c10" />
+    <!-- Dark Carbon Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141720" />
+      <stop offset="100%" stop-color="#08090d" />
     </linearGradient>
     
-    <!-- Metallic GTA V Gold Gradient (Darker Side) -->
-    <linearGradient id="goldMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- GTA Gold Metallic Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#fff199" />
-      <stop offset="30%" stop-color="#fabb15" />
-      <stop offset="70%" stop-color="#cf9400" />
-      <stop offset="100%" stop-color="#7a5500" />
+      <stop offset="45%" stop-color="#fabb15" />
+      <stop offset="100%" stop-color="#b37f00" />
     </linearGradient>
 
-    <!-- Accent Bright Gold Gradient (Lighter Side) -->
-    <linearGradient id="goldLight" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="40%" stop-color="#ffe266" />
-      <stop offset="100%" stop-color="#fabb15" />
-    </linearGradient>
-
-    <!-- Glowing Drop Shadow -->
-    <filter id="badgeGlow" x="-20%" y="-20%" width="140%" height="140%">
+    <!-- Ambient Glow Shadow -->
+    <filter id="pricedownGlow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#fabb15" flood-opacity="0.45"/>
     </filter>
   </defs>
 
-  <!-- Outer Dark Shield Container -->
-  <path d="M 256,32 L 440,96 L 440,288 C 440,392 344,464 256,480 C 168,464 72,392 72,288 L 72,96 Z" fill="url(#shieldBg)" stroke="url(#goldMetal)" stroke-width="16" stroke-linejoin="round" />
+  <!-- Outer Dark Container with Gold GTA Border (Perfect 1:1 Square) -->
+  <rect x="36" y="36" width="440" height="440" rx="88" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="20" />
+  
+  <!-- Signature GTA V Top & Bottom Accent Lines -->
+  <rect x="100" y="96" width="312" height="12" fill="#fabb15" rx="4" opacity="0.9" />
+  <rect x="100" y="404" width="312" height="12" fill="#fabb15" rx="4" opacity="0.9" />
 
-  <!-- Inner Shield Accent Line -->
-  <path d="M 256,60 L 416,116 L 416,276 C 416,364 332,430 256,446 C 180,430 96,364 96,276 L 96,116 Z" fill="none" stroke="#fabb15" stroke-width="4" opacity="0.4" />
-
-  <!-- Sharp Metallic GTA 'H' Emblem Centerpiece -->
-  <g filter="url(#badgeGlow)">
-    <!-- Left Pillar of 'H' -->
-    <polygon points="140,140 195,140 195,380 140,380" fill="url(#goldMetal)" />
+  <!-- Centered GTA 'H' Monogram Emblem -->
+  <g filter="url(#pricedownGlow)">
+    <!-- Single Bold 'H' Letter (220px x 256px) -->
+    <path d="M 146,128 L 202,128 L 202,228 L 310,228 L 310,128 L 366,128 L 366,384 L 310,384 L 310,284 L 202,284 L 202,384 L 146,384 Z" fill="url(#goldGrad)" />
     
-    <!-- Right Pillar of 'H' -->
-    <polygon points="317,140 372,140 372,380 317,380" fill="url(#goldLight)" />
-
-    <!-- Crossbar of 'H' (Split for 3D Facet Effect) -->
-    <polygon points="195,230 256,230 256,290 195,290" fill="url(#goldMetal)" />
-    <polygon points="256,230 317,230 317,290 256,290" fill="url(#goldLight)" />
-
-    <!-- GTA V Style Roman Numeral Etchings on Right Pillar -->
-    <polygon points="330,165 342,165 334,355 322,355" fill="#0d1017" opacity="0.5" />
-    <polygon points="350,165 362,165 354,355 342,355" fill="#0d1017" opacity="0.5" />
+    <!-- GTA V Style Inner Cut Accent on Right Stem -->
+    <polygon points="332,152 346,152 338,360 324,360" fill="#08090d" opacity="0.4" />
   </g>
 </svg>

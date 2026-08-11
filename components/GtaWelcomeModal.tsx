@@ -204,7 +204,7 @@ export default function GtaWelcomeModal() {
                 className="w-full sm:w-auto px-6 py-2.5 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-base sm:text-lg tracking-wider rounded-sm shadow-xl flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95 font-bold uppercase"
               >
                 <span>START EXPLORING</span>
-                <kbd className="hidden sm:inline-block bg-black text-white px-2 py-0.5 rounded text-xs font-sans font-bold">↵ ENTER</kbd>
+                <kbd className="hidden sm:inline-block bg-black text-white px-2 py-0.5 rounded text-xs font-sans font-bold">ENTER</kbd>
               </button>
             </div>
           </motion.div>

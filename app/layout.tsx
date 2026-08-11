@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hazeeq Najmuddin | Software Engineer & QA Specialist",
+  title: "Hazeeq Najmuddin | Portfolio",
   description: "Interactive GTA V Pause Menu themed portfolio of Muhammad Hazeeq Najmuddin Roshidi — Software Engineer, Full-Stack Developer & Quality Assurance Specialist.",
   icons: {
     icon: "/icon.svg",

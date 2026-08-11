@@ -6,11 +6,10 @@ import GtaModal from "./GtaModal";
 import { useInputDeviceMode } from "@/hooks/useInputDeviceMode";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { 
-  X, Cloud, Server, ShieldCheck, DollarSign, Building2, Code2, 
+  Cloud, Server, ShieldCheck, DollarSign, Building2, Code2, 
   Award, Briefcase, CheckCircle2, Terminal, Layers, FileCheck, 
-  GraduationCap, Laptop, Building, BookOpen, ExternalLink, BarChart3, FileText
+  GraduationCap, Laptop, BarChart3, FileText
 } from "lucide-react";
 
 export interface CertDetailHighlight {
@@ -255,7 +254,6 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
   const [activeCert, setActiveCert] = useState(CERTS[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const modalBodyRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   useWasdNavigation(CERTS, setActiveCert, carouselRef, isModalOpen);
@@ -348,7 +346,7 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
             className="mt-5 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-lg md:text-xl tracking-wider rounded-sm shadow-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
           >
             <span>VIEW CERTIFICATE DETAILS</span>
-            <span className="text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">↵ ENTER</span>
+            <span className="text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">ENTER</span>
           </button>
         </div>
       </div>

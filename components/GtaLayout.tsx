@@ -57,6 +57,7 @@ export default function GtaLayout({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPath, onTabChange, router]);
 
   return (
@@ -127,7 +128,7 @@ export default function GtaLayout({
             <span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">E</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span>Select</span><span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">↵</span>
+            <span>Select</span><span className="bg-[#fabb15] text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">ENTER</span>
           </div>
         </div>
 

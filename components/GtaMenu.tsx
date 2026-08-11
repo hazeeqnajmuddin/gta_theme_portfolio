@@ -67,7 +67,7 @@ const CARDS: MenuCard[] = [
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-2xl md:text-4xl",
     nav: { w: "project-automate", a: "main-profile", d: "web-dev" },
-    link: "/projects?active=qa-suite" // Link to the QA & Automation page
+    link: "/projects?active=qa-suite&noModal=true" // Link to highlight QA & Automation card on projects tab without modal
   },
   {
     id: "cloud-arch",
@@ -151,7 +151,8 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
 
     window.addEventListener("keydown", handleEnterPress);
     return () => window.removeEventListener("keydown", handleEnterPress);
-  }, [hoveredCard, onNavigate, router]); // Re-run this effect whenever hoveredCard changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hoveredCard, onNavigate, router]);
 
   return (
     <GtaLayout 

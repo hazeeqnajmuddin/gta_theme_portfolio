@@ -6,20 +6,11 @@ import GtaModal from "./GtaModal";
 import { useInputDeviceMode } from "@/hooks/useInputDeviceMode";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { 
-  X, Wrench, Cpu, Smartphone, Server, CheckCircle2, 
-  Code2, Layers, ShieldCheck, Calendar, LayoutDashboard, Lock, 
-  Database, Tag, FileText, ShieldAlert, Search, Video, Mic, Sliders, Tv,
-  BarChart3, Users, ExternalLink, Globe
+  Wrench, Cpu, Smartphone, Server, CheckCircle2, 
+  Code2, Layers, Calendar, LayoutDashboard, Lock, 
+  Database, FileText, BarChart3, Users
 } from "lucide-react";
-
-const GithubIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
 
 export interface ProjectDetailModule {
   title: string;
@@ -286,9 +277,10 @@ interface ProjectsViewProps {
   onNavigate?: (path: string) => void;
   activeTab?: string;
   initialActiveId?: string;
+  initialNoModal?: boolean;
 }
 
-function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId }: ProjectsViewProps) {
+function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId, initialNoModal }: ProjectsViewProps) {
   const [activeProject, setActiveProject] = useState(PROJECTS[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -300,14 +292,17 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
 
   useEffect(() => {
     const activeId = initialActiveId || searchParams.get("active");
+    const isNoModal = initialNoModal ?? (searchParams.get("noModal") === "true");
     if (activeId) {
       const targetProject = PROJECTS.find(p => p.id === activeId);
       if (targetProject) {
         setActiveProject(targetProject);
-        setIsModalOpen(true);
+        if (!isNoModal) {
+          setIsModalOpen(true);
+        }
       }
     }
-  }, [searchParams, initialActiveId]);
+  }, [searchParams, initialActiveId, initialNoModal]);
 
   const isKeyboardMode = useInputDeviceMode();
 
@@ -384,7 +379,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
             className="mt-5 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-lg md:text-xl tracking-wider rounded-sm shadow-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
           >
             <span>VIEW SYSTEM DETAILS</span>
-            <span className="text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">↵ ENTER</span>
+            <span className="text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">ENTER</span>
           </button>
         </div>
       </div>

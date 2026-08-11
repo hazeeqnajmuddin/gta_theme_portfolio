@@ -25,30 +25,29 @@ export function useWasdNavigation<
           const currentIndex = items.findIndex((item) => item.id === prevItem.id);
           let nextIndex = currentIndex;
           
-          // 1. Check for explicit 2D grid routing
-          let targetId: string | undefined = undefined;
-          
+          // Determine next index based on explicit 2D grid routing OR 1D linear fallback
           if (prevItem.nav) {
+            // 2D Grid Mode: Use explicit directional targets
+            let targetId: string | undefined = undefined;
             if (key === "w" || key === "arrowup") targetId = prevItem.nav.w;
             if (key === "a" || key === "arrowleft") targetId = prevItem.nav.a;
             if (key === "s" || key === "arrowdown") targetId = prevItem.nav.s;
             if (key === "d" || key === "arrowright") targetId = prevItem.nav.d;
-          }
 
-          // 2. Determine next index based on explicit target OR fallback to 1D linear movement
-          if (targetId) {
-            const foundIndex = items.findIndex((item) => item.id === targetId);
-            if (foundIndex !== -1) {
-              nextIndex = foundIndex;
+            if (targetId) {
+              const foundIndex = items.findIndex((item) => item.id === targetId);
+              if (foundIndex !== -1) {
+                nextIndex = foundIndex;
+              }
+            } else {
+              // Direction is not mapped (e.g. boundary edge) -> stay on current card
+              nextIndex = currentIndex;
             }
           } else {
-            // 1D Array Fallback (Linear Next/Prev)
-            // Move backwards
+            // 1D Array Fallback (Linear Next/Prev for carousels without nav object)
             if (key === 'w' || key === 'a' || key === 'arrowup' || key === 'arrowleft') {
               nextIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
-            } 
-            // Move forwards
-            else {
+            } else {
               nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
             }
           }

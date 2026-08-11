@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState, useRef, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import GtaLayout from "./GtaLayout";
 import GtaModal from "./GtaModal";
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
-  X, CheckCircle2, GraduationCap, BookOpen, School, Cpu, Laptop, 
+  CheckCircle2, GraduationCap, BookOpen, School, Cpu, Laptop, 
   ShieldCheck, Calculator, Terminal, FlaskConical, Medal, BookMarked, 
   Users, Building2, Briefcase, Smile, Package, PackageCheck, Zap, 
   Utensils, Clock, Receipt, Flame, Mic, Heart, Calendar, Code2, Award, 
   HeartHandshake, Leaf, Volume2, MessageSquare, UserPlus, ClipboardList, 
-  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText, Smartphone, ExternalLink, FolderGit2, ChevronDown
+  CheckSquare, Wrench, FileText, Smartphone, ChevronDown
 } from "lucide-react";
 
 export interface AboutDetailHighlight {
@@ -665,6 +665,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
 
     window.addEventListener("keydown", handleKeyDownCapture, { capture: true });
     return () => window.removeEventListener("keydown", handleKeyDownCapture, { capture: true });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hoveredCard, isModalOpen]);
 
   const handleCardClick = (card: AboutCard) => {
@@ -776,7 +777,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
             className="shrink-0 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-lg md:text-xl tracking-wider rounded-sm shadow-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
           >
             <span>INSPECT STORY DETAILS</span>
-            <span className="hidden md:inline-block text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">↵ ENTER</span>
+            <span className="hidden md:inline-block text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">ENTER</span>
           </button>
         </div>
 

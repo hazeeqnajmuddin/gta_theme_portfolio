@@ -13,28 +13,33 @@ function MainPortfolioApp() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<string>("/");
   const [activeSubId, setActiveSubId] = useState<string | null>(null);
+  const [activeNoModal, setActiveNoModal] = useState<boolean>(false);
 
   // Sync state from searchParams on initial load / URL update
   useEffect(() => {
     const tabParam = searchParams.get("tab");
     const activeParam = searchParams.get("active");
+    const noModalParam = searchParams.get("noModal") === "true";
     if (tabParam) {
       setActiveTab(tabParam.startsWith("/") ? tabParam : `/${tabParam}`);
     }
     if (activeParam) {
       setActiveSubId(activeParam);
     }
+    setActiveNoModal(noModalParam);
   }, [searchParams]);
 
   const handleNavigate = (url: string) => {
-    // URL can be like "/about", "/projects?active=qa-suite", "/about?active=work-main"
+    // URL can be like "/about", "/projects?active=qa-suite&noModal=true", "/about?active=work-main"
     const [path, query] = url.split("?");
     const params = new URLSearchParams(query || "");
     const subId = params.get("active");
+    const noModal = params.get("noModal") === "true";
 
     const cleanPath = path || "/";
     setActiveTab(cleanPath);
     setActiveSubId(subId || null);
+    setActiveNoModal(noModal);
 
     // Update browser URL query string smoothly without route reload
     const tabName = cleanPath === "/" ? "" : cleanPath.replace("/", "");
@@ -43,6 +48,7 @@ function MainPortfolioApp() {
       const qParams = new URLSearchParams();
       if (tabName) qParams.set("tab", tabName);
       if (subId) qParams.set("active", subId);
+      if (noModal) qParams.set("noModal", "true");
       newUrl += `?${qParams.toString()}`;
     }
     window.history.pushState({}, "", newUrl);
@@ -53,7 +59,7 @@ function MainPortfolioApp() {
       case "/about":
         return <AboutView onNavigate={handleNavigate} activeTab={activeTab} initialActiveId={activeSubId || undefined} />;
       case "/projects":
-        return <ProjectsView onNavigate={handleNavigate} activeTab={activeTab} initialActiveId={activeSubId || undefined} />;
+        return <ProjectsView onNavigate={handleNavigate} activeTab={activeTab} initialActiveId={activeSubId || undefined} initialNoModal={activeNoModal} />;
       case "/certs":
         return <CertsView onNavigate={handleNavigate} activeTab={activeTab} initialActiveId={activeSubId || undefined} />;
       case "/connect":
