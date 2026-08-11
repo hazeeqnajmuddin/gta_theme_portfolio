@@ -327,16 +327,16 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
         
-        <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-12 max-w-lg">
+        <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-8 md:left-12 right-4 max-w-lg">
           {activeCert.badge && (
-            <span className={`inline-block px-1.5 py-0.5 text-[11px] font-bold tracking-wider mb-2 ${activeCert.badgeColor} ${activeCert.badgeText}`}>
+            <span className={`inline-block px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold tracking-wider mb-1.5 sm:mb-2 ${activeCert.badgeColor} ${activeCert.badgeText}`}>
               {activeCert.badge}
             </span>
           )}
-          <h1 className="font-gta text-5xl md:text-6xl text-white tracking-wide uppercase drop-shadow-lg mb-4">
+          <h1 className="font-gta text-3xl sm:text-5xl md:text-6xl text-white tracking-wide uppercase drop-shadow-lg mb-2 sm:mb-4">
             {activeCert.title}
           </h1>
-          <div className="space-y-4 text-gray-200 text-sm md:text-base font-medium leading-relaxed drop-shadow-md pr-4">
+          <div className="space-y-4 text-gray-200 text-xs sm:text-sm md:text-base font-medium leading-relaxed drop-shadow-md pr-2 sm:pr-4 line-clamp-2 sm:line-clamp-none">
             <p>{activeCert.description2}</p>
           </div>
 

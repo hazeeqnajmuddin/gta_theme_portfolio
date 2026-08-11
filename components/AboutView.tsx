@@ -12,7 +12,7 @@ import {
   Users, Building2, Briefcase, Smile, Package, PackageCheck, Zap, 
   Utensils, Clock, Receipt, Flame, Mic, Heart, Calendar, Code2, Award, 
   HeartHandshake, Leaf, Volume2, MessageSquare, UserPlus, ClipboardList, 
-  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText, Smartphone, ExternalLink, FolderGit2
+  CheckSquare, Wrench, UserCheck, Search, Database, Lock, LayoutDashboard, FileText, Smartphone, ExternalLink, FolderGit2, ChevronDown
 } from "lucide-react";
 
 export interface AboutDetailHighlight {
@@ -750,21 +750,21 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
         
-        <div className="absolute top-1/3 left-8 md:left-16 -translate-y-1/2 flex flex-col drop-shadow-2xl">
-          <h1 className="font-gta text-7xl md:text-8xl lg:text-[9rem] text-white leading-[0.8] tracking-tighter">
+        <div className="absolute top-1/3 left-4 sm:left-8 md:left-16 right-4 -translate-y-1/2 flex flex-col drop-shadow-2xl max-w-full overflow-hidden">
+          <h1 className="font-gta text-4xl sm:text-7xl md:text-8xl lg:text-[9rem] text-white leading-[0.85] tracking-tighter">
             HAZEEQ
           </h1>
-          <h1 className="font-gta text-7xl md:text-8xl lg:text-[9rem] text-white leading-[0.8] tracking-tighter ml-8 md:ml-16">
+          <h1 className="font-gta text-4xl sm:text-7xl md:text-8xl lg:text-[9rem] text-white leading-[0.85] tracking-tighter ml-4 sm:ml-8 md:ml-16">
             NAJMUDDIN
           </h1>
         </div>
 
-        <div className="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
+        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col md:flex-row items-start md:items-end justify-between gap-3 sm:gap-4">
           <div>
-            <h2 className="font-gta text-2xl md:text-3xl lg:text-4xl text-white tracking-wide uppercase drop-shadow-lg">
+            <h2 className="font-gta text-lg sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-wide uppercase drop-shadow-lg">
               {HERO_CARD.title}
             </h2>
-            <p className="text-gray-200 text-sm md:text-base mt-2 drop-shadow-md max-w-2xl font-medium">
+            <p className="text-gray-200 text-xs sm:text-sm md:text-base mt-1 sm:mt-2 drop-shadow-md max-w-2xl font-medium line-clamp-2 sm:line-clamp-none">
               {HERO_CARD.description}
             </p>
           </div>
@@ -780,6 +780,29 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
             <span className="hidden md:inline-block text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">↵ ENTER</span>
           </button>
         </div>
+
+        {/* Animated Bopping Scroll Down Arrow Hint */}
+        <motion.div
+          onClick={(e) => {
+            e.stopPropagation();
+            const firstWorkCard = document.getElementById("work-main");
+            if (firstWorkCard) {
+              firstWorkCard.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }}
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{
+            opacity: { duration: 0.5 },
+            y: { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="absolute bottom-4 right-4 sm:bottom-3 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 flex flex-col items-center gap-0.5 cursor-pointer z-20 hover:scale-110 transition-transform"
+        >
+          <span className="text-[9px] sm:text-[10px] font-gta text-[#fabb15] tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold">
+            DOWN
+          </span>
+          <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-[#fabb15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]" />
+        </motion.div>
       </div>
 
       {/* Section 1: Work Experiences */}

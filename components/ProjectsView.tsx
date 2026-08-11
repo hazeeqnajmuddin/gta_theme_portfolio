@@ -363,16 +363,16 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId 
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
         
-        <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-12 max-w-lg">
+        <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-8 md:left-12 right-4 max-w-lg">
           {activeProject.badge && (
-            <span className={`inline-block px-1.5 py-0.5 text-[11px] font-bold tracking-wider mb-2 ${activeProject.badgeColor} ${activeProject.badgeText}`}>
+            <span className={`inline-block px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold tracking-wider mb-1.5 sm:mb-2 ${activeProject.badgeColor} ${activeProject.badgeText}`}>
               {activeProject.badge}
             </span>
           )}
-          <h1 className="font-gta text-5xl md:text-6xl text-white tracking-wide uppercase drop-shadow-lg mb-4">
+          <h1 className="font-gta text-3xl sm:text-5xl md:text-6xl text-white tracking-wide uppercase drop-shadow-lg mb-2 sm:mb-4">
             {activeProject.title}
           </h1>
-          <p className="text-gray-200 text-sm md:text-base leading-relaxed drop-shadow">
+          <p className="text-gray-200 text-xs sm:text-sm md:text-base leading-relaxed drop-shadow line-clamp-2 sm:line-clamp-none">
             {activeProject.description2}
           </p>
 
