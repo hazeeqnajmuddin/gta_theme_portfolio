@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Gamepad2, Navigation, Touchpad, Smartphone, Laptop, Sparkles, MoveRight, Pointer } from "lucide-react";
+import { X, Gamepad2, Navigation, Smartphone, Laptop, Sparkles, MoveRight, Pointer } from "lucide-react";
 
 export default function GtaWelcomeModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +91,7 @@ export default function GtaWelcomeModal() {
               {/* Welcome Greetings */}
               <div className="p-3.5 sm:p-4 bg-white/5 border border-white/10 rounded-sm">
                 <p className="text-gray-200 text-xs sm:text-base leading-relaxed font-medium">
-                  Welcome to <strong className="text-[#fabb15]">Hazeeq Najmuddin's Interactive Portfolio.</strong> A GTA V-themed experience showcasing full-stack engineering, QA automation, and technical projects.
+                  Welcome to <strong className="text-[#fabb15]">Hazeeq Najmuddin&apos;s Interactive Portfolio.</strong> A GTA V-themed experience showcasing full-stack engineering, QA automation, and technical projects.
                 </p>
               </div>
 

@@ -606,7 +606,6 @@ interface AboutViewProps {
 function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: AboutViewProps) {
   const [hoveredCard, setHoveredCard] = useState<AboutCard>(ALL_CARDS[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalBodyRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
 
