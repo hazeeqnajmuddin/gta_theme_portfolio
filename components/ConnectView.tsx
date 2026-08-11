@@ -349,8 +349,8 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
         key={card.id}
         onMouseEnter={() => setHoveredCard(card)}
         onClick={() => handleCardTrigger(card)}
-        className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} ${
-          isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
+        className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} border border-white/20 md:border-[3px] ${
+          isActive ? "md:border-white z-10" : "md:border-transparent opacity-100 md:opacity-80 hover:opacity-100"
         }`}
       >
         <img
@@ -360,7 +360,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
           style={{ transform: isActive ? "scale(1.04)" : "scale(1)" }}
           draggable={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent md:from-black/90 md:via-black/30" />
 
         {card.badge && (
           <div className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 px-1.5 py-0.5 text-[9px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>

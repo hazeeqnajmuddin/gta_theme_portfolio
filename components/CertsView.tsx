@@ -369,10 +369,10 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
                 }
               }}
               onClick={() => handleCardClick(cert)}
-              className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 ${
+              className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 border border-white/20 md:border-[3px] ${
                 isActive 
-                  ? "border-[3px] border-white z-10 scale-[1.02]" 
-                  : "border-[3px] border-transparent opacity-60 hover:opacity-100"
+                  ? "md:border-white z-10 md:scale-[1.02]" 
+                  : "md:border-transparent opacity-100 md:opacity-60 hover:opacity-100"
               }`}
             >
               <img
@@ -381,7 +381,7 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
                 className="absolute inset-0 w-full h-full object-cover"
                 draggable={false}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent md:from-black/90 md:via-black/20" />
               
               {cert.badge && (
                 <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] font-bold tracking-wider ${cert.badgeColor} ${cert.badgeText}`}>
