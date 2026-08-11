@@ -811,37 +811,43 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         {WORK_CARDS.map((card) => renderCard(card))}
       </div>
 
-      {/* MOBILE VIEW ONLY (below md: 1 top header card + 2 column split matching user sketch) */}
-      <div className="md:hidden snap-start snap-always w-full mb-[20vh] flex flex-col gap-2">
+      {/* Section 1: Work Experiences */}
+      {/* DESKTOP VIEW (md and up: 3 columns, 4 rows) */}
+      <div className="hidden md:grid snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid-cols-3 grid-rows-4 gap-2 md:gap-3">
+        {WORK_CARDS.map((card) => renderCard(card))}
+      </div>
+
+      {/* MOBILE VIEW ONLY (below md: Dynamic 100% Viewport Height Fill matching sketch) */}
+      <div className="md:hidden snap-start snap-always w-full h-[calc(100dvh-130px)] min-h-[460px] mb-[15vh] flex flex-col gap-1.5 pb-2">
         {/* Top Header Card: WORK EXPERIENCES */}
-        <div className="w-full h-24 sm:h-32">
+        <div className="flex-[1] min-h-0 w-full">
           {renderCard(WORK_CARDS[0], "w-full h-full")}
         </div>
 
         {/* 2-Column Grid matching sketch */}
-        <div className="grid grid-cols-2 gap-2 h-[520px] sm:h-[600px]">
+        <div className="flex-[4] min-h-0 grid grid-cols-2 gap-1.5">
           {/* Left Column: GIENTECH (UOB) & FREELANCE */}
-          <div className="grid grid-rows-2 gap-2 h-full">
-            <div className="w-full h-full">
+          <div className="grid grid-rows-2 gap-1.5 h-full min-h-0">
+            <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[1], "w-full h-full")}
             </div>
-            <div className="w-full h-full">
+            <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[2], "w-full h-full")}
             </div>
           </div>
 
           {/* Right Column: SKECHERS, SHOPEE, OLE OLE BALI, AL-ANSAR STEAKHOUSE */}
-          <div className="grid grid-rows-4 gap-2 h-full">
-            <div className="w-full h-full">
+          <div className="grid grid-rows-4 gap-1.5 h-full min-h-0">
+            <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[3], "w-full h-full")}
             </div>
-            <div className="w-full h-full">
+            <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[4], "w-full h-full")}
             </div>
-            <div className="w-full h-full">
+            <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[5], "w-full h-full")}
             </div>
-            <div className="w-full h-full">
+            <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[6], "w-full h-full")}
             </div>
           </div>
@@ -854,29 +860,29 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         {EDUCATION_CARDS.map((card) => renderCard(card))}
       </div>
 
-      {/* MOBILE VIEW ONLY (below md: 1 top header card + 2 column split matching user sketch) */}
-      <div className="md:hidden snap-start snap-always w-full mb-[20vh] flex flex-col gap-2">
+      {/* MOBILE VIEW ONLY (below md: Dynamic 100% Viewport Height Fill matching sketch) */}
+      <div className="md:hidden snap-start snap-always w-full h-[calc(100dvh-130px)] min-h-[460px] mb-[15vh] flex flex-col gap-1.5 pb-2">
         {/* Top Header Card: EDUCATION OVERVIEW */}
-        <div className="w-full h-24 sm:h-32">
+        <div className="flex-[1] min-h-0 w-full">
           {renderCard(EDUCATION_CARDS[0], "w-full h-full")}
         </div>
 
         {/* 2-Column Grid matching sketch */}
-        <div className="grid grid-cols-2 gap-2 h-[520px] sm:h-[600px]">
+        <div className="flex-[4] min-h-0 grid grid-cols-2 gap-1.5">
           {/* Left Column: SOFTWARE ENGINEERING DEGREE (Full height tall card) */}
-          <div className="w-full h-full">
+          <div className="w-full h-full min-h-0">
             {renderCard(EDUCATION_CARDS[1], "w-full h-full")}
           </div>
 
           {/* Right Column: MATRICULATION (50%), MIDDLE SCHOOL (25%), HIGH SCHOOL (25%) */}
-          <div className="grid grid-rows-4 gap-2 h-full">
-            <div className="row-span-2 w-full h-full">
+          <div className="grid grid-rows-4 gap-1.5 h-full min-h-0">
+            <div className="row-span-2 w-full h-full min-h-0">
               {renderCard(EDUCATION_CARDS[2], "w-full h-full")}
             </div>
-            <div className="row-span-1 w-full h-full">
+            <div className="row-span-1 w-full h-full min-h-0">
               {renderCard(EDUCATION_CARDS[4], "w-full h-full")}
             </div>
-            <div className="row-span-1 w-full h-full">
+            <div className="row-span-1 w-full h-full min-h-0">
               {renderCard(EDUCATION_CARDS[3], "w-full h-full")}
             </div>
           </div>
@@ -889,25 +895,25 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
         {LIFE_CARDS.map((card) => renderCard(card))}
       </div>
 
-      {/* MOBILE VIEW ONLY (below md: 1 top header card + 2x2 grid matching user sketch) */}
-      <div className="md:hidden snap-start snap-always w-full mb-[10vh] flex flex-col gap-2">
+      {/* MOBILE VIEW ONLY (below md: Dynamic 100% Viewport Height Fill matching sketch) */}
+      <div className="md:hidden snap-start snap-always w-full h-[calc(100dvh-130px)] min-h-[440px] mb-[10vh] flex flex-col gap-1.5 pb-2">
         {/* Top Header Card: LIFE EXPERIENCES */}
-        <div className="w-full h-24 sm:h-32">
+        <div className="flex-[1] min-h-0 w-full">
           {renderCard(LIFE_CARDS[0], "w-full h-full")}
         </div>
 
         {/* 2x2 Grid matching sketch */}
-        <div className="grid grid-cols-2 grid-rows-2 gap-2 h-[420px] sm:h-[480px]">
-          <div className="w-full h-full">
+        <div className="flex-[4] min-h-0 grid grid-cols-2 grid-rows-2 gap-1.5">
+          <div className="w-full h-full min-h-0">
             {renderCard(LIFE_CARDS[1], "w-full h-full")}
           </div>
-          <div className="w-full h-full">
+          <div className="w-full h-full min-h-0">
             {renderCard(LIFE_CARDS[2], "w-full h-full")}
           </div>
-          <div className="w-full h-full">
+          <div className="w-full h-full min-h-0">
             {renderCard(LIFE_CARDS[3], "w-full h-full")}
           </div>
-          <div className="w-full h-full">
+          <div className="w-full h-full min-h-0">
             {renderCard(LIFE_CARDS[4], "w-full h-full")}
           </div>
         </div>

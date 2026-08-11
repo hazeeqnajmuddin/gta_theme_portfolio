@@ -168,10 +168,10 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent" />
 
-              {/* Close Button */}
+              {/* Close Button (Hidden on small mobile screens, bottom-right CLOSE button used instead) */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/70 hover:bg-white text-white hover:text-black text-xs font-bold font-gta tracking-wider border border-white/20 rounded-sm transition-all flex items-center gap-1.5 shadow-lg"
+                className="hidden md:flex absolute top-4 right-4 z-20 px-3 py-1 bg-black/70 hover:bg-white text-white hover:text-black text-xs font-bold font-gta tracking-wider border border-white/20 rounded-sm transition-all items-center gap-1.5 shadow-lg cursor-pointer"
               >
                 <X className="w-4 h-4" />
                 <span>ESC</span>
@@ -317,7 +317,7 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
 
               <button
                 onClick={onClose}
-                className="px-5 py-1.5 bg-white hover:bg-gray-200 text-black font-gta text-base tracking-wider rounded-sm transition-colors"
+                className="px-5 py-1.5 bg-white hover:bg-gray-200 text-black font-gta text-base tracking-wider rounded-sm transition-colors ml-auto cursor-pointer shadow-lg"
               >
                 CLOSE
               </button>

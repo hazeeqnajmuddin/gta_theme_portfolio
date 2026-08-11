@@ -154,55 +154,99 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hoveredCard, onNavigate, router]);
 
+  const renderCard = (card: MenuCard, customClass?: string) => {
+    const isActive = hoveredCard.id === card.id;
+
+    return (
+      <div
+        id={card.id}
+        key={card.id}
+        onMouseEnter={() => setHoveredCard(card)}
+        onClick={() => {
+          if (card.link) {
+            handleLinkNavigation(card.link);
+          }
+        }}
+        className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} ${
+          isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-85 hover:opacity-100"
+        }`}
+      >
+        <img
+          src={card.image}
+          alt={card.title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
+          style={{ transform: isActive ? 'scale(1.04)' : 'scale(1)' }}
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        {card.badge && (
+          <div className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 px-1.5 py-0.5 text-[9px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
+            {card.badge}
+          </div>
+        )}
+        <div className="absolute bottom-1.5 left-2 right-2 md:bottom-2 md:left-3 md:right-3">
+          <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none text-xs sm:text-sm md:text-3xl ${card.titleClass}`}>
+            {card.title}
+          </h3>
+          {card.subtitle && (
+            <p className="text-gray-200 text-[10px] sm:text-xs md:text-sm mt-0.5 md:mt-1 font-medium drop-shadow-md line-clamp-1">
+              {card.subtitle}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <GtaLayout 
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
       footerText={hoveredCard.description}
-      mainContainerClass="flex-1 flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-2 md:mb-3 min-h-0 overflow-y-auto md:overflow-hidden pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      mainContainerClass="flex-1 flex flex-col mb-1 md:mb-3 min-h-0 overflow-hidden"
     >
-      {CARDS.map((card) => {
-        const isActive = hoveredCard.id === card.id;
+      {/* DESKTOP VIEW (md and up: 3 columns, 4 rows) */}
+      <div className="hidden md:grid flex-1 grid-cols-3 grid-rows-4 gap-2 md:gap-3">
+        {CARDS.map((card) => renderCard(card))}
+      </div>
 
-        return (
-          <div
-            key={card.id}
-            onMouseEnter={() => setHoveredCard(card)}
-            onClick={() => {
-              if (card.link) {
-                handleLinkNavigation(card.link);
-              }
-            }}
-            className={`relative overflow-hidden cursor-pointer transition-all duration-200 min-h-[110px] md:min-h-0 shrink-0 md:shrink rounded-sm ${card.gridClass} ${
-              isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-85 hover:opacity-100"
-            }`}
-          >
-            <img
-              src={card.image}
-              alt={card.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
-              style={{ transform: isActive ? 'scale(1.04)' : 'scale(1)' }}
-              draggable={false}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-            {card.badge && (
-              <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
-                {card.badge}
-              </div>
-            )}
-            <div className="absolute bottom-2 left-3 right-3">
-              <h3 className={`font-gta text-white tracking-wide uppercase drop-shadow-md leading-none ${card.titleClass}`}>
-                {card.title}
-              </h3>
-              {card.subtitle && (
-                <p className="text-gray-200 text-xs md:text-sm mt-1 font-medium drop-shadow-md line-clamp-1">
-                  {card.subtitle}
-                </p>
-              )}
+      {/* MOBILE VIEW ONLY (below md: Dynamic 100% Viewport Height Fill Bento Grid) */}
+      <div className="md:hidden flex-1 h-full min-h-0 flex flex-col gap-1.5 pb-1">
+        {/* Top Hero Banner: HAZEEQ NAJMUDDIN */}
+        <div className="flex-[1.2] min-h-0 w-full">
+          {renderCard(CARDS[0], "w-full h-full")}
+        </div>
+
+        {/* Bento Grid 1: AUTOMATE SYSTEM (Left) vs QA & CLOUD (Right) */}
+        <div className="flex-[2] min-h-0 grid grid-cols-2 gap-1.5">
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[1], "w-full h-full")}
+          </div>
+          <div className="grid grid-rows-2 gap-1.5 h-full min-h-0">
+            <div className="w-full h-full min-h-0">
+              {renderCard(CARDS[2], "w-full h-full")}
+            </div>
+            <div className="w-full h-full min-h-0">
+              {renderCard(CARDS[3], "w-full h-full")}
             </div>
           </div>
-        );
-      })}
+        </div>
+
+        {/* Bento Grid 2: ENTERPRISE EXPERIENCE (Left) vs MY EDUCATION (Right) */}
+        <div className="flex-[1.1] min-h-0 grid grid-cols-2 gap-1.5">
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[4], "w-full h-full")}
+          </div>
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[5], "w-full h-full")}
+          </div>
+        </div>
+
+        {/* Bottom Banner: GET IN TOUCH */}
+        <div className="flex-[1] min-h-0 w-full">
+          {renderCard(CARDS[6], "w-full h-full")}
+        </div>
+      </div>
     </GtaLayout>
   );
 }

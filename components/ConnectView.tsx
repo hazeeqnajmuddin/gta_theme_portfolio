@@ -155,7 +155,8 @@ const CARDS: ConnectCard[] = [
   {
     id: "header-logo",
     title: "GET CONNECTED",
-    description: "Connect with me through WhatsApp.",
+    subtitle: "Connect via WhatsApp for quick inquiries.",
+    description: "Select to connect directly with Hazeeq via WhatsApp.",
     image: "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1000",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     isHeader: true,
@@ -299,79 +300,130 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hoveredCard, isModalOpen, selectedSocialIndex, onNavigate]);
 
+  const renderCard = (card: ConnectCard, customClass?: string) => {
+    const isActive = hoveredCard.id === card.id;
+
+    if (card.isHeader) {
+      return (
+        <div
+          id={card.id}
+          key={card.id}
+          onMouseEnter={() => setHoveredCard(card)}
+          onClick={() => handleCardTrigger(card)}
+          className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm flex items-center justify-center ${customClass || card.gridClass} ${
+            isActive ? "border-[3px] border-white z-10 shadow-[0_0_20px_rgba(255,255,255,0.3)]" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
+          }`}
+        >
+          <img
+            src={card.image}
+            alt={card.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
+            style={{ transform: isActive ? "scale(1.04)" : "scale(1)" }}
+            draggable={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+          {card.badge && (
+            <div className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 px-1.5 py-0.5 text-[9px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
+              {card.badge}
+            </div>
+          )}
+
+          <div className="relative z-10 text-center px-2">
+            <h2 className="font-gta text-lg sm:text-2xl md:text-5xl text-white tracking-widest drop-shadow-lg leading-none">
+              {card.title}
+            </h2>
+            {card.subtitle && (
+              <p className="text-gray-200 text-[8px] sm:text-xs md:text-sm font-medium mt-0.5 md:mt-1 drop-shadow-md leading-tight">
+                {card.subtitle}
+              </p>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div
+        id={card.id}
+        key={card.id}
+        onMouseEnter={() => setHoveredCard(card)}
+        onClick={() => handleCardTrigger(card)}
+        className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} ${
+          isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
+        }`}
+      >
+        <img
+          src={card.image}
+          alt={card.title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
+          style={{ transform: isActive ? "scale(1.04)" : "scale(1)" }}
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+        {card.badge && (
+          <div className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 px-1.5 py-0.5 text-[9px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
+            {card.badge}
+          </div>
+        )}
+
+        <div className="absolute bottom-1.5 left-2 right-2 md:bottom-3 md:left-3 md:right-3">
+          <h3 className="font-gta text-white tracking-wide uppercase drop-shadow-lg leading-none text-xs sm:text-sm md:text-3xl">
+            {card.title}
+          </h3>
+          {card.subtitle && (
+            <p className="text-gray-200 text-[9px] sm:text-xs md:text-sm mt-0.5 font-medium drop-shadow-md line-clamp-3 leading-tight">
+              {card.subtitle}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <GtaLayout
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : undefined}
       footerText={hoveredCard.description}
-      mainContainerClass="flex-1 flex flex-col md:grid md:grid-cols-3 md:grid-rows-4 gap-2 md:gap-3 mb-2 md:mb-3 min-h-0 overflow-y-auto md:overflow-hidden pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      mainContainerClass="flex-1 flex flex-col mb-1 md:mb-3 min-h-0 overflow-hidden"
     >
-      {CARDS.map((card) => {
-        const isActive = hoveredCard.id === card.id;
+      {/* DESKTOP VIEW (md and up: 3 columns, 4 rows) */}
+      <div className="hidden md:grid flex-1 grid-cols-3 grid-rows-4 gap-2 md:gap-3">
+        {CARDS.map((card) => renderCard(card))}
+      </div>
 
-        if (card.isHeader) {
-          return (
-            <div
-              key={card.id}
-              onMouseEnter={() => setHoveredCard(card)}
-              onClick={() => handleCardTrigger(card)}
-              className={`relative overflow-hidden cursor-pointer transition-all duration-200 min-h-[90px] md:min-h-0 shrink-0 md:shrink rounded-sm flex items-center justify-center ${card.gridClass} ${
-                isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
-              }`}
-            >
-              <img
-                src={card.image}
-                alt={card.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
-                style={{ transform: isActive ? "scale(1.04)" : "scale(1)" }}
-                draggable={false}
-              />
-              <div className="absolute inset-0 bg-black/40" />
-              <h2 className="relative z-10 font-gta text-2xl md:text-5xl text-white tracking-widest drop-shadow-lg text-center">
-                {card.title}
-              </h2>
-            </div>
-          );
-        }
-
-        return (
-          <div
-            key={card.id}
-            onMouseEnter={() => setHoveredCard(card)}
-            onClick={() => handleCardTrigger(card)}
-            className={`relative overflow-hidden cursor-pointer transition-all duration-200 min-h-[110px] md:min-h-0 shrink-0 md:shrink rounded-sm ${card.gridClass} ${
-              isActive ? "border-[3px] border-white z-10" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
-            }`}
-          >
-            <img
-              src={card.image}
-              alt={card.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
-              style={{ transform: isActive ? "scale(1.04)" : "scale(1)" }}
-              draggable={false}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-
-            {card.badge && (
-              <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] md:text-xs font-bold tracking-wider rounded-sm ${card.badgeColor} ${card.badgeTextColor}`}>
-                {card.badge}
-              </div>
-            )}
-
-            <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4">
-              <h3 className="font-gta text-2xl md:text-3xl text-white tracking-wide uppercase drop-shadow-lg leading-none">
-                {card.title}
-              </h3>
-              {card.subtitle && (
-                <p className="text-gray-200 text-xs md:text-sm mt-1 font-medium drop-shadow-md line-clamp-1">
-                  {card.subtitle}
-                </p>
-              )}
-            </div>
+      {/* MOBILE VIEW ONLY (below md: Dynamic 100% Viewport Height Fill Bento Grid) */}
+      <div className="md:hidden flex-1 h-full min-h-0 flex flex-col gap-1.5 pb-1">
+        {/* Top 2-Column Showcase: LINKEDIN & GITHUB */}
+        <div className="flex-[2] min-h-0 grid grid-cols-2 gap-1.5">
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[0], "w-full h-full")}
           </div>
-        );
-      })}
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[1], "w-full h-full")}
+          </div>
+        </div>
 
+        {/* Middle 3-Tile Action Grid: DIRECT EMAIL, DOWNLOAD RESUME, GET CONNECTED */}
+        <div className="flex-[1.8] min-h-0 grid grid-cols-3 gap-1.5">
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[3], "w-full h-full")}
+          </div>
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[4], "w-full h-full")}
+          </div>
+          <div className="w-full h-full min-h-0">
+            {renderCard(CARDS[2], "w-full h-full")}
+          </div>
+        </div>
+
+        {/* Bottom Horizontal Banner: OTHER SOCIALS */}
+        <div className="flex-[0.9] min-h-0 w-full">
+          {renderCard(CARDS[5], "w-full h-full")}
+        </div>
+      </div>
       {/* GTA V STYLED POP-UP MODAL FOR OTHER SOCIALS */}
       <AnimatePresence>
         {isModalOpen && (
