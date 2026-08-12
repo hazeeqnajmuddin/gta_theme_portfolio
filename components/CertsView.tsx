@@ -371,11 +371,13 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
             <div
               key={cert.id}
               onMouseEnter={() => {
-                if (activeCert.id !== cert.id) {
-                  gtaSound.playHover();
-                }
-                if (!isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
-                  setActiveCert(cert);
+                if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+                  if (activeCert.id !== cert.id) {
+                    gtaSound.playHover();
+                    if (!isKeyboardMode.current) {
+                      setActiveCert(cert);
+                    }
+                  }
                 }
               }}
               onClick={() => handleCardClick(cert)}

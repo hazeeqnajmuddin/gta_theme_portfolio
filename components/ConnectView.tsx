@@ -326,9 +326,11 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
           id={card.id}
           key={card.id}
           onMouseEnter={() => {
-            if (hoveredCard.id !== card.id) {
-              gtaSound.playHover();
-              setHoveredCard(card);
+            if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+              if (hoveredCard.id !== card.id) {
+                gtaSound.playHover();
+                setHoveredCard(card);
+              }
             }
           }}
           onClick={() => handleCardTrigger(card)}
@@ -370,9 +372,11 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
         id={card.id}
         key={card.id}
         onMouseEnter={() => {
-          if (hoveredCard.id !== card.id) {
-            gtaSound.playHover();
-            setHoveredCard(card);
+          if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+            if (hoveredCard.id !== card.id) {
+              gtaSound.playHover();
+              setHoveredCard(card);
+            }
           }
         }}
         onClick={() => handleCardTrigger(card)}

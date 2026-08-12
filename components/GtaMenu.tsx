@@ -163,9 +163,11 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
         id={card.id}
         key={card.id}
         onMouseEnter={() => {
-          if (hoveredCard.id !== card.id) {
-            gtaSound.playHover();
-            setHoveredCard(card);
+          if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+            if (hoveredCard.id !== card.id) {
+              gtaSound.playHover();
+              setHoveredCard(card);
+            }
           }
         }}
         onClick={() => {

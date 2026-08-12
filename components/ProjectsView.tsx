@@ -405,11 +405,13 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
               key={project.id}
               onClick={() => handleCardClick(project)}
               onMouseEnter={() => {
-                if (activeProject.id !== project.id) {
-                  gtaSound.playHover();
-                }
-                if (!isModalOpen && !isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
-                  setActiveProject(project);
+                if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+                  if (activeProject.id !== project.id) {
+                    gtaSound.playHover();
+                    if (!isModalOpen && !isKeyboardMode.current) {
+                      setActiveProject(project);
+                    }
+                  }
                 }
               }}
               className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 border border-white/20 md:border-[3px] ${
