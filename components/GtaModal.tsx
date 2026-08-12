@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Globe, ShieldCheck, FolderGit2 } from "lucide-react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 const GithubIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -55,6 +56,17 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
   const modalBodyRef = useRef<HTMLDivElement>(null);
   const [activeLinkIndex, setActiveLinkIndex] = useState(0);
 
+  const handleClose = () => {
+    gtaSound.playBack();
+    onClose();
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      gtaSound.playSelect();
+    }
+  }, [isOpen]);
+
   // Compute all actionable links for this card
   const getActionLinks = (): GtaModalActionLink[] => {
     if (!card) return [];
@@ -99,7 +111,7 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
       if (key === "escape" || key === "q") {
         e.preventDefault();
         e.stopPropagation();
-        onClose();
+        handleClose();
       } else if (key === "w" || key === "arrowup") {
         e.preventDefault();
         e.stopPropagation();
@@ -150,7 +162,7 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-black/85 backdrop-blur-md">
-          <div className="absolute inset-0" onClick={onClose} />
+          <div className="absolute inset-0" onClick={handleClose} />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
@@ -311,12 +323,14 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
                 )}
                 <div className="flex items-center gap-1">
                   <span className="text-gray-400">Exit:</span>
+                  <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">Q</kbd>
+                  <span className="text-gray-500 text-[10px]">/</span>
                   <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">ESC</kbd>
                 </div>
               </div>
 
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="px-5 py-1.5 bg-white hover:bg-gray-200 text-black font-gta text-base tracking-wider rounded-sm transition-colors ml-auto cursor-pointer shadow-lg"
               >
                 CLOSE

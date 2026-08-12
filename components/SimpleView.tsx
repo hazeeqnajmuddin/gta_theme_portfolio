@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import GtaModal from "./GtaModal";
 import { ModeToggleSwitch } from "./GtaLayout";
+import { gtaSound } from "@/utils/gtaSounds";
 
 // -------------------------------------------------------------
 // TYPES & DATA DEFINITIONS
@@ -718,6 +719,19 @@ export default function SimpleView() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Listen to 'M' key shortcut to toggle back to Interactive GTA mode
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === 'm' && !selectedCard) {
+        gtaSound.playToggle();
+        router.push("/");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [router, selectedCard]);
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);

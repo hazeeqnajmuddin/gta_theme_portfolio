@@ -3,8 +3,8 @@
 import React, { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-
 import { Gamepad2, FileText } from "lucide-react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 const TABS = [
   { name: "HOME", mobileName: "HOME", path: "/" },
@@ -23,7 +23,10 @@ export function ModeToggleSwitch({ isSimpleMode = false }: ModeToggleSwitchProps
 
   return (
     <div 
-      onClick={() => router.push(isSimpleMode ? "/" : "/simple")}
+      onClick={() => {
+        gtaSound.playToggle();
+        router.push(isSimpleMode ? "/" : "/simple");
+      }}
       className="relative bg-black/80 border border-white/20 hover:border-[#fabb15] p-1 rounded-full cursor-pointer transition-all flex items-center gap-1 select-none shadow-md group"
       title={isSimpleMode ? "Switch to GTA Interactive Mode" : "Switch to Recruiter Simple Mode"}
     >
@@ -79,6 +82,7 @@ export default function GtaLayout({
   const currentPath = activeTab || pathname;
 
   const handleTabClick = (path: string) => {
+    gtaSound.playTabSwitch();
     if (onTabChange) {
       onTabChange(path);
     } else {
@@ -90,13 +94,17 @@ export default function GtaLayout({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const currentIndex = TABS.findIndex((tab) => tab.path === currentPath);
+      const key = e.key.toLowerCase();
       
-      if (e.key.toLowerCase() === 'q') {
+      if (key === 'q') {
         const prevIndex = currentIndex > 0 ? currentIndex - 1 : TABS.length - 1;
         handleTabClick(TABS[prevIndex].path);
-      } else if (e.key.toLowerCase() === 'e') {
+      } else if (key === 'e') {
         const nextIndex = currentIndex < TABS.length - 1 ? currentIndex + 1 : 0;
         handleTabClick(TABS[nextIndex].path);
+      } else if (key === 'm') {
+        gtaSound.playToggle();
+        router.push(currentPath === "/simple" ? "/" : "/simple");
       }
     };
 
@@ -158,7 +166,7 @@ export default function GtaLayout({
         {/* Static Keyboard Controls for Desktop */}
         <div className="hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm font-medium text-gray-300 shrink-0">
           <div className="flex items-center gap-1.5">
-            <span>Quit</span><span className="bg-white text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">Esc</span>
+            <span>Mode</span><span className="bg-[#fabb15] text-black px-1.5 py-0.5 rounded-sm text-xs font-bold shadow-sm">M</span>
           </div>
           
           {/* WASD CONTROLS */}

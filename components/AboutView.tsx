@@ -334,7 +334,7 @@ const WORK_CARDS: AboutCard[] = [
       { label: "VIEW QA AUTOMATION SUITE PROJECT", path: "/projects?active=qa-suite" },
       { label: "VIEW TOSCA AS1 & AS2 CERTIFICATIONS", path: "/certs?active=tosca-as1-as2" }
     ],
-    nav: { w: "edu-degree", a: "work-main", d: "work-skechers", s: "work-freelance" }
+    nav: { w: "hero-main", a: "work-main", d: "work-skechers", s: "work-freelance" }
   },
   {
     id: "work-freelance",
@@ -366,7 +366,7 @@ const WORK_CARDS: AboutCard[] = [
     projectLinks: [
       { label: "VIEW RCMS SYSTEM PROJECT", path: "/projects?active=rcms-crm" }
     ],
-    nav: { w: "work-intern", a: "work-main", d: "work-ole", s: "life-volunteer" }
+    nav: { w: "work-intern", a: "work-main", d: "work-ole", s: "edu-degree" }
   },
   {
     id: "work-skechers",
@@ -390,7 +390,7 @@ const WORK_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Retail Operations", "Customer Service", "Inventory Indexing", "POS Operations"],
-    nav: { w: "edu-middle", a: "work-intern", s: "work-shopee" }
+    nav: { w: "hero-main", a: "work-intern", s: "work-shopee" }
   },
   {
     id: "work-shopee",
@@ -803,12 +803,6 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
           </span>
           <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-[#fabb15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]" />
         </motion.div>
-      </div>
-
-      {/* Section 1: Work Experiences */}
-      {/* DESKTOP VIEW (md and up: 3 columns, 4 rows) */}
-      <div className="hidden md:grid snap-start snap-always w-full h-[75vh] min-h-[500px] mb-[25vh] grid-cols-3 grid-rows-4 gap-2 md:gap-3">
-        {WORK_CARDS.map((card) => renderCard(card))}
       </div>
 
       {/* Section 1: Work Experiences */}

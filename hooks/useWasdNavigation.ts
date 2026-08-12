@@ -1,4 +1,5 @@
 import { useEffect, RefObject } from "react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 // Extend the generic type to optionally include the directional nav routing
 export function useWasdNavigation<
@@ -52,6 +53,10 @@ export function useWasdNavigation<
             }
           }
           
+          if (nextIndex !== currentIndex) {
+            gtaSound.playHover();
+          }
+
           // 3. Carousel auto-scroll logic
           if (carouselRef?.current && nextIndex !== currentIndex) {
             const cardElement = carouselRef.current.children[nextIndex] as HTMLElement;

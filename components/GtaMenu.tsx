@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import GtaLayout from "./GtaLayout"; // Import our new wrapper
 import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 import { useRouter } from "next/navigation";
+import { gtaSound } from "@/utils/gtaSounds";
 
 // Types
 export interface MenuCard {
@@ -161,8 +162,14 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
       <div
         id={card.id}
         key={card.id}
-        onMouseEnter={() => setHoveredCard(card)}
+        onMouseEnter={() => {
+          if (hoveredCard.id !== card.id) {
+            gtaSound.playHover();
+            setHoveredCard(card);
+          }
+        }}
         onClick={() => {
+          gtaSound.playSelect();
           if (card.link) {
             handleLinkNavigation(card.link);
           }

@@ -14,6 +14,7 @@ import {
   CheckCircle2, 
   Share2 
 } from "lucide-react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 // Types
 export interface ConnectCard {
@@ -227,12 +228,23 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
     }
   }, [selectedSocialIndex, isModalOpen]);
   
+  const handleCloseModal = () => {
+    gtaSound.playBack();
+    setIsModalOpen(false);
+  };
+
+  const handleOpenModal = () => {
+    gtaSound.playSelect();
+    setIsModalOpen(true);
+  };
+
   // Enter key & click handler for main view cards
   const handleCardTrigger = (card: ConnectCard) => {
     setHoveredCard(card);
     if (card.id === "socials") {
-      setIsModalOpen(true);
+      handleOpenModal();
     } else if (card.link) {
+      gtaSound.playSelect();
       if (card.link.endsWith(".pdf")) {
         const encodedUrl = encodeURI(card.link);
         const linkElem = document.createElement("a");
@@ -257,25 +269,29 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
       const key = e.key.toLowerCase();
 
       if (isModalOpen) {
-        if (key === "escape") {
+        if (key === "escape" || key === "q") {
           e.preventDefault();
           e.stopPropagation();
-          setIsModalOpen(false);
+          handleCloseModal();
         } else if (key === "w" || key === "arrowup") {
           e.preventDefault();
           e.stopPropagation();
+          gtaSound.playHover();
           setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev - 2 >= 0 ? prev - 2 : prev));
         } else if (key === "s" || key === "arrowdown") {
           e.preventDefault();
           e.stopPropagation();
+          gtaSound.playHover();
           setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev + 2 < OTHER_SOCIALS_LIST.length ? prev + 2 : prev));
         } else if (key === "a" || key === "arrowleft") {
           e.preventDefault();
           e.stopPropagation();
+          gtaSound.playHover();
           setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev % 2 === 1 ? prev - 1 : prev));
         } else if (key === "d" || key === "arrowright") {
           e.preventDefault();
           e.stopPropagation();
+          gtaSound.playHover();
           setSelectedSocialIndex((prev) => (prev === -1 ? 0 : prev % 2 === 0 && prev + 1 < OTHER_SOCIALS_LIST.length ? prev + 1 : prev));
         } else if (key === "enter" || key === "e") {
           e.preventDefault();
@@ -283,6 +299,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
           if (selectedSocialIndex >= 0) {
             const target = OTHER_SOCIALS_LIST[selectedSocialIndex];
             if (target) {
+              gtaSound.playSelect();
               window.open(target.link, "_blank", "noopener,noreferrer");
             }
           }
@@ -430,7 +447,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
           <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md">
             <div 
               className="absolute inset-0" 
-              onClick={() => setIsModalOpen(false)}
+              onClick={handleCloseModal}
             />
             
             <motion.div
@@ -455,7 +472,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
                 </div>
 
                 <button
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={handleCloseModal}
                   className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded transition-colors shrink-0"
                 >
                   <X className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -582,13 +599,15 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Exit:</span>
+                    <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">Q</kbd>
+                    <span className="text-gray-500 text-[10px]">/</span>
                     <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">ESC</kbd>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-1.5 bg-white hover:bg-gray-200 text-black font-gta text-base tracking-wider rounded-sm transition-colors ml-auto md:ml-0"
+                  onClick={handleCloseModal}
+                  className="px-5 py-1.5 bg-white hover:bg-gray-200 text-black font-gta text-base tracking-wider rounded-sm transition-colors ml-auto md:ml-0 shadow-lg"
                 >
                   CLOSE
                 </button>
