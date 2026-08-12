@@ -325,7 +325,12 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
         <div
           id={card.id}
           key={card.id}
-          onMouseEnter={() => setHoveredCard(card)}
+          onMouseEnter={() => {
+            if (hoveredCard.id !== card.id) {
+              gtaSound.playHover();
+              setHoveredCard(card);
+            }
+          }}
           onClick={() => handleCardTrigger(card)}
           className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm flex items-center justify-center ${customClass || card.gridClass} ${
             isActive ? "border-[3px] border-white z-10 shadow-[0_0_20px_rgba(255,255,255,0.3)]" : "border-[3px] border-transparent opacity-80 hover:opacity-100"
@@ -364,7 +369,12 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
       <div
         id={card.id}
         key={card.id}
-        onMouseEnter={() => setHoveredCard(card)}
+        onMouseEnter={() => {
+          if (hoveredCard.id !== card.id) {
+            gtaSound.playHover();
+            setHoveredCard(card);
+          }
+        }}
         onClick={() => handleCardTrigger(card)}
         className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} border border-white/20 md:border-[3px] ${
           isActive ? "md:border-white z-10" : "md:border-transparent opacity-100 md:opacity-80 hover:opacity-100"

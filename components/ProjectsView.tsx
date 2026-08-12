@@ -405,6 +405,9 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
               key={project.id}
               onClick={() => handleCardClick(project)}
               onMouseEnter={() => {
+                if (activeProject.id !== project.id) {
+                  gtaSound.playHover();
+                }
                 if (!isModalOpen && !isKeyboardMode.current && typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
                   setActiveProject(project);
                 }

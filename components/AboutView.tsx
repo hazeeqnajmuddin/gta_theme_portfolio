@@ -14,6 +14,7 @@ import {
   HeartHandshake, Leaf, Volume2, MessageSquare, UserPlus, ClipboardList, 
   CheckSquare, Wrench, FileText, Smartphone, ChevronDown
 } from "lucide-react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 export interface AboutDetailHighlight {
   title: string;
@@ -688,7 +689,12 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
       <div
         id={card.id} 
         key={card.id}
-        onMouseEnter={() => setHoveredCard(card)}
+        onMouseEnter={() => {
+          if (hoveredCard?.id !== card.id) {
+            gtaSound.playHover();
+            setHoveredCard(card);
+          }
+        }}
         onClick={() => handleCardClick(card)}
         className={`relative overflow-hidden cursor-pointer transition-all duration-200 rounded-sm ${customClass || card.gridClass} border border-white/20 md:border-[3px] ${
           isActive ? "md:border-white z-10" : "md:border-transparent opacity-100 md:opacity-75 hover:opacity-100"
