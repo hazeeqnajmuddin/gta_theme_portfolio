@@ -11,6 +11,7 @@ import {
   Award, Briefcase, CheckCircle2, Terminal, Layers, FileCheck, 
   GraduationCap, Laptop, BarChart3, FileText
 } from "lucide-react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 export interface CertDetailHighlight {
   title: string;
@@ -299,8 +300,10 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
 
   const handleCardClick = (cert: CertItem) => {
     if (activeCert.id === cert.id) {
+      gtaSound.playSelect();
       setIsModalOpen(true);
     } else {
+      gtaSound.playHover();
       setActiveCert(cert);
     }
   };
@@ -314,7 +317,10 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
     >
       {/* Top Hero Section */}
       <div 
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          gtaSound.playSelect();
+          setIsModalOpen(true);
+        }}
         className="relative w-full flex-grow min-h-[40vh] bg-[#1a1a1a] cursor-pointer group"
       >
         <img
@@ -341,6 +347,7 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
           <button
             onClick={(e) => {
               e.stopPropagation();
+              gtaSound.playSelect();
               setIsModalOpen(true);
             }}
             className="mt-5 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-lg md:text-xl tracking-wider rounded-sm shadow-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
