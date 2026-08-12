@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
+import { Gamepad2, FileText } from "lucide-react";
+
 const TABS = [
   { name: "HOME", mobileName: "HOME", path: "/" },
   { name: "ABOUT", mobileName: "ABOUT", path: "/about" },
@@ -11,6 +13,49 @@ const TABS = [
   { name: "CERTS", mobileName: "CERTS", path: "/certs" },
   { name: "CONNECT WITH ME", mobileName: "CONNECT", path: "/connect" },
 ];
+
+interface ModeToggleSwitchProps {
+  isSimpleMode?: boolean;
+}
+
+export function ModeToggleSwitch({ isSimpleMode = false }: ModeToggleSwitchProps) {
+  const router = useRouter();
+
+  return (
+    <div 
+      onClick={() => router.push(isSimpleMode ? "/" : "/simple")}
+      className="relative bg-black/80 border border-white/20 hover:border-[#fabb15] p-1 rounded-full cursor-pointer transition-all flex items-center gap-1 select-none shadow-md group"
+      title={isSimpleMode ? "Switch to GTA Interactive Mode" : "Switch to Recruiter Simple Mode"}
+    >
+      {/* GTA Interactive Option Pill */}
+      <div 
+        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-gta tracking-wider transition-all duration-300 ${
+          !isSimpleMode 
+            ? "bg-[#fabb15] text-black font-bold shadow-md scale-105" 
+            : "text-gray-400 group-hover:text-white"
+        }`}
+      >
+        <Gamepad2 className="w-3.5 h-3.5" />
+        <span className="hidden sm:inline">INTERACTIVE</span>
+      </div>
+
+      {/* Switch Track Dot Indicator */}
+      <div className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${!isSimpleMode ? "bg-[#fabb15]" : "bg-blue-400"}`} />
+
+      {/* Recruiter Simple Option Pill */}
+      <div 
+        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-gta tracking-wider transition-all duration-300 ${
+          isSimpleMode 
+            ? "bg-blue-500 text-white font-bold shadow-md scale-105" 
+            : "text-gray-400 group-hover:text-white"
+        }`}
+      >
+        <FileText className="w-3.5 h-3.5" />
+        <span className="hidden sm:inline">RECRUITER</span>
+      </div>
+    </div>
+  );
+}
 
 interface GtaLayoutProps {
   children: React.ReactNode;
@@ -82,12 +127,15 @@ export default function GtaLayout({
           ))}
         </nav>
         
-        {/* Optional Right Badge (e.g., "OPEN TO WORK") */}
-        {rightBadge && (
-          <div className="hidden sm:block shrink-0 bg-white text-black font-gta px-2.5 py-1 text-xs sm:text-sm md:text-base tracking-wider rounded-sm shadow-md">
-            {rightBadge}
-          </div>
-        )}
+        {/* Right Action: Recruiter Simple View Toggle */}
+        <div className="flex items-center gap-2 shrink-0">
+          <ModeToggleSwitch isSimpleMode={false} />
+          {rightBadge && (
+            <div className="hidden sm:block shrink-0 bg-white text-black font-gta px-2.5 py-1 text-xs sm:text-sm md:text-base tracking-wider rounded-sm shadow-md">
+              {rightBadge}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* 3. SINGLE ANIMATED PAGE WRAPPER */}

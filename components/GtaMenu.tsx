@@ -71,7 +71,7 @@ const CARDS: MenuCard[] = [
   },
   {
     id: "cloud-arch",
-    title: "CLOUD PRACTICIONER",
+    title: "AWS CLOUD PRACTITIONER",
     badge: "CERTIFIED",
     badgeColor: "bg-gray-200",
     badgeTextColor: "text-black",
