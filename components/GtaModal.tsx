@@ -43,6 +43,9 @@ export interface GtaModalData {
   demoUrl?: string;
   githubUrl?: string;
   githubLinks?: { label: string; url: string }[];
+  modalImage?: string;
+  modalImages?: string[];
+  modalImageTitle?: string;
 }
 
 interface GtaModalProps {
@@ -157,6 +160,11 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
   if (!card) return null;
 
   const tagList = card.tags || card.skills || [];
+  const galleryImages = card.modalImages && card.modalImages.length > 0
+    ? card.modalImages
+    : card.modalImage
+    ? [card.modalImage]
+    : [];
 
   return (
     <AnimatePresence>
@@ -250,6 +258,27 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
                         <ShieldCheck className="w-3 h-3 text-[#2ecc71]" />
                         {tag}
                       </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Secondary Verification Images / Gallery */}
+              {galleryImages.length > 0 && (
+                <div className="pt-2 border-t border-white/10">
+                  <h3 className="font-gta text-lg sm:text-xl text-[#fabb15] tracking-wider mb-3 uppercase flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-[#2ecc71]" />
+                    <span>{card.modalImageTitle || "GALLERY / IMAGES"}</span>
+                  </h3>
+                  <div className="flex flex-wrap items-center justify-start gap-3 sm:gap-4">
+                    {galleryImages.map((imgUrl, idx) => (
+                      <div key={idx} className="relative rounded-sm overflow-hidden border border-white/20 bg-zinc-900 shadow-md group shrink-0">
+                        <img
+                          src={imgUrl}
+                          alt={`${card.title} photo ${idx + 1}`}
+                          className="h-40 sm:h-48 w-auto max-w-[240px] sm:max-w-[280px] object-cover rounded-sm transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>

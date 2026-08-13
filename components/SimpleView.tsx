@@ -57,6 +57,9 @@ export interface SimpleCardItem {
   badgeTextColor?: string;
   description: string;
   image: string;
+  modalImage?: string;
+  modalImages?: string[];
+  modalImageTitle?: string;
   overview: string;
   highlights: HighlightItem[];
   tags: string[];
@@ -138,7 +141,9 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     badgeColor: "bg-[#e17055]",
     badgeTextColor: "text-white",
     description: "Customer service, POS cashiering, and inventory management at Skechers retail outlet.",
-    image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1000",
+    image: "/Skechers_OutletSign.jpg",
+    modalImages: ["/Skechers_StaffCard.webp", "/Skechers_Outlet.webp"],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "High-volume retail customer service and POS operations crew member managing inventory stock replenishment and customer inquiries.",
     highlights: [
       {
@@ -186,7 +191,13 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     badgeColor: "bg-[#00cec9]",
     badgeTextColor: "text-black",
     description: "Dining hospitality, table management, and order entry at Ole Ole Bali restaurant.",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000",
+    image: "/OOB_sign.png",
+    modalImages: [
+      "/OOB_sign.png",
+      "/OOB_Food.webp",
+      "/OOB_Selfie.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Premium casual dining service crew handling table reservations, guest hospitality, and order execution.",
     highlights: [
       {
@@ -227,7 +238,14 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Bachelor of Computer Science (Software Engineering) With Honors.",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
+    image: "/Degree_Dinner.PNG",
+    modalImages: [
+      "/Degree_Dinner.PNG",
+      "/Degree_Class.webp",
+      "/Degree_Coursemate.JPG",
+      "/Degree_Formal.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Graduated with First-Class Honors in Bachelor of Computer Science (Software Engineering) With Honors from UMPSA. Specializations in Full-Stack Web Development, Software QA & Automation, Machine Learning, and Database Architecture.",
     highlights: [
       {
@@ -256,7 +274,13 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#00a8ff]",
     badgeTextColor: "text-white",
     description: "Pre-University Electrical Engineering Fast-Track Program.",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1000",
+    image: "/Matrik_Badar.jpg",
+    modalImages: [
+      "/Matrik_Classmate.jpg",
+      "/Matrik_Badar.JPG",
+      "/Matrik_Hall.jpg"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Completed 1-year fast-track Electrical Engineering pre-university matriculation at KMKPh Jengka with High Academic Honors (CGPA 3.92). Advanced coursework in Engineering Physics, Calculus, and Computer Programming.",
     highlights: [
       {
@@ -275,7 +299,14 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#2ecc71]",
     badgeTextColor: "text-black",
     description: "Technical secondary education with 7As in SPM examination.",
-    image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1000",
+    image: "/Teknik_Award.jpg",
+    modalImages: [
+      "/Teknik_Award.jpg",
+      "/Teknik_Classmate.jpg",
+      "/Teknik_Dormmate.jpg",
+      "/Teknik_KRS.jpg"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "2-year technical engineering secondary stream at SM Teknik Bukit Piatu Melaka. Achieved 7As in SPM including Grade A in Electrical & Electronic Engineering Studies (Pengajian Kejuruteraan Elektrik & Elektronik).",
     highlights: [
       {
@@ -294,7 +325,14 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-purple-500",
     badgeTextColor: "text-white",
     description: "Lower secondary academic foundation and STEM co-curricular activities.",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000",
+    image: "/SMKTM_Raya.jpg",
+    modalImages: [
+      "/SMKTM_Award.jpg",
+      "/SMKTM_Classmates.jpg",
+      "/SMKTM_KRS.jpg",
+      "/SMKTM_Raya.jpg"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "3-year Form 1 to Form 3 academic foundation at SMK Taman Melawati Kuala Lumpur building science logic, co-curricular leadership, and IT skills.",
     highlights: [
       {

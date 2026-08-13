@@ -36,6 +36,9 @@ export interface AboutCard {
   badgeTextColor?: string;
   description: string;
   image: string;
+  modalImage?: string;
+  modalImages?: string[];
+  modalImageTitle?: string;
   gridClass: string;
   titleClass: string;
   overview: string;
@@ -96,7 +99,7 @@ const EDUCATION_CARDS: AboutCard[] = [
     title: "EDUCATION OVERVIEW",
     subtitle: "Academic Journey & Computer Science Studies",
     description: "My academic background and foundations.",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1000",
+        image: "/UMP_Lake.webp",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-3",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
     overview: "A comprehensive summary of Hazeeq's complete educational journey from lower secondary at SMK Taman Melawati and specialized Electrical Engineering technical stream at SM Teknik Melaka (7As SPM), to pre-university Electrical Engineering matriculation at KMKPh (CGPA 3.92) and a Bachelor's Degree in Software Engineering at UMPSA.",
@@ -138,7 +141,14 @@ const EDUCATION_CARDS: AboutCard[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Final-year Software Engineering student.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000",
+    image: "/Degree_Class.webp",
+    modalImages: [
+      "/Degree_Dinner.PNG",
+      "/Degree_Class.webp",
+      "/Degree_Coursemate.JPG",
+      "/Degree_Formal.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-3",
     titleClass: "text-3xl md:text-5xl",
     overview: "Final-year Software Engineering student focusing on full-stack architecture, machine learning integration, and automated testing. Built the AutoMate FYP platform and completed enterprise banking tech internships.",
@@ -175,7 +185,13 @@ const EDUCATION_CARDS: AboutCard[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Electrical Engineering 1-Year Fast-Track Program (CGPA 3.92).",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000",
+    image: "/Matrik_Hall.jpg",
+    modalImages: [
+      "/Matrik_Classmate.jpg",
+      "/Matrik_Badar.JPG",
+      "/Matrik_Hall.jpg"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-xl md:text-3xl",
     overview: "Completed an intensive 1-year Electrical Engineering fast-track matriculation program at Kolej Matrikulasi Kejuruteraan Pahang (KMKPh) in Jengka, Pahang. Achieved an outstanding CGPA of 3.92 with high academic distinction.",
@@ -207,7 +223,14 @@ const EDUCATION_CARDS: AboutCard[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Electrical & Electronic Engineering 2-Year Technical Stream (7As SPM).",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1000",
+    image: "/Teknik_Award.jpg",
+    modalImages: [
+      "/Teknik_Award.jpg",
+      "/Teknik_Classmate.jpg",
+      "/Teknik_Dormmate.jpg",
+      "/Teknik_KRS.jpg"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-xl md:text-3xl",
     overview: "Completed a 2-year specialized Electrical & Electronic Engineering technical stream at Sekolah Menengah Teknik Melaka (Bukit Piatu). Achieved an outstanding SPM 2020 result of 7As across 10 subjects.",
@@ -239,7 +262,14 @@ const EDUCATION_CARDS: AboutCard[] = [
     // badgeColor: "bg-[#4a90e2]",
     // badgeTextColor: "text-white",
     description: "Lower Secondary Education (Form 1 - Form 3) at SMK Taman Melawati (SMKTM).",
-    image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1000",
+    image: "/SMKTM_Raya.jpg",
+    modalImages: [
+      "/SMKTM_Award.jpg",
+      "/SMKTM_Classmates.jpg",
+      "/SMKTM_KRS.jpg",
+      "/SMKTM_Raya.jpg"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-3xl",
     overview: "Completed 3 years of lower secondary education (Form 1 to Form 3) at Sekolah Menengah Kebangsaan Taman Melawati (SMKTM), building a strong academic foundation in science, mathematics, and co-curricular leadership before transitioning to SM Teknik Melaka.",
@@ -374,7 +404,9 @@ const WORK_CARDS: AboutCard[] = [
     title: "SKECHERS RETAIL",
     subtitle: "Retail Sales & Customer Specialist",
     description: "Role: Retail Sales & Customer Specialist",
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1000",
+    image: "/Skechers_OutletSign.jpg",
+    modalImages: ["/Skechers_StaffCard.webp", "/Skechers_Outlet.webp"],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-xl md:text-2xl",
     overview: "Frontline retail experience managing customer interactions, inventory stocking, point-of-sale (POS) operations, and visual merchandising.",
@@ -422,7 +454,13 @@ const WORK_CARDS: AboutCard[] = [
     title: "OLE OLE BALI",
     subtitle: "Waiter & Kitchen Helper",
     description: "Role: Waiter & Kitchen Helper",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000",
+    image: "/OOB_sign.png",
+    modalImages: [
+      "/OOB_sign.png",
+      "/OOB_Food.webp",
+      "/OOB_Selfie.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-2xl",
     overview: "Hospitality experience in upscale dining, delivering attentive table service, managing guest orders, supporting kitchen food preparation, and maintaining dining floor workflows.",
