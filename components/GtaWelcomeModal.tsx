@@ -1,12 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Gamepad2, Navigation, Smartphone, Laptop, Sparkles, MoveRight, Pointer } from "lucide-react";
+import { X, Gamepad2, Navigation, Smartphone, Laptop, Sparkles, MoveRight, Pointer, FileText } from "lucide-react";
+import { gtaSound } from "@/utils/gtaSounds";
 
 export default function GtaWelcomeModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Only pop up if user has never visited before
@@ -21,11 +24,12 @@ export default function GtaWelcomeModal() {
   }, []);
 
   const handleClose = () => {
+    gtaSound.playBack();
     localStorage.setItem("gta_portfolio_visited", "true");
     setIsOpen(false);
   };
 
-  // Keyboard shortcut listener to close welcome popup (Enter / Space / Esc)
+  // Keyboard shortcut listener to close welcome popup (Enter / Space / Esc / M)
   useEffect(() => {
     if (!isOpen) return;
 
@@ -34,13 +38,20 @@ export default function GtaWelcomeModal() {
       if (["enter", "escape", " ", "q", "e"].includes(key)) {
         e.preventDefault();
         e.stopPropagation();
+        gtaSound.playSelect();
         handleClose();
+      } else if (key === "m") {
+        e.preventDefault();
+        e.stopPropagation();
+        gtaSound.playToggle();
+        handleClose();
+        router.push("/simple");
       }
     };
 
     window.addEventListener("keydown", handleKeyDown, { capture: true });
     return () => window.removeEventListener("keydown", handleKeyDown, { capture: true });
-  }, [isOpen]);
+  }, [isOpen, router]);
 
   return (
     <AnimatePresence>
@@ -113,6 +124,16 @@ export default function GtaWelcomeModal() {
                   </div>
 
                   <div className="p-2.5 bg-black/60 border border-white/10 rounded-sm flex items-center gap-3">
+                    <div className="p-2 bg-blue-500/20 text-blue-400 rounded shrink-0">
+                      <FileText className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-white uppercase text-xs">DUAL MODE SWITCH</div>
+                      <div className="text-gray-400 text-[11px]">Tap mode switch at top right to view Recruiter Simple mode</div>
+                    </div>
+                  </div>
+
+                  <div className="p-2.5 bg-black/60 border border-white/10 rounded-sm flex items-center gap-3">
                     <div className="p-2 bg-[#fabb15]/20 text-[#fabb15] rounded shrink-0">
                       <MoveRight className="w-4 h-4" />
                     </div>
@@ -167,6 +188,17 @@ export default function GtaWelcomeModal() {
                     </div>
                   </div>
 
+                  {/* Mode Toggle M */}
+                  <div className="p-3 bg-black/60 border border-white/10 rounded-sm flex items-start gap-3">
+                    <div className="flex gap-1 shrink-0 mt-0.5">
+                      <kbd className="bg-[#fabb15] text-black px-1.5 py-0.5 rounded font-bold text-xs">M</kbd>
+                    </div>
+                    <div>
+                      <div className="font-bold text-white uppercase">Switch View Mode</div>
+                      <div className="text-gray-400 text-xs">Press M to swap between Interactive & Simple view</div>
+                    </div>
+                  </div>
+
                   {/* Inspect / Enter */}
                   <div className="p-3 bg-black/60 border border-white/10 rounded-sm flex items-start gap-3">
                     <div className="flex gap-1 shrink-0 mt-0.5">
@@ -179,9 +211,11 @@ export default function GtaWelcomeModal() {
                   </div>
 
                   {/* In-Modal Controls */}
-                  <div className="p-3 bg-black/60 border border-white/10 rounded-sm flex items-start gap-3">
+                  <div className="p-3 bg-black/60 border border-white/10 rounded-sm flex items-start gap-3 col-span-2">
                     <div className="flex gap-1 shrink-0 mt-0.5">
                       <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded font-bold text-xs">ESC</kbd>
+                      <span className="text-gray-400 text-xs">/</span>
+                      <kbd className="bg-white/20 text-white px-1.5 py-0.5 rounded font-bold text-xs">Q</kbd>
                     </div>
                     <div>
                       <div className="font-bold text-white uppercase">Close Pop-up / Exit</div>
@@ -196,16 +230,33 @@ export default function GtaWelcomeModal() {
             <div className="p-3.5 sm:p-4 bg-black/80 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400">
                 <Sparkles className="w-3.5 h-3.5 text-[#fabb15]" />
-                <span>Tip: Full keyboard and mouse/touch controls supported.</span>
+                <span>Tip: Press <kbd className="bg-[#fabb15] text-black px-1.5 py-0.5 rounded font-bold text-[10px]">M</kbd> anytime to toggle mode.</span>
               </div>
 
-              <button
-                onClick={handleClose}
-                className="w-full sm:w-auto px-6 py-2.5 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-base sm:text-lg tracking-wider rounded-sm shadow-xl flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95 font-bold uppercase"
-              >
-                <span>START EXPLORING</span>
-                <kbd className="hidden sm:inline-block bg-black text-white px-2 py-0.5 rounded text-xs font-sans font-bold">ENTER</kbd>
-              </button>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 w-full sm:w-auto">
+                <button
+                  onClick={() => {
+                    gtaSound.playToggle();
+                    handleClose();
+                    router.push("/simple");
+                  }}
+                  className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-gta text-sm sm:text-base tracking-wider rounded-sm shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 font-bold uppercase cursor-pointer"
+                >
+                  <FileText className="w-4 h-4" />
+                  <span>SIMPLE MODE</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    gtaSound.playSelect();
+                    handleClose();
+                  }}
+                  className="w-full sm:w-auto px-5 sm:px-6 py-2 sm:py-2.5 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-sm sm:text-base tracking-wider rounded-sm shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 font-bold uppercase cursor-pointer"
+                >
+                  <Gamepad2 className="w-4 h-4 text-black" />
+                  <span>START EXPLORING</span>
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>

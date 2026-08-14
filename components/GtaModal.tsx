@@ -190,7 +190,7 @@ export default function GtaModal({ isOpen, onClose, card, onNavigateLink }: GtaM
 
               {/* Close Button (Hidden on small mobile screens, bottom-right CLOSE button used instead) */}
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="hidden md:flex absolute top-4 right-4 z-20 px-3 py-1 bg-black/70 hover:bg-white text-white hover:text-black text-xs font-bold font-gta tracking-wider border border-white/20 rounded-sm transition-all items-center gap-1.5 shadow-lg cursor-pointer"
               >
                 <X className="w-4 h-4" />
