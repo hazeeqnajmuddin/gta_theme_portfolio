@@ -191,13 +191,7 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     badgeColor: "bg-[#00cec9]",
     badgeTextColor: "text-black",
     description: "Dining hospitality, table management, and order entry at Ole Ole Bali restaurant.",
-    image: "/OOB_sign.png",
-    modalImages: [
-      "/OOB_sign.png",
-      "/OOB_Food.webp",
-      "/OOB_Selfie.webp"
-    ],
-    modalImageTitle: "GALLERY / IMAGES",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000",
     overview: "Premium casual dining service crew handling table reservations, guest hospitality, and order execution.",
     highlights: [
       {
@@ -238,14 +232,7 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Bachelor of Computer Science (Software Engineering) With Honors.",
-    image: "/Degree_Dinner.PNG",
-    modalImages: [
-      "/Degree_Dinner.PNG",
-      "/Degree_Class.webp",
-      "/Degree_Coursemate.JPG",
-      "/Degree_Formal.webp"
-    ],
-    modalImageTitle: "GALLERY / IMAGES",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
     overview: "Graduated with First-Class Honors in Bachelor of Computer Science (Software Engineering) With Honors from UMPSA. Specializations in Full-Stack Web Development, Software QA & Automation, Machine Learning, and Database Architecture.",
     highlights: [
       {
@@ -274,7 +261,7 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#00a8ff]",
     badgeTextColor: "text-white",
     description: "Pre-University Electrical Engineering Fast-Track Program.",
-    image: "/Matrik_Badar.jpg",
+    image: "/Matrik_Classmate.jpg",
     modalImages: [
       "/Matrik_Classmate.jpg",
       "/Matrik_Badar.JPG",

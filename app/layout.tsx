@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Hazeeq Najmuddin Portfolio",
   },
   description:
-    "Official portfolio of Muhammad Hazeeq Najmuddin Roshidi — Software Engineer, Full-Stack Developer (Laravel, React, Next.js), and Quality Assurance Specialist (Selenium, Tosca, Automation). Graduated with First-Class Honors from UMPSA.",
+    "Official portfolio of Muhammad Hazeeq Najmuddin Roshidi — Software Engineer, Full-Stack Developer (Laravel, React, Next.js), and Quality Assurance Specialist (Selenium, Tosca, Automation). Graduated with Honors from UMPSA.",
   keywords: [
     "Hazeeq Najmuddin",
     "Muhammad Hazeeq Najmuddin Roshidi",
