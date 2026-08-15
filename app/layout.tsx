@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hazeeq.my"),
   title: {
-    default: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer & QA Specialist",
+    default: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer and QA Specialist",
     template: "%s | Hazeeq Najmuddin Portfolio",
   },
   description:
@@ -40,15 +40,18 @@ export const metadata: Metadata = {
     canonical: "https://hazeeq.my",
   },
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/icon.svg",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://hazeeq.my",
-    title: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer & QA Specialist",
+    title: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer and QA Specialist",
     description:
       "Interactive GTA V-themed portfolio & recruiter resume of Muhammad Hazeeq Najmuddin Roshidi. Explore full-stack applications, QA automation suites, and professional career milestones.",
     siteName: "Hazeeq Najmuddin Portfolio",
@@ -63,9 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer & QA Specialist",
+    title: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer and QA Specialist",
     description:
-      "Full-Stack Software Engineer & QA Automation Specialist. UMPSA First-Class Honors graduate.",
+      "Full-Stack Software Engineer and QA Automation Specialist. UMPSA First-Class Honors graduate.",
     images: ["https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200"],
   },
   robots: {
