@@ -141,7 +141,7 @@ const EDUCATION_CARDS: AboutCard[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Final-year Software Engineering student.",
-    image: "/Degree_Class.webp",
+    image: "/Degree_Dinner.PNG",
     modalImages: [
       "/Degree_Dinner.PNG",
       "/Degree_Class.webp",
@@ -185,7 +185,7 @@ const EDUCATION_CARDS: AboutCard[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Electrical Engineering 1-Year Fast-Track Program (CGPA 3.92).",
-    image: "/Matrik_Hall.jpg",
+    image: "/Matrik_Classmate.jpg",
     modalImages: [
       "/Matrik_Classmate.jpg",
       "/Matrik_Badar.JPG",
@@ -302,7 +302,7 @@ const WORK_CARDS: AboutCard[] = [
     title: "WORK EXPERIENCES",
     subtitle: "Professional Timeline & Experience Spectrum",
     description: "A timeline of my professional roles and part-time ventures.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
+    image: "/Gientech_Intermark.webp",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-4",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
     overview: "Comprehensive professional journey spanning corporate banking tech internships (UOB), freelance engineering, logistics, customer service, and hospitality.",
@@ -334,7 +334,12 @@ const WORK_CARDS: AboutCard[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Role: Software QA & Testing Engineer Intern",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000",
+    image: "/Gientech_Training.webp",
+    modalImages: [
+      "/Gientech_Training.webp",
+      "/Gientech_Intermark.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
     titleClass: "text-3xl md:text-4xl",
     overview: "Embedded within Gientech at UOB Intermark as a Software QA & Test Analyst Intern. Executed enterprise mobile & web automated testing using Perfecto Mobile Cloud, Selenium WebDriver, Tricentis Tosca (AS1 & AS2), and Java Maven pipelines for banking operations.",
@@ -370,8 +375,8 @@ const WORK_CARDS: AboutCard[] = [
   {
     id: "work-freelance",
     title: "FREELANCE FULL-STACK DEVELOPER",
-    subtitle: "Rahmah Consultancy Management System (RCMS)",
-    description: "Role: Freelance Full-Stack Web Developer",
+    subtitle: "Full-Stack Web & Mobile Developer",
+    description: "Freelance Full-Stack Web Developer",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000",
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-3xl md:text-4xl",
@@ -512,7 +517,7 @@ const LIFE_CARDS: AboutCard[] = [
     title: "LIFE EXPERIENCES",
     subtitle: "Community Involvement, Speaking & Mentorship",
     description: "Roles beyond the workplace shaping my perspective.",
-    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1000",
+    image: "/LifeExp.webp",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-2",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
     overview: "Roles beyond academia and work that have shaped Hazeeq's perspective, leadership qualities, public speaking skills, and commitment to community empowerment.",
@@ -541,7 +546,12 @@ const LIFE_CARDS: AboutCard[] = [
     title: "VOLUNTEER",
     subtitle: "Community Outreach & Charitable Initiatives",
     description: "Giving back through organized community efforts.",
-    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1000",
+    image: "/Volunteer_1.webp",
+    modalImages: [
+      "/Volunteer_1.webp",
+      "/Volunteer_2.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-1",
     titleClass: "text-2xl md:text-4xl",
     overview: "Active involvement in community service initiatives, humanitarian aid distribution, and neighborhood empowerment programs.",
@@ -565,7 +575,12 @@ const LIFE_CARDS: AboutCard[] = [
     title: "PUBLIC SPEAKER",
     subtitle: "Public Speaking & Career Guidance",
     description: "Public speaking and sharing personal journeys.",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000",
+    image: "/Speaker_1.webp",
+    modalImages: [
+      "/Speaker_1.webp",
+      "/Speaker_2.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-2 row-span-1",
     titleClass: "text-2xl md:text-4xl",
     overview: "Engaging as a motivational speaker and mentor, delivering inspiring presentations on overcoming challenges, technology careers, and personal development.",
@@ -589,7 +604,13 @@ const LIFE_CARDS: AboutCard[] = [
     title: "YOUTH DEVELOPER",
     subtitle: "Guiding & Empowering Younger Peers",
     description: "Mentoring and guiding younger peers.",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000",
+    image: "/YouthDev_1.webp",
+    modalImages: [
+      "/YouthDev_1.webp",
+      "/YouthDev_2.webp",
+      "/YouthDev_3.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
     titleClass: "text-2xl md:text-3xl",
     overview: "Dedicated to mentoring youth through technical guidance, study strategies, skill development workshops, and leadership coaching.",
@@ -613,7 +634,12 @@ const LIFE_CARDS: AboutCard[] = [
     title: "PROGRAM MANAGER",
     subtitle: "Event Planning & Operational Execution",
     description: "Organizing and leading structured events.",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000",
+    image: "/ProgManager_1.webp",
+    modalImages: [
+      "/ProgManager_1.webp",
+      "/ProgManager_2.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-2xl md:text-3xl",
     overview: "Organizing and managing structured programs, workshops, and youth gatherings from initial planning to execution and post-event evaluation.",

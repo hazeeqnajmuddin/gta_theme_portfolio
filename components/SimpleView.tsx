@@ -73,12 +73,17 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
   {
     id: "work-gientech",
     title: "GIENTECH (UOB INTERMARK)",
-    subtitle: "Enterprise Software Quality Assurance Intern (Jul 2025 – Jan 2026)",
+    subtitle: "Enterprise Software Quality Assurance Intern (Mac 2026 – Aug 2026)",
     badge: "BANKING QA",
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Enterprise software quality assurance & automated testing for UOB financial applications.",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000",
+    image: "/Gientech_Training.webp",
+    modalImages: [
+      "/Gientech_Training.webp",
+      "/Gientech_Intermark.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "6-month corporate internship embedded in GienTech's Quality Assurance delivery team at UOB Intermark Tower Kuala Lumpur. Managed end-to-end automated test execution across web and mobile banking solutions.",
     highlights: [
       {
@@ -107,7 +112,7 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
   {
     id: "work-freelance",
     title: "FREELANCE SOFTWARE ENGINEER",
-    subtitle: "Full-Stack Web & Mobile Developer (Mar 2024 – Present)",
+    subtitle: "Full-Stack Web & Mobile Developer (2022 – Present)",
     badge: "FULL-STACK",
     badgeColor: "bg-[#2ecc71]",
     badgeTextColor: "text-black",
@@ -141,8 +146,8 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     badgeColor: "bg-[#e17055]",
     badgeTextColor: "text-white",
     description: "Customer service, POS cashiering, and inventory management at Skechers retail outlet.",
-    image: "/Skechers_OutletSign.jpg",
-    modalImages: ["/Skechers_StaffCard.webp", "/Skechers_Outlet.webp"],
+    image: "/Skechers_Outlet.webp",
+    modalImages: ["/Skechers_StaffCard.webp", "/Skechers_OutletSign.jpg"],
     modalImageTitle: "GALLERY / IMAGES",
     overview: "High-volume retail customer service and POS operations crew member managing inventory stock replenishment and customer inquiries.",
     highlights: [
@@ -191,7 +196,13 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     badgeColor: "bg-[#00cec9]",
     badgeTextColor: "text-black",
     description: "Dining hospitality, table management, and order entry at Ole Ole Bali restaurant.",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000",
+    image: "/OOB_sign.png",
+    modalImages: [
+      "/OOB_sign.png",
+      "/OOB_Food.webp",
+      "/OOB_Selfie.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Premium casual dining service crew handling table reservations, guest hospitality, and order execution.",
     highlights: [
       {
@@ -228,12 +239,19 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     id: "edu-degree",
     title: "DEGREE IN SOFTWARE ENGINEERING",
     subtitle: "Universiti Malaysia Pahang Al-Sultan Abdullah (2022 – 2026)",
-    badge: "FIRST CLASS",
-    badgeColor: "bg-[#fabb15]",
-    badgeTextColor: "text-black",
+    badge: "HONORS DEGREE",
+    badgeColor: "bg-[#4a90e2]",
+    badgeTextColor: "text-white",
     description: "Bachelor of Computer Science (Software Engineering) With Honors.",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
-    overview: "Graduated with First-Class Honors in Bachelor of Computer Science (Software Engineering) With Honors from UMPSA. Specializations in Full-Stack Web Development, Software QA & Automation, Machine Learning, and Database Architecture.",
+    image: "/Degree_Dinner.PNG",
+    modalImages: [
+      "/Degree_Dinner.PNG",
+      "/Degree_Class.webp",
+      "/Degree_Coursemate.JPG",
+      "/Degree_Formal.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
+    overview: "Graduated with Bachelor of Computer Science (Software Engineering) With Honors from Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA). Specializations in Full-Stack Web Development, Software QA & Automation, Machine Learning, and Database Architecture.",
     highlights: [
       {
         title: "Bachelor's Degree Thesis & FYP (AutoMate)",
@@ -320,7 +338,7 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
       "/SMKTM_Raya.jpg"
     ],
     modalImageTitle: "GALLERY / IMAGES",
-    overview: "3-year Form 1 to Form 3 academic foundation at SMK Taman Melawati Kuala Lumpur building science logic, co-curricular leadership, and IT skills.",
+    overview: "3-year Form 1 to Form 3 academic foundation at SMK Taman Melawati building science logic, co-curricular leadership, and IT skills.",
     highlights: [
       {
         title: "PT3 Distinction & STEM Clubs",
@@ -341,7 +359,12 @@ const LIFE_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#e84393]",
     badgeTextColor: "text-white",
     description: "Volunteering for flood disaster relief and community food drives.",
-    image: "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1000",
+    image: "/Volunteer_1.webp",
+    modalImages: [
+      "/Volunteer_1.webp",
+      "/Volunteer_2.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Active participation in local community aid initiatives, disaster flood relief cleanups in Temerloh & Mentakab, and distributing food packages to underprivileged families.",
     highlights: [
       {
@@ -360,7 +383,12 @@ const LIFE_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#fdcb6e]",
     badgeTextColor: "text-black",
     description: "Delivering motivational study techniques and SPM prep workshops for secondary students.",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000",
+    image: "/Speaker_1.webp",
+    modalImages: [
+      "/Speaker_1.webp",
+      "/Speaker_2.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Invited speaker for secondary school academic seminars delivering study strategies, SPM exam preparation techniques, and tech career roadmaps to Form 4 & Form 5 students.",
     highlights: [
       {
@@ -379,7 +407,13 @@ const LIFE_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#00a8ff]",
     badgeTextColor: "text-white",
     description: "Organizing committee lead for campus computer science hackathons and cultural events.",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1000",
+    image: "/YouthDev_1.webp",
+    modalImages: [
+      "/YouthDev_1.webp",
+      "/YouthDev_2.webp",
+      "/YouthDev_3.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Served on organizing committees for UMPSA computer science hackathons, gaming tournaments, and orientation weeks managing stage logistics, sponsorship outreach, and participant registration.",
     highlights: [
       {
@@ -398,7 +432,12 @@ const LIFE_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#6c5ce7]",
     badgeTextColor: "text-white",
     description: "Attending national student leadership summits and technology innovation bootcamps.",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1000",
+    image: "/ProgManager_1.webp",
+    modalImages: [
+      "/ProgManager_1.webp",
+      "/ProgManager_2.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Participated in national youth development bootcamps, soft-skill leadership retreats, and software developer meetups across Malaysia.",
     highlights: [
       {
@@ -594,7 +633,12 @@ const FEATURED_PROJECTS: SimpleCardItem[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "A full-stack Laravel application engineered for customer lead acquisition, sales pipeline tracking, and analytics.",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000",
+    image: "/RCMS_login.png",
+    modalImages: [
+      "/RCMS_login.png",
+      "/RCMS_home.png"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "A comprehensive full-stack Relationship and Customer Lead Management System (RCMS) constructed with Laravel 10, PHP 8.2, MySQL, and TailwindCSS. Streamlines multi-channel lead acquisition, logs sales pipeline transitions, categorizes customer issues, automates compliance document merging, and provides real-time executive dashboard analytics.",
     highlights: [
       {
@@ -706,7 +750,77 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
       }
     ],
     tags: ["Tricentis Tosca AS1", "Tricentis Tosca AS2", "Model-Based Testing", "Test Data Service (TDS)", "Automated Regression"],
-    link: "https://www.tricentis.com/"
+    badgeLinks: [
+      { label: "VERIFY TOSCA AS1 BADGE", url: "https://academy.tricentis.com/share/gamification/badges/external/82ed3197-9658-4132-972f-25249ec9a79b?lang=en" },
+      { label: "VERIFY TOSCA AS2 BADGE", url: "https://academy.tricentis.com/share/gamification/badges/external/e3b59e31-96fd-42ae-a31e-df04830930b9?lang=en" }
+    ]
+  },
+  {
+    id: "google-ux",
+    title: "GOOGLE UX DESIGN CERTIFICATION",
+    subtitle: "Google via Coursera UX Professional Courses (Jun - Jul 2026)",
+    badge: "GOOGLE UX",
+    badgeColor: "bg-purple-600",
+    badgeTextColor: "text-white",
+    description: "Certified by Google in Foundations of UX Design and Empathize, Define, and Ideate process.",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000",
+    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' and 'Start the UX Design Process: Empathize, Define, and Ideate'. Covers user-centered design, empathy mapping, user personas, wireframing, and interactive prototyping in Figma.",
+    highlights: [
+      {
+        title: "Foundations of User Experience (UX) Design",
+        desc: "Core UX principles, accessibility standards, user research methodologies, and design thinking frameworks.",
+        icon: <Award className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Empathize, Define & Ideate Process",
+        desc: "Conducting user interviews, creating user personas, mapping user journeys, and problem statement definition.",
+        icon: <BookOpen className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Wireframing & Interactive Prototyping",
+        desc: "Building low-fidelity paper wireframes and high-fidelity interactive digital prototypes in Figma.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
+      }
+    ],
+    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Usability Testing"],
+    badgeLinks: [
+      { label: "VERIFY FOUNDATIONS OF UX", url: "https://www.coursera.org/account/accomplishments/verify/85A0AOC3RPPJ" },
+      { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" }
+    ]
+  },
+  {
+    id: "k-youth",
+    title: "K-YOUTH x GIFT PROGRAMME",
+    subtitle: "Khazanah Nasional & MTDC Talent Acceleration (Dec 2025 - Jul 2026)",
+    badge: "COMPLETED",
+    badgeColor: "bg-[#2ecc71]",
+    badgeTextColor: "text-black",
+    description: "Khazanah Nasional & MTDC talent accelerator specializing in Strategic Analysis, Data Visualization, and 1.4M Row Telecom Data Analytics.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000",
+    overview: "Selected for the prestigious K-Youth x GIFT Programme funded by Khazanah Nasional & MTDC (Dec 2025 - Jul 2026). Completed five intensive industry domain projects spanning Cinergi strategic analysis, Grab data visualization, Maybank customer persona pitching, IHH Healthcare GenAI video workflows, and Infini 1.4M row telecom data analytics capstone.",
+    highlights: [
+      {
+        title: "Strategic Analysis (Cinergi)",
+        desc: "Authored a comprehensive business report and formal executive memo demonstrating corporate analysis skills.",
+        icon: <FileText className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Data Visualization (Grab)",
+        desc: "Processed datasets using Microsoft Excel pivot tables and charts to identify trends and data-driven solutions.",
+        icon: <BarChart3 className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Customer Centricity (Maybank)",
+        desc: "Developed a comprehensive customer persona for Maybank to tailor a balanced-loan pitch focusing on stakeholder persuasion.",
+        icon: <Users className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Data Analytics Capstone (Infini)",
+        desc: "Data analytics using Jupyter Notebook and Power BI on 1.4 Million rows of raw data applying K-Means Clustering.",
+        icon: <Building2 className="w-4 h-4 text-purple-400" />
+      }
+    ],
+    tags: ["Strategic Analysis", "Excel Visualization", "Customer Personas", "GenAI Video Tools", "Power BI", "K-Means Clustering"]
   }
 ];
 
@@ -963,44 +1077,56 @@ export default function SimpleView() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {WORK_EXPERIENCES.map((work) => (
               <div
                 key={work.id}
                 onClick={() => setSelectedCard(work)}
-                className="group relative bg-[#141414] border border-white/15 hover:border-[#fabb15] rounded-sm p-5 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg hover:shadow-2xl"
+                className="group relative bg-[#141414] border border-white/15 hover:border-[#fabb15] rounded-sm overflow-hidden transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg hover:shadow-2xl"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${work.badgeColor} ${work.badgeTextColor}`}>
-                      {work.badge}
-                    </span>
-                    <span className="text-gray-400 text-xs font-medium flex items-center gap-1 group-hover:text-[#fabb15] transition-colors">
-                      <span>INSPECT</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                <div className="relative h-44 w-full overflow-hidden">
+                  <img
+                    src={work.image}
+                    alt={work.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-black/40 to-transparent" />
 
-                  <div>
-                    <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-[#fabb15] transition-colors">
-                      {work.title}
-                    </h3>
-                    <p className="text-[#fabb15] text-xs font-semibold mt-0.5">
+                  {work.badge && (
+                    <div className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${work.badgeColor} ${work.badgeTextColor}`}>
+                      {work.badge}
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-[#fabb15] transition-colors">
+                        {work.title}
+                      </h3>
+                      <span className="text-gray-400 text-xs font-medium flex items-center gap-1 group-hover:text-[#fabb15] transition-colors shrink-0">
+                        <span>INSPECT</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+
+                    <p className="text-[#fabb15] text-xs font-semibold">
                       {work.subtitle}
+                    </p>
+
+                    <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
+                      {work.overview}
                     </p>
                   </div>
 
-                  <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
-                    {work.overview}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
-                  {work.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
+                    {work.tags.map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -1018,44 +1144,56 @@ export default function SimpleView() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {EDUCATION_ITEMS.map((edu) => (
               <div
                 key={edu.id}
                 onClick={() => setSelectedCard(edu)}
-                className="group relative bg-[#141414] border border-white/15 hover:border-[#00a8ff] rounded-sm p-5 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg"
+                className="group relative bg-[#141414] border border-white/15 hover:border-[#00a8ff] rounded-sm overflow-hidden transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${edu.badgeColor} ${edu.badgeTextColor}`}>
-                      {edu.badge}
-                    </span>
-                    <span className="text-gray-400 text-xs font-medium flex items-center gap-1 group-hover:text-[#00a8ff] transition-colors">
-                      <span>INSPECT</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                <div className="relative h-44 w-full overflow-hidden">
+                  <img
+                    src={edu.image}
+                    alt={edu.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-black/40 to-transparent" />
 
-                  <div>
-                    <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-[#00a8ff] transition-colors">
-                      {edu.title}
-                    </h3>
-                    <p className="text-[#00a8ff] text-xs font-semibold mt-0.5">
+                  {edu.badge && (
+                    <div className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${edu.badgeColor} ${edu.badgeTextColor}`}>
+                      {edu.badge}
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-[#00a8ff] transition-colors">
+                        {edu.title}
+                      </h3>
+                      <span className="text-gray-400 text-xs font-medium flex items-center gap-1 group-hover:text-[#00a8ff] transition-colors shrink-0">
+                        <span>INSPECT</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+
+                    <p className="text-[#00a8ff] text-xs font-semibold">
                       {edu.subtitle}
+                    </p>
+
+                    <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
+                      {edu.overview}
                     </p>
                   </div>
 
-                  <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
-                    {edu.overview}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
-                  {edu.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
+                    {edu.tags.map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -1135,44 +1273,56 @@ export default function SimpleView() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {CERTIFICATIONS_ITEMS.map((cert) => (
               <div
                 key={cert.id}
                 onClick={() => setSelectedCard(cert)}
-                className="group relative bg-[#141414] border border-white/15 hover:border-purple-400 rounded-sm p-5 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg"
+                className="group relative bg-[#141414] border border-white/15 hover:border-purple-400 rounded-sm overflow-hidden transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${cert.badgeColor} ${cert.badgeTextColor}`}>
-                      {cert.badge}
-                    </span>
-                    <span className="text-purple-400 text-xs font-medium flex items-center gap-1 group-hover:underline">
-                      <span>VERIFY CREDLY</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                <div className="relative h-44 w-full overflow-hidden">
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-black/40 to-transparent" />
 
-                  <div>
-                    <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-purple-400 transition-colors">
-                      {cert.title}
-                    </h3>
-                    <p className="text-purple-400 text-xs font-semibold mt-0.5">
+                  {cert.badge && (
+                    <div className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${cert.badgeColor} ${cert.badgeTextColor}`}>
+                      {cert.badge}
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-purple-400 transition-colors">
+                        {cert.title}
+                      </h3>
+                      <span className="text-purple-400 text-xs font-medium flex items-center gap-1 group-hover:underline shrink-0">
+                        <span>VERIFY</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+
+                    <p className="text-purple-400 text-xs font-semibold">
                       {cert.subtitle}
+                    </p>
+
+                    <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
+                      {cert.overview}
                     </p>
                   </div>
 
-                  <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
-                    {cert.overview}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
-                  {cert.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
+                    {cert.tags.map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -1190,44 +1340,56 @@ export default function SimpleView() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {LIFE_ITEMS.map((life) => (
               <div
                 key={life.id}
                 onClick={() => setSelectedCard(life)}
-                className="group relative bg-[#141414] border border-white/15 hover:border-[#e84393] rounded-sm p-5 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg"
+                className="group relative bg-[#141414] border border-white/15 hover:border-[#e84393] rounded-sm overflow-hidden transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-lg"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${life.badgeColor} ${life.badgeTextColor}`}>
-                      {life.badge}
-                    </span>
-                    <span className="text-gray-400 text-xs font-medium flex items-center gap-1 group-hover:text-[#e84393] transition-colors">
-                      <span>INSPECT</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                <div className="relative h-44 w-full overflow-hidden">
+                  <img
+                    src={life.image}
+                    alt={life.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-black/40 to-transparent" />
 
-                  <div>
-                    <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-[#e84393] transition-colors">
-                      {life.title}
-                    </h3>
-                    <p className="text-[#e84393] text-xs font-semibold mt-0.5">
+                  {life.badge && (
+                    <div className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-sm ${life.badgeColor} ${life.badgeTextColor}`}>
+                      {life.badge}
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-gta text-xl text-white tracking-wide uppercase group-hover:text-[#e84393] transition-colors">
+                        {life.title}
+                      </h3>
+                      <span className="text-gray-400 text-xs font-medium flex items-center gap-1 group-hover:text-[#e84393] transition-colors shrink-0">
+                        <span>INSPECT</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+
+                    <p className="text-[#e84393] text-xs font-semibold">
                       {life.subtitle}
+                    </p>
+
+                    <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
+                      {life.overview}
                     </p>
                   </div>
 
-                  <p className="text-gray-300 text-xs sm:text-sm line-clamp-3 font-normal">
-                    {life.overview}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
-                  {life.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/10 mt-4">
+                    {life.tags.map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/10 text-gray-300 text-[10px] font-medium rounded-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer and QA Specialist",
     description:
-      "Full-Stack Software Engineer and QA Automation Specialist. UMPSA First-Class Honors graduate.",
+      "Full-Stack Software Engineer and QA Automation Specialist. Bachelor of Computer Science (Software Engineering) With Honors from UMPSA.",
     images: ["https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200"],
   },
   robots: {

@@ -41,6 +41,8 @@ export interface ProjectItem {
   githubUrl?: string;
   demoUrl?: string;
   githubLinks?: ProjectGithubLink[];
+  modalImages?: string[];
+  modalImageTitle?: string;
 }
 
 // Project Data
@@ -242,8 +244,13 @@ const PROJECTS: ProjectItem[] = [
     badgeText: "text-black",
     description1: "Select to view the RCMS Lead CRM & Pipeline Platform.",
     description2: "A full-stack Laravel application engineered for customer lead acquisition, multi-stage sales pipeline tracking, document merging, and business analytics.",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600",
+    image: "/RCMS_login.png",
+    thumb: "/RCMS_login.png",
+    modalImages: [
+      "/RCMS_login.png",
+      "/RCMS_home.png"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "A comprehensive full-stack Relationship and Customer Lead Management System (RCMS) constructed with Laravel 10, PHP 8.2, MySQL, and TailwindCSS. Streamlines multi-channel lead acquisition, logs sales pipeline transitions, categorizes customer issues, automates compliance document merging, and provides real-time executive dashboard analytics.",
     demoUrl: "https://rahmahconsultancy.com/",
     modules: [
@@ -460,6 +467,8 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
           demoUrl: activeProject.demoUrl,
           githubUrl: activeProject.githubUrl,
           githubLinks: activeProject.githubLinks,
+          modalImages: activeProject.modalImages,
+          modalImageTitle: activeProject.modalImageTitle,
         } : null}
       />
     </GtaLayout>
