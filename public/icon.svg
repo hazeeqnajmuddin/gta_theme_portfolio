@@ -1,15 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <!-- Clean Dark Background with GTA Gold Border -->
-  <rect x="24" y="24" width="464" height="464" rx="96" fill="#0c0d0e" stroke="#fabb15" stroke-width="24" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Dark Carbon Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141720" />
+      <stop offset="100%" stop-color="#08090d" />
+    </linearGradient>
+    
+    <!-- GTA Gold Metallic Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff199" />
+      <stop offset="45%" stop-color="#fabb15" />
+      <stop offset="100%" stop-color="#b37f00" />
+    </linearGradient>
+
+    <!-- Ambient Glow Shadow -->
+    <filter id="pricedownGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#fabb15" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Dark Container with Gold GTA Border (Perfect 1:1 Square) -->
+  <rect x="36" y="36" width="440" height="440" rx="88" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="20" />
   
-  <!-- Bold Clean Centered Gold 'H' -->
-  <text 
-    x="256" 
-    y="355" 
-    font-family="system-ui, -apple-system, 'Impact', 'Bebas Neue', sans-serif" 
-    font-size="330" 
-    font-weight="900" 
-    fill="#fabb15" 
-    text-anchor="middle"
-  >H</text>
+  <!-- Signature GTA V Top & Bottom Accent Lines -->
+  <rect x="100" y="96" width="312" height="12" fill="#fabb15" rx="4" opacity="0.9" />
+  <rect x="100" y="404" width="312" height="12" fill="#fabb15" rx="4" opacity="0.9" />
+
+  <!-- Centered GTA 'H' Monogram Emblem -->
+  <g filter="url(#pricedownGlow)">
+    <!-- Single Bold 'H' Letter (220px x 256px) -->
+    <path d="M 146,128 L 202,128 L 202,228 L 310,228 L 310,128 L 366,128 L 366,384 L 310,384 L 310,284 L 202,284 L 202,384 L 146,384 Z" fill="url(#goldGrad)" />
+    
+    <!-- GTA V Style Inner Cut Accent on Right Stem -->
+    <polygon points="332,152 346,152 338,360 324,360" fill="#08090d" opacity="0.4" />
+  </g>
 </svg>

@@ -16,6 +16,7 @@ export interface MenuCard {
   badgeTextColor?: string;
   description: string;
   image: string;
+  imagePosition?: string;
   gridClass: string;
   titleClass: string;
   // Explicit routing for WASD navigation
@@ -38,7 +39,8 @@ const CARDS: MenuCard[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Select to view my complete timeline and professional journey.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000",
+    image: "/gta_potrait.jpg",
+    imagePosition: "object-[center_20%] md:object-[center_10%]",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-4",
     titleClass: "text-3xl md:text-5xl lg:text-6xl",
     nav: { d: "project-automate" }, // Right goes to the top-middle card
@@ -51,7 +53,7 @@ const CARDS: MenuCard[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Select to view the vehicle management system built with Laravel, PHP, and MySQL.",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000",
+    image: "/Automate_present.webp",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
     titleClass: "text-2xl md:text-4xl",
     nav: { a: "main-profile", s: "qa-testing", d: "cloud-arch" },
@@ -64,7 +66,7 @@ const CARDS: MenuCard[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Automated test scripts using Selenium, Maven, and Tricentis Tosca.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000",
+    image: "/Gientech_Tosca.webp",
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-2xl md:text-4xl",
     nav: { w: "project-automate", a: "main-profile", d: "web-dev" },
@@ -87,7 +89,7 @@ const CARDS: MenuCard[] = [
     id: "experience",
     title: "ENTERPRISE EXPERIENCE",
     description: "Select to view my complete professional journey and work history.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000",
+    image: "/Gientech_Selenium.webp",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "cloud-arch", a: "project-automate", s: "web-dev" },
@@ -97,7 +99,7 @@ const CARDS: MenuCard[] = [
     id: "web-dev",
     title: "My Education",
     description: "Details about my academic background and educational achievements.",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000",
+    image: "/UMP_Lake.webp",
     gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-2xl",
     nav: { w: "experience", a: "qa-testing", s: "contact" },
@@ -183,7 +185,7 @@ export default function GtaMenu({ onNavigate, activeTab = "/" }: GtaMenuProps) {
         <img
           src={card.image}
           alt={card.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out"
+          className={`absolute inset-0 w-full h-full object-cover ${card.imagePosition || "object-center"} transition-transform duration-500 ease-out`}
           style={{ transform: isActive ? 'scale(1.04)' : 'scale(1)' }}
           draggable={false}
         />

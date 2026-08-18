@@ -56,8 +56,8 @@ const PROJECTS: ProjectItem[] = [
     badgeText: "text-black",
     description1: "Select to view the AutoMate vehicle and workshop management platform.",
     description2: "An intelligent full-stack system built using Laravel 10, PHP, MySQL, and Python ML microservices. Developed as a Bachelor's Degree Final Year Project (FYP) accompanied by an academic thesis on Decision Tree AI diagnostics.",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600",
+    image: "/Automate_present.webp",
+    thumb: "/Automate_present.webp",
     overview: "AutoMate is an intelligent end-to-end vehicle service and workshop management platform engineered for Hazeeq's Software Engineering Bachelor's Degree Final Year Project (FYP). Backed by a formal academic thesis, the system utilizes a multi-repository architecture connecting a main Laravel 10 MVC web app with Python Flask AI microservices executing Scikit-Learn Decision Tree classification algorithms for vehicle fault prediction.",
     modules: [
       {
@@ -98,8 +98,13 @@ const PROJECTS: ProjectItem[] = [
     badgeText: "text-white",
     description1: "Select to explore enterprise-grade automated test scripts and software quality assurance.",
     description2: "Developed utilizing Perfecto Mobile Cloud, Selenium WebDriver, Maven, and Tricentis Tosca. Designed to ensure robust performance and reliability for critical software deliveries during UOB banking operations.",
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600",
+    image: "/Gientech_Tosca.webp",
+    thumb: "/Gientech_Tosca.webp",
+    modalImages: [
+      "/Gientech_Tosca.webp",
+      "/Gientech_Selenium.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Comprehensive enterprise automated test execution framework built with Perforce Perfecto Mobile Cloud, Selenium WebDriver, Java/Maven, and Tricentis Tosca (AS1 & AS2). Ensures seamless regression testing, real device mobile validation, and quality benchmarks for banking releases.",
     modules: [
       {

@@ -337,7 +337,9 @@ const WORK_CARDS: AboutCard[] = [
     image: "/Gientech_Training.webp",
     modalImages: [
       "/Gientech_Training.webp",
-      "/Gientech_Intermark.webp"
+      "/Gientech_Intermark.webp",
+      "/Gientech_Tosca.webp",
+      "/Gientech_Selenium.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
@@ -546,7 +548,7 @@ const LIFE_CARDS: AboutCard[] = [
     title: "VOLUNTEER",
     subtitle: "Community Outreach & Charitable Initiatives",
     description: "Giving back through organized community efforts.",
-    image: "/Volunteer_1.webp",
+    image: "/Volunteer_2.webp",
     modalImages: [
       "/Volunteer_1.webp",
       "/Volunteer_2.webp"
@@ -632,8 +634,8 @@ const LIFE_CARDS: AboutCard[] = [
   {
     id: "life-program",
     title: "PROGRAM MANAGER",
-    subtitle: "Event Planning & Operational Execution",
-    description: "Organizing and leading structured events.",
+    subtitle: "Alumni, Study Tips & Career Pathway Talks",
+    description: "Managed and coordinated student development programs including Alumni talks, study tips sessions, and career path talks.",
     image: "/ProgManager_1.webp",
     modalImages: [
       "/ProgManager_1.webp",
@@ -642,20 +644,20 @@ const LIFE_CARDS: AboutCard[] = [
     modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
     titleClass: "text-2xl md:text-3xl",
-    overview: "Organizing and managing structured programs, workshops, and youth gatherings from initial planning to execution and post-event evaluation.",
+    overview: "Planned, organized, and executed multiple structured youth and student programs, managing end-to-end logistics, speaker coordination, and agenda delivery for Alumni sharing sessions, academic study strategy talks, and career pathway panels.",
     highlights: [
       {
-        title: "Event Logistics & Planning",
-        desc: "Scheduling agendas, budget allocation, speaker coordination, and venue logistics.",
+        title: "Alumni & Career Pathway Talks",
+        desc: "Coordinated alumni speaker lineups, panel discussions, and career sharing sessions to help students navigate higher education and job opportunities.",
         icon: <ClipboardList className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Execution & Team Leadership",
-        desc: "Directing event operations on-site to ensure smooth schedules and participant satisfaction.",
+        title: "Study Tips & Academic Seminars",
+        desc: "Organized interactive study skills workshops, time management talks, and exam preparation clinics for secondary and matriculation students.",
         icon: <CheckSquare className="w-4 h-4 text-[#00a8ff]" />
       }
     ],
-    tags: ["Program Management", "Event Planning", "Logistics Coordination", "Team Leadership"],
+    tags: ["Program Management", "Alumni Talks", "Study Tips Talks", "Career Path Talks", "Event Planning"],
     nav: { w: "life-youth", a: "life-speaker" }
   }
 ];

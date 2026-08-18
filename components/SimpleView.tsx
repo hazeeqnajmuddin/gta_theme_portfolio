@@ -81,14 +81,16 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     image: "/Gientech_Training.webp",
     modalImages: [
       "/Gientech_Training.webp",
-      "/Gientech_Intermark.webp"
+      "/Gientech_Intermark.webp",
+      "/Gientech_Tosca.webp",
+      "/Gientech_Selenium.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
     overview: "6-month corporate internship embedded in GienTech's Quality Assurance delivery team at UOB Intermark Tower Kuala Lumpur. Managed end-to-end automated test execution across web and mobile banking solutions.",
     highlights: [
       {
         title: "Perfecto Mobile Cloud Test Automation",
-        desc: "Executed real-device iOS and Android test automation on Perforce Perfecto Cloud infrastructure.",
+        desc: "Executed real-device iOS and Android test automation on Perfecto Cloud infrastructure.",
         icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
       },
       {
@@ -342,7 +344,7 @@ const EDUCATION_ITEMS: SimpleCardItem[] = [
     highlights: [
       {
         title: "PT3 Distinction & STEM Clubs",
-        desc: "Active participation in Robotics Club, Computer Science Society, and District Athletics.",
+        desc: "Active participation in Kadet Remaja Sekolah (KRS), Computer Science Society, and School Choir.",
         icon: <BookOpen className="w-4 h-4 text-[#fabb15]" />
       }
     ],
@@ -359,13 +361,13 @@ const LIFE_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#e84393]",
     badgeTextColor: "text-white",
     description: "Volunteering for flood disaster relief and community food drives.",
-    image: "/Volunteer_1.webp",
+    image: "/Volunteer_2.webp",
     modalImages: [
       "/Volunteer_1.webp",
       "/Volunteer_2.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
-    overview: "Active participation in local community aid initiatives, disaster flood relief cleanups in Temerloh & Mentakab, and distributing food packages to underprivileged families.",
+    overview: "Active participation in local community aid initiatives, disaster flood relief cleanups in Pahang, and distributing food packages to underprivileged families.",
     highlights: [
       {
         title: "Disaster Relief & Aid Distribution",
@@ -389,7 +391,7 @@ const LIFE_ITEMS: SimpleCardItem[] = [
       "/Speaker_2.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
-    overview: "Invited speaker for secondary school academic seminars delivering study strategies, SPM exam preparation techniques, and tech career roadmaps to Form 4 & Form 5 students.",
+    overview: "Voluntary speaker for secondary school academic seminars delivering study strategies, SPM exam preparation techniques, and tech career roadmaps to Form 4, Form 5 and Matriculation students.",
     highlights: [
       {
         title: "Student Study Skill Seminars",
@@ -401,12 +403,12 @@ const LIFE_ITEMS: SimpleCardItem[] = [
   },
   {
     id: "life-youth",
-    title: "YOUTH EVENT ORGANIZER",
-    subtitle: "Campus Tech & Cultural Festivals",
+    title: "YOUTH DEVELOPER",
+    subtitle: "Mentoring & Coaching",
     badge: "LEADERSHIP",
     badgeColor: "bg-[#00a8ff]",
     badgeTextColor: "text-white",
-    description: "Organizing committee lead for campus computer science hackathons and cultural events.",
+    description: "Organizing coaching programs for schools, SPM leavers and matriculations across the country.",
     image: "/YouthDev_1.webp",
     modalImages: [
       "/YouthDev_1.webp",
@@ -414,39 +416,44 @@ const LIFE_ITEMS: SimpleCardItem[] = [
       "/YouthDev_3.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
-    overview: "Served on organizing committees for UMPSA computer science hackathons, gaming tournaments, and orientation weeks managing stage logistics, sponsorship outreach, and participant registration.",
+    overview: "Organizing and leading youth coaching programs, motivational clinics, and academic guidance sessions for secondary schools, SPM leavers, and matriculation colleges across Malaysia.",
     highlights: [
       {
-        title: "Campus Hackathons & Tournaments",
-        desc: "Coordinated technical event setup, livestreaming production, and sponsor relations.",
+        title: "School & Matriculation Coaching Programs",
+        desc: "Facilitated academic motivation, study techniques, and university prep workshops for SPM candidates and matriculation students nationwide.",
         icon: <Users className="w-4 h-4 text-[#fabb15]" />
       }
     ],
-    tags: ["Event Planning", "Hackathon Logistics", "Campus Leadership", "Sponsorship Outreach"]
+    tags: ["Youth Coaching", "Student Mentorship", "SPM Guidance", "Matriculation Programs", "Leadership"]
   },
   {
     id: "life-program",
-    title: "STUDENT DEVELOPMENT PROGRAM",
-    subtitle: "Leadership Camps & Tech Innovation Workshops",
-    badge: "WORKSHOPS",
+    title: "PROGRAM MANAGER",
+    subtitle: "Alumni, Study Tips & Career Pathway Talks",
+    badge: "MANAGEMENT",
     badgeColor: "bg-[#6c5ce7]",
     badgeTextColor: "text-white",
-    description: "Attending national student leadership summits and technology innovation bootcamps.",
+    description: "Managed and coordinated student development programs including Alumni talks, study tips sessions, and career path talks.",
     image: "/ProgManager_1.webp",
     modalImages: [
       "/ProgManager_1.webp",
       "/ProgManager_2.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
-    overview: "Participated in national youth development bootcamps, soft-skill leadership retreats, and software developer meetups across Malaysia.",
+    overview: "Planned, organized, and executed multiple structured youth and student programs, managing end-to-end logistics, speaker coordination, and agenda delivery for Alumni sharing sessions, academic study strategy talks, and career pathway panels.",
     highlights: [
       {
-        title: "Youth Leadership Bootcamps",
-        desc: "Completed team-building retreats and software innovation workshops.",
+        title: "Alumni & Career Pathway Talks",
+        desc: "Coordinated alumni speaker lineups, panel discussions, and career sharing sessions to help students navigate higher education and job opportunities.",
+        icon: <Users className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Study Tips & Academic Seminars",
+        desc: "Organized interactive study skills workshops, time management talks, and exam preparation clinics for secondary and matriculation students.",
         icon: <Sparkles className="w-4 h-4 text-[#fabb15]" />
       }
     ],
-    tags: ["Leadership Camp", "Soft Skills", "Tech Workshops", "Networking"]
+    tags: ["Program Management", "Alumni Talks", "Study Tips Talks", "Career Path Talks", "Event Planning"]
   }
 ];
 
@@ -460,7 +467,7 @@ const FEATURED_PROJECTS: SimpleCardItem[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "An intelligent full-stack vehicle service and workshop management platform.",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000",
+    image: "/Automate_present.webp",
     overview: "AutoMate is an end-to-end vehicle service and workshop management platform engineered for Hazeeq's Software Engineering Bachelor's Degree Final Year Project (FYP). Multi-repository architecture connecting a main Laravel 10 MVC web app with Python Flask AI microservices executing Scikit-Learn Decision Tree classification algorithms for vehicle fault prediction.",
     highlights: [
       {
@@ -499,12 +506,17 @@ const FEATURED_PROJECTS: SimpleCardItem[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Enterprise software quality assurance & automated test execution suites.",
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1000",
+    image: "/Gientech_Tosca.webp",
+    modalImages: [
+      "/Gientech_Tosca.webp",
+      "/Gientech_Selenium.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Comprehensive enterprise automated test execution framework built with Perforce Perfecto Mobile Cloud, Selenium WebDriver, Java/Maven, and Tricentis Tosca (AS1 & AS2). Ensures seamless regression testing, real device mobile validation, and quality benchmarks for banking releases.",
     highlights: [
       {
         title: "Perfecto Mobile Cloud Testing",
-        desc: "Automated real-device testing for iOS and Android native/web apps on Perforce Perfecto Cloud.",
+        desc: "Automated real-device testing for iOS and Android native/web apps on Perfecto Cloud.",
         icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
       },
       {
