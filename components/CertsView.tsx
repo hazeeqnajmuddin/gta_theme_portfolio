@@ -40,6 +40,8 @@ export interface CertItem {
   skills: string[];
   badgeUrl?: string;
   badgeLinks?: CertBadgeLink[];
+  modalImages?: string[];
+  modalImageTitle?: string;
 }
 
 // Certifications Data
@@ -214,8 +216,15 @@ const CERTS: CertItem[] = [
     badgeText: "text-white",
     description1: "Select or press ENTER to view degree specialization details.",
     description2: "Universiti Malaysia Pahang Al-Sultan Abdullah (Oct 2022 - Present). Specializing in Full-Stack Web/Mobile Architecture, Machine Learning, and Software QA.",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600",
+    image: "/Degree_Dinner.PNG",
+    thumb: "/Degree_Dinner.PNG",
+    modalImages: [
+      "/Degree_Dinner.PNG",
+      "/Degree_Class.webp",
+      "/Degree_Coursemate.JPG",
+      "/Degree_Formal.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Pursuing Bachelor of Computer Science (Software Engineering) with Honours at Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA, Pekan) from Oct 2022 - Present. Specialized degree curriculum focusing on enterprise full-stack development, database architecture, machine learning integration, software testing methodologies, and UI/UX design.",
     highlights: [
       {
@@ -426,6 +435,8 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
           skills: activeCert.skills,
           badgeUrl: activeCert.badgeUrl,
           badgeLinks: activeCert.badgeLinks,
+          modalImages: activeCert.modalImages,
+          modalImageTitle: activeCert.modalImageTitle,
         } : null}
       />
     </GtaLayout>
