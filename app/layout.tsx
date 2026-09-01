@@ -59,10 +59,10 @@ export const metadata: Metadata = {
     siteName: "Hazeeq Najmuddin Portfolio",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200",
+        url: "https://hazeeq.my/gta_potrait.jpg",
         width: 1200,
         height: 630,
-        alt: "Hazeeq Najmuddin Portfolio Preview",
+        alt: "Muhammad Hazeeq Najmuddin Roshidi Portfolio Preview",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: "Muhammad Hazeeq Najmuddin Roshidi | Software Engineer and QA Specialist",
     description:
       "Full-Stack Software Engineer and QA Automation Specialist. Bachelor of Computer Science (Software Engineering) With Honors from UMPSA.",
-    images: ["https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200"],
+    images: ["https://hazeeq.my/gta_potrait.jpg"],
   },
   robots: {
     index: true,
@@ -95,7 +95,7 @@ const jsonLd = {
   name: "Muhammad Hazeeq Najmuddin Roshidi",
   alternateName: ["Hazeeq Najmuddin", "Hazeeq"],
   url: "https://hazeeq.my",
-  image: "https://hazeeq.my/Skechers_StaffCard.webp",
+  image: "https://hazeeq.my/gta_potrait.jpg",
   jobTitle: "Software Engineer & Quality Assurance Specialist",
   worksFor: {
     "@type": "Organization",

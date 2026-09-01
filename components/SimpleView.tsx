@@ -36,7 +36,7 @@ import {
   LayoutDashboard
 } from "lucide-react";
 import GtaModal from "./GtaModal";
-import { ModeToggleSwitch } from "./GtaLayout";
+import { ModeToggleSwitch, SoundMuteButton } from "./GtaLayout";
 import { gtaSound } from "@/utils/gtaSounds";
 
 // -------------------------------------------------------------
@@ -71,13 +71,80 @@ export interface SimpleCardItem {
 // ABOUT CARDS DATA
 const WORK_EXPERIENCES: SimpleCardItem[] = [
   {
-    id: "work-gientech",
+    id: "work-associate",
     title: "GIENTECH (UOB INTERMARK)",
-    subtitle: "Enterprise Software Quality Assurance Intern (Mac 2026 – Aug 2026)",
-    badge: "BANKING QA",
+    subtitle: "Test Analyst Associate (Sep 2026 – Present)",
+    badge: "FULL-TIME",
+    badgeColor: "bg-[#fabb15]",
+    badgeTextColor: "text-black",
+    description: "Enterprise software quality assurance & automated regression testing for UOB financial applications.",
+    image: "/Gientech_Selenium.webp",
+    modalImages: [
+      "/Gientech_Intermark.webp",
+      "/Gientech_Selenium.webp",
+      "/Gientech_Tosca.webp",
+      "/Gientech_Training.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
+    overview: "Software Test Analyst Associate at GienTech embedded in UOB banking operations at Intermark Tower Kuala Lumpur. Managing enterprise-level automated testing, regression suites, API validation, and banking application test execution using Selenium WebDriver, Tricentis Tosca, and Perfecto Mobile Cloud.",
+    highlights: [
+      {
+        title: "Enterprise Test Automation & Regression",
+        desc: "Executing automated regression suites and functional validation for UOB digital banking applications.",
+        icon: <ShieldCheck className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Tricentis Tosca AS1 & AS2 Test Suites",
+        desc: "Designing scalable model-based GUI/API automated test modules with centralized Test Data Management.",
+        icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Selenium WebDriver & Java Pipelines",
+        desc: "Authoring Page Object Model (POM) test automation suites with Maven build and CI/CD execution runners.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
+      }
+    ],
+    tags: ["Gientech", "UOB Intermark", "Test Analyst", "Tricentis Tosca", "Selenium WebDriver", "Banking QA"]
+  },
+  {
+    id: "work-freelance",
+    title: "FREELANCE SOFTWARE ENGINEER",
+    subtitle: "Full-Stack Web & Mobile Developer (2022 – Present)",
+    badge: "FULL-STACK",
+    badgeColor: "bg-[#2ecc71]",
+    badgeTextColor: "text-black",
+    description: "Developing custom web portals, mobile apps, and database systems for SME clients.",
+    image: "/Hazeeq_PC.webp",
+    modalImages: ["/Hazeeq_PC.webp", "/RCMS_home.png", "/RCMS_login.png"],
+    modalImageTitle: "GALLERY / IMAGES",
+    overview: "Independent software engineering contractor specializing in modern Laravel, React, Next.js, and Flutter cross-platform applications.",
+    highlights: [
+      {
+        title: "Custom Full-Stack Web Development",
+        desc: "Built custom Laravel 10 MVC portals and Next.js applications integrated with MySQL/PostgreSQL.",
+        icon: <Code2 className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Cross-Platform Mobile Apps",
+        desc: "Engineered Flutter mobile applications for iOS & Android with Firebase real-time sync.",
+        icon: <Smartphone className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Client System Delivery",
+        desc: "Delivered e-commerce platforms, booking engines, and CRM management dashboards for local businesses.",
+        icon: <Building2 className="w-4 h-4 text-[#2ecc71]" />
+      }
+    ],
+    tags: ["Laravel 10", "React / Next.js", "Flutter Mobile", "Tailwind CSS", "MySQL", "REST API"]
+  },
+  {
+    id: "work-intern",
+    title: "GIENTECH (UOB PROJECT)",
+    subtitle: "Software QA & Test Analyst Intern (Mac 2026 – Aug 2026)",
+    badge: "INTERNSHIP",
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
-    description: "Enterprise software quality assurance & automated testing for UOB financial applications.",
+    description: "Enterprise software quality assurance & automated testing internship for UOB financial applications.",
     image: "/Gientech_Training.webp",
     modalImages: [
       "/Gientech_Training.webp",
@@ -112,35 +179,6 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     tags: ["Tricentis Tosca AS1/AS2", "Perfecto Mobile Cloud", "Selenium WebDriver", "Java / Maven", "Banking QA", "Agile Sprints"]
   },
   {
-    id: "work-freelance",
-    title: "FREELANCE SOFTWARE ENGINEER",
-    subtitle: "Full-Stack Web & Mobile Developer (2022 – Present)",
-    badge: "FULL-STACK",
-    badgeColor: "bg-[#2ecc71]",
-    badgeTextColor: "text-black",
-    description: "Developing custom web portals, mobile apps, and database systems for SME clients.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000",
-    overview: "Independent software engineering contractor specializing in modern Laravel, React, Next.js, and Flutter cross-platform applications.",
-    highlights: [
-      {
-        title: "Custom Full-Stack Web Development",
-        desc: "Built custom Laravel 10 MVC portals and Next.js applications integrated with MySQL/PostgreSQL.",
-        icon: <Code2 className="w-4 h-4 text-[#fabb15]" />
-      },
-      {
-        title: "Cross-Platform Mobile Apps",
-        desc: "Engineered Flutter mobile applications for iOS & Android with Firebase real-time sync.",
-        icon: <Smartphone className="w-4 h-4 text-[#00a8ff]" />
-      },
-      {
-        title: "Client System Delivery",
-        desc: "Delivered e-commerce platforms, booking engines, and CRM management dashboards for local businesses.",
-        icon: <Building2 className="w-4 h-4 text-[#2ecc71]" />
-      }
-    ],
-    tags: ["Laravel 10", "React / Next.js", "Flutter Mobile", "Tailwind CSS", "MySQL", "REST API"]
-  },
-  {
     id: "work-skechers",
     title: "SKECHERS RETAIL CREW",
     subtitle: "Sales Associate & Customer Service Crew (Jan 2024 – Feb 2024)",
@@ -167,30 +205,6 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
     tags: ["Customer Relations", "POS Cashiering", "Stock Audit", "Teamwork"]
   },
   {
-    id: "work-shopee",
-    title: "SHOPEE WAREHOUSE OPERATIVE",
-    subtitle: "Logistics & Fulfillment Hub Assistant (Nov 2021 – Feb 2022)",
-    badge: "LOGISTICS",
-    badgeColor: "bg-[#ff7675]",
-    badgeTextColor: "text-white",
-    description: "Package sorting, barcode scanning, and order dispatch at Shopee logistics hub.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000",
-    overview: "Fast-paced e-commerce logistics hub operations managing barcode scanning, order parcel sorting, and daily shipping dispatches.",
-    highlights: [
-      {
-        title: "Order Fulfillment & Parcel Sorting",
-        desc: "Processed high-volume daily package sorting using handheld barcode scanners.",
-        icon: <Building2 className="w-4 h-4 text-[#fabb15]" />
-      },
-      {
-        title: "Logistics Dispatch Accuracy",
-        desc: "Maintained zero-error dispatch records for regional e-commerce delivery routes.",
-        icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
-      }
-    ],
-    tags: ["E-Commerce Logistics", "Barcode Scanning", "Order Dispatch", "Hub Operations"]
-  },
-  {
     id: "work-ole",
     title: "OLE OLE BALI SERVICE CREW",
     subtitle: "Hospitality & Restaurant Service Staff (Mar 2021 – Oct 2021)",
@@ -214,25 +228,6 @@ const WORK_EXPERIENCES: SimpleCardItem[] = [
       }
     ],
     tags: ["Hospitality", "Order Entry", "Customer Satisfaction", "Team Coordination"]
-  },
-  {
-    id: "work-waiter",
-    title: "AL-ANSAR STEAKHOUSE CREW",
-    subtitle: "Food Service & Kitchen Assistant (Form 4 – Form 5)",
-    badge: "FOOD SERVICE",
-    badgeColor: "bg-[#fdcb6e]",
-    badgeTextColor: "text-black",
-    description: "Kitchen helper and dining server during secondary school holidays.",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000",
-    overview: "Secondary school holiday employment gaining early work ethic, kitchen preparation skills, and customer service experience.",
-    highlights: [
-      {
-        title: "Early Work Ethic & Customer Service",
-        desc: "Managed kitchen food prep and table service during evening peak hours.",
-        icon: <Award className="w-4 h-4 text-[#fabb15]" />
-      }
-    ],
-    tags: ["Work Ethic", "Food Prep", "Customer Care"]
   }
 ];
 
@@ -714,7 +709,7 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
     description: "Officially certified by Amazon Web Services (AWS) in core cloud infrastructure.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000",
+    image: "/Cert_Cloud.webp",
     overview: "Officially certified AWS Cloud Practitioner (April 2026). Validates core cloud engineering knowledge across EC2 compute, S3 storage, RDS databases, VPC network isolation, IAM security policies, and cost optimization strategies.",
     highlights: [
       {
@@ -747,7 +742,12 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
     badgeColor: "bg-[#4a90e2]",
     badgeTextColor: "text-white",
     description: "Dual professional certifications in Tricentis Tosca test automation.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000",
+    image: "/Gientech_Tosca.webp",
+    modalImages: [
+      "/Gientech_Tosca.webp",
+      "/Gientech_Selenium.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
     overview: "Earned dual professional certifications from Tricentis Tosca: AS1 (Automating Web Application Testing) and AS2 (Optimizing Test Automation with Centralized Test Data). Demonstrates model-based test automation, dynamic test data management (TDS), and banking QA execution.",
     highlights: [
       {
@@ -992,8 +992,11 @@ export default function SimpleView() {
           </button>
         </nav>
 
-        {/* Right Toggle Back to GTA Interactive Mode */}
-        <ModeToggleSwitch isSimpleMode={true} />
+        {/* Right Toggle Back to GTA Interactive Mode & Mute Button */}
+        <div className="flex items-center gap-2 shrink-0">
+          <SoundMuteButton />
+          <ModeToggleSwitch isSimpleMode={true} />
+        </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-16 sm:space-y-24">

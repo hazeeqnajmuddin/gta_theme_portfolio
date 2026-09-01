@@ -4,9 +4,19 @@
 class GtaSoundEngine {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
+  private listeners: Set<(muted: boolean) => void> = new Set();
 
   constructor() {
     if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("gta_sound_muted");
+        if (saved !== null) {
+          this.isMuted = saved === "true";
+        }
+      } catch {
+        // Ignore localStorage error
+      }
+
       // Auto-unlock AudioContext on first user interaction
       const unlockAudio = () => {
         const c = this.getContext();
@@ -39,12 +49,52 @@ class GtaSoundEngine {
     return this.ctx;
   }
 
-  public toggleMute() {
+  public subscribe(listener: (muted: boolean) => void) {
+    this.listeners.add(listener);
+    return () => {
+      this.listeners.delete(listener);
+    };
+  }
+
+  private notify() {
+    this.listeners.forEach((fn) => {
+      try {
+        fn(this.isMuted);
+      } catch {
+        // Ignore listener error
+      }
+    });
+  }
+
+  public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("gta_sound_muted", String(this.isMuted));
+      } catch {
+        // Ignore localStorage error
+      }
+    }
+    this.notify();
+    if (!this.isMuted) {
+      this.playToggle();
+    }
     return this.isMuted;
   }
 
-  public getMutedState() {
+  public setMuted(muted: boolean) {
+    this.isMuted = muted;
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("gta_sound_muted", String(this.isMuted));
+      } catch {
+        // Ignore localStorage error
+      }
+    }
+    this.notify();
+  }
+
+  public getMutedState(): boolean {
     return this.isMuted;
   }
 

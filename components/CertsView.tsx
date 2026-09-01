@@ -53,8 +53,8 @@ const CERTS: CertItem[] = [
     badgeText: "text-black",
     description1: "Select or press ENTER to view AWS Certified Cloud Practitioner credentials.",
     description2: "Officially certified by Amazon Web Services (AWS). Demonstrates foundational expertise in cloud architecture concepts, core AWS services, IAM security governance, billing models, and infrastructure reliability.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600",
+    image: "/Cert_Cloud.webp",
+    thumb: "/Cert_Cloud.webp",
     overview: "Successfully earned the official AWS Certified Cloud Practitioner certification in April 2026. Validates core cloud engineering knowledge across EC2 compute, S3 storage, RDS databases, VPC network isolation, IAM security policies, and cost optimization strategies.",
     highlights: [
       {
@@ -93,8 +93,8 @@ const CERTS: CertItem[] = [
     badgeText: "text-white",
     description1: "Select or press ENTER to view Tricentis Tosca AS1 & AS2 certifications.",
     description2: "Dual certification in Tricentis Tosca: AS1 (Automating Web Application Testing) and AS2 (Optimizing Test Automation with Centralized Test Data).",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600",
+    image: "/Gientech_Tosca.webp",
+    thumb: "/Gientech_Tosca.webp",
     overview: "Earned dual professional certifications from Tricentis Tosca in March 2026: Automating Web Application Testing (AS1) and Optimizing Test Automation with Centralized Test Data (AS2). Demonstrates high proficiency in model-based test automation, dynamic test data management, and banking QA execution.",
     highlights: [
       {

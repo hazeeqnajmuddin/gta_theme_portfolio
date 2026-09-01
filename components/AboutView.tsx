@@ -305,81 +305,81 @@ const WORK_CARDS: AboutCard[] = [
     image: "/Gientech_Intermark.webp",
     gridClass: "col-start-1 col-span-1 row-start-1 row-span-4",
     titleClass: "text-4xl md:text-5xl lg:text-6xl",
-    overview: "Comprehensive professional journey spanning corporate banking tech internships (UOB), freelance engineering, logistics, customer service, and hospitality.",
+    overview: "Comprehensive professional journey spanning enterprise banking test analyst roles (Gientech/UOB), full-stack freelance engineering, retail operations, and hospitality.",
     highlights: [
       {
-        title: "Corporate Tech Internships",
-        desc: "Banking technology operations, quality assurance testing, and system verification for UOB.",
+        title: "Test Analyst Associate & Internships",
+        desc: "Enterprise banking technology QA, test automation frameworks, and system verification at Gientech (UOB).",
         icon: <Building2 className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Independent Freelancing",
-        desc: "Custom web development, hardware troubleshooting, and network configurations for clients.",
+        title: "Independent Full-Stack Freelancing",
+        desc: "Custom web development, database architectures, and digital systems for business clients.",
         icon: <Laptop className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Operational & Retail Roles",
-        desc: "Fast-paced retail operations (Skechers), logistics sorting (Shopee), and F&B hospitality (Ole Ole Bali).",
+        title: "Operational & Customer Experience",
+        desc: "Customer-facing retail operations (Skechers) and fast-paced F&B hospitality (Ole Ole Bali).",
         icon: <Briefcase className="w-4 h-4 text-[#2ecc71]" />
       }
     ],
-    tags: ["Banking Tech Intern", "Quality Assurance", "Freelance Software", "Customer Service", "Logistics Operations"],
-    nav: { w: "hero-main", d: "work-intern", s: "edu-main" }
+    tags: ["Test Analyst", "Banking Tech", "Quality Assurance", "Freelance Software", "Customer Service"],
+    nav: { w: "hero-main", d: "work-associate", s: "edu-main" }
   },
   {
-    id: "work-intern",
+    id: "work-associate",
     title: "GIENTECH (UOB PROJECT)",
-    subtitle: "Software QA & Test Analyst Intern",
-    badge: "UOB",
+    subtitle: "Test Analyst Associate",
+    badge: "FULL-TIME",
     badgeColor: "bg-[#fabb15]",
     badgeTextColor: "text-black",
-    description: "Role: Software QA & Testing Engineer Intern",
-    image: "/Gientech_Training.webp",
+    description: "Role: Software Test Analyst Associate",
+    image: "/Gientech_Selenium.webp",
     modalImages: [
-      "/Gientech_Training.webp",
       "/Gientech_Intermark.webp",
+      "/Gientech_Selenium.webp",
       "/Gientech_Tosca.webp",
-      "/Gientech_Selenium.webp"
+      "/Gientech_Training.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-1 row-span-2",
     titleClass: "text-3xl md:text-4xl",
-    overview: "Embedded within Gientech at UOB Intermark as a Software QA & Test Analyst Intern. Executed enterprise mobile & web automated testing using Perfecto Mobile Cloud, Selenium WebDriver, Tricentis Tosca (AS1 & AS2), and Java Maven pipelines for banking operations.",
+    overview: "Embedded within Gientech at UOB Intermark as a Software Test Analyst Associate. Leading enterprise mobile & web automated testing, model-based test design with Tricentis Tosca, Selenium WebDriver Java frameworks, and continuous regression delivery for banking applications.",
     highlights: [
       {
-        title: "Perfecto Mobile & Cloud Testing",
-        desc: "Automated & manual cloud-based mobile testing across iOS & Android real devices using Perforce Perfecto platform.",
-        icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
+        title: "Enterprise Test Automation & Regression",
+        desc: "Executing automated regression suites and functional validation for UOB digital banking applications.",
+        icon: <ShieldCheck className="w-4 h-4 text-[#fabb15]" />
       },
       {
-        title: "Tricentis Tosca AS1 & AS2 Automation",
-        desc: "Model-based test automation, dynamic Test Data Management (TDM), and automated regression runs.",
+        title: "Tricentis Tosca & Model-Based Automation",
+        desc: "Designing scalable model-based GUI/API automated test modules with centralized Test Data Management.",
         icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Selenium WebDriver & Java Maven",
-        desc: "Developed cross-browser web testing automation frameworks with Java Maven build runners.",
+        title: "Selenium WebDriver & Java Pipelines",
+        desc: "Authoring Page Object Model (POM) test automation suites with Maven build and CI/CD execution runners.",
         icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
-      },
-      {
-        title: "UOB Corporate Banking QA",
-        desc: "Defect logging, test case design, and regression suite execution for core enterprise banking applications.",
-        icon: <Building2 className="w-4 h-4 text-purple-400" />
       }
     ],
-    tags: ["UOB Intermark", "Gientech", "Perfecto Mobile", "Tricentis Tosca", "Selenium", "Appium", "Banking QA"],
+    tags: ["Gientech", "UOB Intermark", "Test Analyst", "Tricentis Tosca", "Selenium WebDriver", "Banking QA"],
     projectLinks: [
       { label: "VIEW QA AUTOMATION SUITE PROJECT", path: "/projects?active=qa-suite" },
       { label: "VIEW TOSCA AS1 & AS2 CERTIFICATIONS", path: "/certs?active=tosca-as1-as2" }
     ],
-    nav: { w: "hero-main", a: "work-main", d: "work-skechers", s: "work-freelance" }
+    nav: { w: "hero-main", a: "work-main", d: "work-intern", s: "work-freelance" }
   },
   {
     id: "work-freelance",
     title: "FREELANCE FULL-STACK DEVELOPER",
     subtitle: "Full-Stack Web & Mobile Developer",
+    badge: "FULL-STACK",
+    badgeColor: "bg-[#2ecc71]",
+    badgeTextColor: "text-black",
     description: "Freelance Full-Stack Web Developer",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000",
+    image: "/Hazeeq_PC.webp",
+    modalImages: ["/Hazeeq_PC.webp", "/RCMS_home.png", "/RCMS_login.png"],
+    modalImageTitle: "GALLERY / IMAGES",
     gridClass: "col-start-2 col-span-1 row-start-3 row-span-2",
     titleClass: "text-3xl md:text-4xl",
     overview: "Engineered and deployed the Rahmah Consultancy Management System (RCMS) — a PDPA-compliant full-stack Laravel platform on DigitalOcean. Digitized manual intake operations, built admin dashboards, automated PDF document bundle generation, and authored 50+ E2E test cases.",
@@ -404,17 +404,63 @@ const WORK_CARDS: AboutCard[] = [
     projectLinks: [
       { label: "VIEW RCMS SYSTEM PROJECT", path: "/projects?active=rcms-crm" }
     ],
-    nav: { w: "work-intern", a: "work-main", d: "work-ole", s: "edu-degree" }
+    nav: { w: "work-associate", a: "work-main", d: "work-skechers", s: "edu-degree" }
+  },
+  {
+    id: "work-intern",
+    title: "GIENTECH (UOB PROJECT)",
+    subtitle: "QA & Test Analyst Intern",
+    badge: "INTERNSHIP",
+    badgeColor: "bg-[#4a90e2]",
+    badgeTextColor: "text-white",
+    description: "Role: Software QA & Testing Engineer Intern",
+    image: "/Gientech_Training.webp",
+    modalImages: [
+      "/Gientech_Training.webp",
+      "/Gientech_Intermark.webp",
+      "/Gientech_Tosca.webp",
+      "/Gientech_Selenium.webp"
+    ],
+    modalImageTitle: "GALLERY / IMAGES",
+    gridClass: "col-start-3 col-span-1 row-start-1 row-span-2",
+    titleClass: "text-3xl md:text-4xl",
+    overview: "Embedded within Gientech at UOB Intermark as a Software QA & Test Analyst Intern. Executed enterprise mobile & web automated testing using Perfecto Mobile Cloud, Selenium WebDriver, Tricentis Tosca (AS1 & AS2), and Java Maven pipelines for banking operations.",
+    highlights: [
+      {
+        title: "Perfecto Mobile & Cloud Testing",
+        desc: "Automated & manual cloud-based mobile testing across iOS & Android real devices using Perforce Perfecto platform.",
+        icon: <Smartphone className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Tricentis Tosca AS1 & AS2 Automation",
+        desc: "Model-based test automation, dynamic Test Data Management (TDM), and automated regression runs.",
+        icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
+      },
+      {
+        title: "Selenium WebDriver & Java Maven",
+        desc: "Developed cross-browser web testing automation frameworks with Java Maven build runners.",
+        icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
+      }
+    ],
+    tags: ["UOB Intermark", "Gientech", "Perfecto Mobile", "Tricentis Tosca", "Selenium", "Banking QA"],
+    projectLinks: [
+      { label: "VIEW QA AUTOMATION SUITE PROJECT", path: "/projects?active=qa-suite" },
+      { label: "VIEW TOSCA AS1 & AS2 CERTIFICATIONS", path: "/certs?active=tosca-as1-as2" }
+    ],
+    nav: { w: "hero-main", a: "work-associate", s: "work-skechers" }
   },
   {
     id: "work-skechers",
     title: "SKECHERS RETAIL",
     subtitle: "Retail Sales & Customer Specialist",
+    badge: "RETAIL",
+    badgeColor: "bg-[#e17055]",
+    badgeTextColor: "text-white",
     description: "Role: Retail Sales & Customer Specialist",
     image: "/Skechers_OutletSign.jpg",
     modalImages: ["/Skechers_StaffCard.webp", "/Skechers_Outlet.webp"],
     modalImageTitle: "GALLERY / IMAGES",
-    gridClass: "col-start-3 col-span-1 row-start-1 row-span-1",
+    gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
     titleClass: "text-xl md:text-2xl",
     overview: "Frontline retail experience managing customer interactions, inventory stocking, point-of-sale (POS) operations, and visual merchandising.",
     highlights: [
@@ -430,36 +476,15 @@ const WORK_CARDS: AboutCard[] = [
       }
     ],
     tags: ["Retail Operations", "Customer Service", "Inventory Indexing", "POS Operations"],
-    nav: { w: "hero-main", a: "work-intern", s: "work-shopee" }
-  },
-  {
-    id: "work-shopee",
-    title: "SHOPEE HUB & LOGISTICS",
-    subtitle: "Logistics & Warehouse Operations Specialist",
-    description: "Role: Logistics & Warehouse Operations Specialist",
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1000",
-    gridClass: "col-start-3 col-span-1 row-start-2 row-span-1",
-    titleClass: "text-xl md:text-2xl",
-    overview: "High-speed warehouse sorting operations at Shopee logistics hubs, ensuring accurate parcel categorization and rapid dispatch.",
-    highlights: [
-      {
-        title: "High-Volume Package Sorting",
-        desc: "Rapid barcode scanning, regional hub destination routing, and damage inspection.",
-        icon: <PackageCheck className="w-4 h-4 text-[#fabb15]" />
-      },
-      {
-        title: "Team Throughput Efficiency",
-        desc: "Meeting strict hourly package throughput metrics in a fast-paced environment.",
-        icon: <Zap className="w-4 h-4 text-[#00a8ff]" />
-      }
-    ],
-    tags: ["Logistics Sorting", "Warehouse Hub", "Barcode Scanning", "Target Throughput"],
-    nav: { w: "work-skechers", a: "work-intern", s: "work-ole" }
+    nav: { w: "work-intern", a: "work-freelance", s: "work-ole" }
   },
   {
     id: "work-ole",
     title: "OLE OLE BALI",
     subtitle: "Waiter & Kitchen Helper",
+    badge: "HOSPITALITY",
+    badgeColor: "bg-[#00cec9]",
+    badgeTextColor: "text-black",
     description: "Role: Waiter & Kitchen Helper",
     image: "/OOB_sign.png",
     modalImages: [
@@ -468,7 +493,7 @@ const WORK_CARDS: AboutCard[] = [
       "/OOB_Selfie.webp"
     ],
     modalImageTitle: "GALLERY / IMAGES",
-    gridClass: "col-start-3 col-span-1 row-start-3 row-span-1",
+    gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
     titleClass: "text-xl md:text-2xl",
     overview: "Hospitality experience in upscale dining, delivering attentive table service, managing guest orders, supporting kitchen food preparation, and maintaining dining floor workflows.",
     highlights: [
@@ -484,31 +509,7 @@ const WORK_CARDS: AboutCard[] = [
       }
     ],
     tags: ["F&B Hospitality", "Dining Service", "Kitchen Prep", "Teamwork"],
-    nav: { w: "work-shopee", a: "work-freelance", s: "work-waiter" }
-  },
-  {
-    id: "work-waiter",
-    title: "AZEEZAH AL-ANSAR STEAKHOUSE",
-    subtitle: "Steakhouse Dining Waiter & Service Staff",
-    description: "Role: Steakhouse Dining Waiter & Service Staff",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000",
-    gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
-    titleClass: "text-xl md:text-2xl",
-    overview: "Experience in high-tempo steakhouse dining, handling order precision, table setups, and fast-paced service delivery.",
-    highlights: [
-      {
-        title: "Order Precision & Flow",
-        desc: "Accurate guest order entry, steak temperature preferences, and table timing.",
-        icon: <Receipt className="w-4 h-4 text-[#fabb15]" />
-      },
-      {
-        title: "High-Pressure Service",
-        desc: "Maintaining service standards under pressure during busy weekend shifts.",
-        icon: <Flame className="w-4 h-4 text-[#00a8ff]" />
-      }
-    ],
-    tags: ["Front of House", "Order Precision", "Multitasking", "Customer Care"],
-    nav: { w: "work-ole", a: "work-freelance", s: "edu-matrics" }
+    nav: { w: "work-skechers", a: "work-freelance", s: "edu-matrics" }
   }
 ];
 
@@ -894,7 +895,7 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
 
         {/* 2-Column Grid matching sketch */}
         <div className="flex-[4] min-h-0 grid grid-cols-2 gap-1.5">
-          {/* Left Column: GIENTECH (UOB) & FREELANCE */}
+          {/* Left Column: TEST ANALYST ASSOCIATE & FREELANCE */}
           <div className="grid grid-rows-2 gap-1.5 h-full min-h-0">
             <div className="w-full h-full min-h-0">
               {renderCard(WORK_CARDS[1], "w-full h-full")}
@@ -904,19 +905,16 @@ function AboutContent({ onNavigate, activeTab = "/about", initialActiveId }: Abo
             </div>
           </div>
 
-          {/* Right Column: SKECHERS, SHOPEE, OLE OLE BALI, AL-ANSAR STEAKHOUSE */}
+          {/* Right Column: INTERNSHIP (spans 2 rows), SKECHERS, OLE OLE BALI */}
           <div className="grid grid-rows-4 gap-1.5 h-full min-h-0">
-            <div className="w-full h-full min-h-0">
+            <div className="row-span-2 w-full h-full min-h-0">
               {renderCard(WORK_CARDS[3], "w-full h-full")}
             </div>
-            <div className="w-full h-full min-h-0">
+            <div className="row-span-1 w-full h-full min-h-0">
               {renderCard(WORK_CARDS[4], "w-full h-full")}
             </div>
-            <div className="w-full h-full min-h-0">
+            <div className="row-span-1 w-full h-full min-h-0">
               {renderCard(WORK_CARDS[5], "w-full h-full")}
-            </div>
-            <div className="w-full h-full min-h-0">
-              {renderCard(WORK_CARDS[6], "w-full h-full")}
             </div>
           </div>
         </div>

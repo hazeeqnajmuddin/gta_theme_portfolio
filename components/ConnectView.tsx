@@ -190,7 +190,7 @@ const CARDS: ConnectCard[] = [
     badgeColor: "bg-[#00a8ff]",
     badgeTextColor: "text-white",
     description: "Select to view other social media links, messaging apps, and portals.",
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000",
+    image: "/Socials_logo.jpg",
     gridClass: "col-start-3 col-span-1 row-start-4 row-span-1",
     nav: { w: "resume", a: "github" },
   },
@@ -498,7 +498,7 @@ export default function ConnectView({ onNavigate, activeTab = "/connect" }: Conn
                 {/* Image Banner */}
                 <div className="relative w-full h-36 sm:h-56 rounded-sm overflow-hidden border border-white/10 shadow-lg">
                   <img 
-                    src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000" 
+                    src="/Socials_logo.jpg" 
                     alt="Social Networks" 
                     className="w-full h-full object-cover"
                   />
