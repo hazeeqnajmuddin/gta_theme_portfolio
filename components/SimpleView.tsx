@@ -770,13 +770,13 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
   {
     id: "google-ux",
     title: "GOOGLE UX DESIGN CERTIFICATION",
-    subtitle: "Google via Coursera UX Professional Courses (Jun - Jul 2026)",
+    subtitle: "Google via Coursera UX Professional Courses (Jun - Sep 2026)",
     badge: "GOOGLE UX",
     badgeColor: "bg-purple-600",
     badgeTextColor: "text-white",
-    description: "Certified by Google in Foundations of UX Design and Empathize, Define, and Ideate process.",
+    description: "Certified by Google in Foundations of UX Design, Empathize/Define/Ideate, and Build Wireframes & Low-Fidelity Prototypes.",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000",
-    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' and 'Start the UX Design Process: Empathize, Define, and Ideate'. Covers user-centered design, empathy mapping, user personas, wireframing, and interactive prototyping in Figma.",
+    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026), 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026), and 'Build Wireframes and Low-Fidelity Prototypes' (September 2026). Covers user-centered design, empathy mapping, user personas, storyboarding, paper wireframing, and interactive prototyping in Figma.",
     highlights: [
       {
         title: "Foundations of User Experience (UX) Design",
@@ -789,15 +789,16 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
         icon: <BookOpen className="w-4 h-4 text-[#00a8ff]" />
       },
       {
-        title: "Wireframing & Interactive Prototyping",
-        desc: "Building low-fidelity paper wireframes and high-fidelity interactive digital prototypes in Figma.",
+        title: "Wireframing & Low-Fidelity Prototyping",
+        desc: "Creating storyboards, paper wireframes, digital wireframes, and interactive low-fidelity prototypes in Figma.",
         icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
       }
     ],
-    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Usability Testing"],
+    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Storyboarding", "Usability Testing"],
     badgeLinks: [
       { label: "VERIFY FOUNDATIONS OF UX", url: "https://www.coursera.org/account/accomplishments/verify/85A0AOC3RPPJ" },
-      { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" }
+      { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" },
+      { label: "VERIFY WIREFRAMES & PROTOTYPES", url: "https://coursera.org/share/7d2bda6a1d4b6f618ad91ff048555fe8" }
     ]
   },
   {
