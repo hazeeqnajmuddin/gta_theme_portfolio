@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, Suspense } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import GtaLayout from "./GtaLayout";
 import GtaModal from "./GtaModal";
 import { useInputDeviceMode } from "@/hooks/useInputDeviceMode";
@@ -9,7 +10,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { 
   Cloud, Server, ShieldCheck, DollarSign, Building2, Code2, 
   Award, Briefcase, CheckCircle2, Terminal, Layers, FileCheck, 
-  GraduationCap, Laptop, BarChart3, FileText
+  GraduationCap, Laptop, BarChart3, FileText,
+  ArrowRight, ChevronRight
 } from "lucide-react";
 import { gtaSound } from "@/utils/gtaSounds";
 
@@ -318,11 +320,25 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
     }
   };
 
+  const [showSwipeHint, setShowSwipeHint] = useState<boolean>(true);
+  const [canScrollRight, setCanScrollRight] = useState<boolean>(true);
+
+  const handleCarouselScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, scrollWidth, clientWidth } = e.currentTarget;
+    setShowSwipeHint(scrollLeft < 30);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 20);
+  };
+
   return (
     <GtaLayout 
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
-      footerText="Select or press ENTER to inspect certification credentials."
+      footerText={
+        <span>
+          <span className="hidden md:inline">Select or press ENTER to inspect certification credentials.</span>
+          <span className="inline md:hidden">Slide to left to view other cards • Tap to inspect details</span>
+        </span>
+      }
       mainContainerClass="flex-1 flex flex-col gap-1.5 md:gap-2 min-h-0 overflow-hidden mb-2 md:mb-3"
     >
       {/* Top Hero Section */}
@@ -368,55 +384,101 @@ function CertsContent({ onNavigate, activeTab = "/certs", initialActiveId }: Cer
         </div>
       </div>
 
-      {/* Bottom Horizontal Carousel */}
-      <div 
-        ref={carouselRef}
-        onWheel={handleScroll}
-        className="h-44 md:h-52 w-full flex gap-3 overflow-x-auto overflow-y-hidden pb-2 select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-      >
-        {CERTS.map((cert) => {
-          const isActive = activeCert.id === cert.id;
-          
-          return (
-            <div
-              key={cert.id}
-              onMouseEnter={() => {
-                if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
-                  if (activeCert.id !== cert.id) {
-                    gtaSound.playHover();
-                    if (!isKeyboardMode.current) {
-                      setActiveCert(cert);
+      {/* Bottom Horizontal Carousel Container */}
+      <div className="relative w-full shrink-0">
+        {/* Mobile Slide Left Hint Pill */}
+        <AnimatePresence>
+          {showSwipeHint && (
+            <motion.div
+              initial={{ opacity: 0, y: -4, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden absolute top-2 right-2 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 bg-black/85 backdrop-blur-md border border-[#fabb15] text-[#fabb15] text-[10px] font-gta tracking-wider font-bold rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
+            >
+              <span>SLIDE TO LEFT</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+                className="inline-flex items-center"
+              >
+                <ArrowRight className="w-3 h-3 text-[#fabb15]" />
+              </motion.span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mobile Right Edge Overflow Fade & Indicator */}
+        <AnimatePresence>
+          {canScrollRight && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="md:hidden absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-black/85 via-black/40 to-transparent pointer-events-none z-10 flex items-center justify-end pr-1"
+            >
+              <motion.div
+                animate={{ x: [-2, 3, -2], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                className="text-[#fabb15]"
+              >
+                <ChevronRight className="w-5 h-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Bottom Horizontal Carousel */}
+        <div 
+          ref={carouselRef}
+          onWheel={handleScroll}
+          onScroll={handleCarouselScroll}
+          className="h-44 md:h-52 w-full flex gap-3 overflow-x-auto overflow-y-hidden pb-2 select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        >
+          {CERTS.map((cert) => {
+            const isActive = activeCert.id === cert.id;
+            
+            return (
+              <div
+                key={cert.id}
+                onMouseEnter={() => {
+                  if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+                    if (activeCert.id !== cert.id) {
+                      gtaSound.playHover();
+                      if (!isKeyboardMode.current) {
+                        setActiveCert(cert);
+                      }
                     }
                   }
-                }
-              }}
-              onClick={() => handleCardClick(cert)}
-              className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 border border-white/20 md:border-[3px] ${
-                isActive 
-                  ? "md:border-white z-10 md:scale-[1.02]" 
-                  : "md:border-transparent opacity-100 md:opacity-60 hover:opacity-100"
-              }`}
-            >
-              <img
-                src={cert.thumb}
-                alt={cert.title}
-                className="absolute inset-0 w-full h-full object-cover"
-                draggable={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent md:from-black/90 md:via-black/20" />
-              
-              {cert.badge && (
-                <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] font-bold tracking-wider ${cert.badgeColor} ${cert.badgeText}`}>
-                  {cert.badge}
-                </div>
-              )}
-              
-              <h3 className="absolute bottom-2 left-3 font-gta text-xl md:text-2xl text-white tracking-wide uppercase drop-shadow-md">
-                {cert.title}
-              </h3>
-            </div>
-          );
-        })}
+                }}
+                onClick={() => handleCardClick(cert)}
+                className={`relative flex-shrink-0 w-80 md:w-96 h-full cursor-pointer overflow-hidden transition-all duration-200 border border-white/20 md:border-[3px] ${
+                  isActive 
+                    ? "md:border-white z-10 md:scale-[1.02]" 
+                    : "md:border-transparent opacity-100 md:opacity-60 hover:opacity-100"
+                }`}
+              >
+                <img
+                  src={cert.thumb}
+                  alt={cert.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  draggable={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent md:from-black/90 md:via-black/20" />
+                
+                {cert.badge && (
+                  <div className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] font-bold tracking-wider ${cert.badgeColor} ${cert.badgeText}`}>
+                    {cert.badge}
+                  </div>
+                )}
+                
+                <h3 className="absolute bottom-2 left-3 font-gta text-xl md:text-2xl text-white tracking-wide uppercase drop-shadow-md">
+                  {cert.title}
+                </h3>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* GTA V STYLED POP-UP MODAL */}

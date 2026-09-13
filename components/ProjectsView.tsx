@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, Suspense } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import GtaLayout from "./GtaLayout";
 import GtaModal from "./GtaModal";
 import { useInputDeviceMode } from "@/hooks/useInputDeviceMode";
@@ -9,7 +10,8 @@ import { useWasdNavigation } from "@/hooks/useWasdNavigation";
 import { 
   Wrench, Cpu, Smartphone, Server, CheckCircle2, 
   Code2, Layers, Calendar, LayoutDashboard, Lock, 
-  Database, FileText, BarChart3, Users
+  Database, FileText, BarChart3, Users,
+  ArrowRight, ChevronRight
 } from "lucide-react";
 import { gtaSound } from "@/utils/gtaSounds";
 
@@ -353,11 +355,25 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
     }
   };
 
+  const [showSwipeHint, setShowSwipeHint] = useState<boolean>(true);
+  const [canScrollRight, setCanScrollRight] = useState<boolean>(true);
+
+  const handleCarouselScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, scrollWidth, clientWidth } = e.currentTarget;
+    setShowSwipeHint(scrollLeft < 30);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 20);
+  };
+
   return (
     <GtaLayout 
       activeTab={activeTab}
       onTabChange={(path) => onNavigate ? onNavigate(path) : router.push(path)}
-      footerText="Select or press ENTER to inspect project details."
+      footerText={
+        <span>
+          <span className="hidden md:inline">Select or press ENTER to inspect project details.</span>
+          <span className="inline md:hidden">Slide to left to view other cards • Tap to inspect details</span>
+        </span>
+      }
       mainContainerClass="flex-1 flex flex-col gap-1.5 md:gap-2 min-h-0 overflow-hidden mb-2 md:mb-3"
     >
       {/* Top Hero Section */}
@@ -403,12 +419,57 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
         </div>
       </div>
 
-      {/* Bottom Horizontal Carousel */}
-      <div 
-        ref={carouselRef}
-        onWheel={handleScroll}
-        className="h-44 md:h-52 w-full flex gap-3 overflow-x-auto overflow-y-hidden pb-2 select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-      >
+      {/* Bottom Horizontal Carousel Container */}
+      <div className="relative w-full shrink-0">
+        {/* Mobile Slide Left Hint Pill */}
+        <AnimatePresence>
+          {showSwipeHint && (
+            <motion.div
+              initial={{ opacity: 0, y: -4, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden absolute top-2 right-2 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 bg-black/85 backdrop-blur-md border border-[#fabb15] text-[#fabb15] text-[10px] font-gta tracking-wider font-bold rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
+            >
+              <span>SLIDE TO LEFT</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+                className="inline-flex items-center"
+              >
+                <ArrowRight className="w-3 h-3 text-[#fabb15]" />
+              </motion.span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mobile Right Edge Overflow Fade & Indicator */}
+        <AnimatePresence>
+          {canScrollRight && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="md:hidden absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-black/85 via-black/40 to-transparent pointer-events-none z-10 flex items-center justify-end pr-1"
+            >
+              <motion.div
+                animate={{ x: [-2, 3, -2], opacity: [0.5, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                className="text-[#fabb15]"
+              >
+                <ChevronRight className="w-5 h-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Bottom Horizontal Carousel */}
+        <div 
+          ref={carouselRef}
+          onWheel={handleScroll}
+          onScroll={handleCarouselScroll}
+          className="h-44 md:h-52 w-full flex gap-3 overflow-x-auto overflow-y-hidden pb-2 select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        >
         {PROJECTS.map((project) => {
           const isActive = activeProject.id === project.id;
           
@@ -452,6 +513,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
             </div>
           );
         })}
+        </div>
       </div>
 
       {/* GTA V STYLED POP-UP MODAL */}
