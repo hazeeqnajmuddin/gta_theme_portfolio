@@ -371,7 +371,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
       footerText={
         <span>
           <span className="hidden md:inline">Select or press ENTER to inspect project details.</span>
-          <span className="inline md:hidden">Slide to left to view other cards • Tap to inspect details</span>
+          <span className="inline md:hidden">Slide to view other cards • Tap to inspect details</span>
         </span>
       }
       mainContainerClass="flex-1 flex flex-col gap-1.5 md:gap-2 min-h-0 overflow-hidden mb-2 md:mb-3"
@@ -421,7 +421,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
 
       {/* Bottom Horizontal Carousel Container */}
       <div className="relative w-full shrink-0">
-        {/* Mobile Slide Left Hint Pill */}
+        {/* Slide / Scroll Hint Pill (Mobile: SLIDE, Desktop: SCROLL) */}
         <AnimatePresence>
           {showSwipeHint && (
             <motion.div
@@ -429,35 +429,36 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-2 right-2 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 bg-black/85 backdrop-blur-md border border-[#fabb15] text-[#fabb15] text-[10px] font-gta tracking-wider font-bold rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
+              className="absolute top-2 right-2 md:top-3 md:right-3 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 bg-black/85 backdrop-blur-md border border-[#fabb15] text-[#fabb15] text-[10px] md:text-xs font-gta tracking-wider font-bold rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
             >
-              <span>SLIDE TO LEFT</span>
+              <span className="md:hidden">SLIDE</span>
+              <span className="hidden md:inline">SCROLL</span>
               <motion.span
                 animate={{ x: [0, 4, 0] }}
                 transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
                 className="inline-flex items-center"
               >
-                <ArrowRight className="w-3 h-3 text-[#fabb15]" />
+                <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 text-[#fabb15]" />
               </motion.span>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Mobile Right Edge Overflow Fade & Indicator */}
+        {/* Right Edge Overflow Fade & Indicator (Mobile & Desktop) */}
         <AnimatePresence>
           {canScrollRight && (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="md:hidden absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-black/85 via-black/40 to-transparent pointer-events-none z-10 flex items-center justify-end pr-1"
+              className="absolute right-0 top-0 bottom-2 w-10 md:w-16 bg-gradient-to-l from-black/85 via-black/40 to-transparent pointer-events-none z-10 flex items-center justify-end pr-1 md:pr-3"
             >
               <motion.div
-                animate={{ x: [-2, 3, -2], opacity: [0.5, 1, 0.5] }}
+                animate={{ x: [-2, 4, -2], opacity: [0.5, 1, 0.5] }}
                 transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
                 className="text-[#fabb15]"
               >
-                <ChevronRight className="w-5 h-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+                <ChevronRight className="w-5 h-5 md:w-7 md:h-7 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
               </motion.div>
             </motion.div>
           )}
