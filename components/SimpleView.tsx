@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { 
   Code2, 
   CheckCircle2, 
@@ -837,6 +838,16 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
   }
 ];
 
+const SIMPLE_NAV_SECTIONS = [
+  { id: "about", label: "ABOUT" },
+  { id: "work", label: "EXPERIENCE" },
+  { id: "education", label: "EDUCATION" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "certs", label: "CERTS" },
+  { id: "life", label: "LIFE" },
+  { id: "connect", label: "CONNECT" },
+];
+
 export default function SimpleView() {
   const router = useRouter();
   const [selectedCard, setSelectedCard] = useState<SimpleCardItem | null>(null);
@@ -914,83 +925,38 @@ export default function SimpleView() {
               HAZEEQ NAJMUDDIN
             </div>
             <div className="text-[10px] sm:text-xs text-[#fabb15] font-bold tracking-widest uppercase">
-              RECRUITER SIMPLE MODE
+              SIMPLE MODE
             </div>
           </div>
         </div>
 
         {/* Center Quick Jump Section Pills */}
-        <nav className="hidden lg:flex items-center gap-1.5 bg-white/5 border border-white/10 p-1 rounded-sm text-xs font-medium">
-          <button 
-            onClick={() => scrollToSection("about")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "about"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            ABOUT
-          </button>
-          <button 
-            onClick={() => scrollToSection("work")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "work"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            EXPERIENCE
-          </button>
-          <button 
-            onClick={() => scrollToSection("education")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "education"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            EDUCATION
-          </button>
-          <button 
-            onClick={() => scrollToSection("projects")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "projects"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            PROJECTS
-          </button>
-          <button 
-            onClick={() => scrollToSection("certs")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "certs"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            CERTS
-          </button>
-          <button 
-            onClick={() => scrollToSection("life")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "life"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            LIFE
-          </button>
-          <button 
-            onClick={() => scrollToSection("connect")} 
-            className={`px-3 py-1 font-gta tracking-wider text-xs font-bold rounded transition-all ${
-              activeSection === "connect"
-                ? "bg-[#fabb15] text-black shadow-md scale-105"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            CONNECT
-          </button>
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 py-1">
+          {SIMPLE_NAV_SECTIONS.map((sec) => {
+            const isActive = activeSection === sec.id;
+            return (
+              <motion.button
+                key={sec.id}
+                onClick={() => scrollToSection(sec.id)}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.95 }}
+                className={`relative px-3.5 sm:px-4 py-1.5 font-gta tracking-wider text-sm sm:text-base font-bold select-none cursor-pointer transition-colors duration-200 ${
+                  isActive
+                    ? "text-black"
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeSimpleSectionPill"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    className="absolute inset-0 bg-[#fabb15] rounded-sm shadow-md z-0"
+                  />
+                )}
+                <span className="relative z-10">{sec.label}</span>
+              </motion.button>
+            );
+          })}
         </nav>
 
         {/* Right Toggle Back to GTA Interactive Mode & Mute Button */}
@@ -1010,11 +976,6 @@ export default function SimpleView() {
             <div className="absolute top-0 right-0 -mt-10 -mr-10 w-80 h-80 bg-[#fabb15]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fabb15]/20 border border-[#fabb15]/40 text-[#fabb15] text-xs font-bold font-gta tracking-wider rounded-sm">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>OPEN TO FULL-STACK & QA OPPORTUNITIES</span>
-              </div>
-
               <div className="space-y-2">
                 <h1 className="font-gta text-4xl sm:text-6xl md:text-7xl text-white tracking-tight leading-none drop-shadow-md">
                   MUHAMMAD HAZEEQ NAJMUDDIN

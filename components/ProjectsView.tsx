@@ -398,7 +398,7 @@ function ProjectsContent({ onNavigate, activeTab = "/projects", initialActiveId,
             className="mt-5 px-4 py-2 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-lg md:text-xl tracking-wider rounded-sm shadow-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
           >
             <span>VIEW SYSTEM DETAILS</span>
-            <span className="text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">ENTER</span>
+            <span className="hidden md:inline-block text-xs bg-black text-white px-2 py-0.5 rounded font-sans font-bold">ENTER</span>
           </button>
         </div>
       </div>

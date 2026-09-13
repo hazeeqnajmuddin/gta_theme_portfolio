@@ -129,7 +129,7 @@ export default function GtaWelcomeModal() {
                     </div>
                     <div>
                       <div className="font-bold text-white uppercase text-xs">DUAL MODE SWITCH</div>
-                      <div className="text-gray-400 text-[11px]">Tap mode switch at top right to view Recruiter Simple mode</div>
+                      <div className="text-gray-400 text-[11px]">Tap mode switch at top right to view Simple mode</div>
                     </div>
                   </div>
 

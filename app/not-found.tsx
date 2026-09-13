@@ -72,12 +72,12 @@ export default function NotFound() {
             className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-gta text-lg tracking-wider rounded-sm border border-white/20 flex items-center justify-center gap-2 transition-all hover:scale-105"
           >
             <FileText className="w-5 h-5 text-[#fabb15]" />
-            <span>RECRUITER MODE</span>
+            <span>SIMPLE MODE</span>
           </Link>
         </div>
 
         {/* Footer Hint */}
-        <p className="text-gray-400 text-xs tracking-wider pt-4">
+        <p className="hidden md:block text-gray-400 text-xs tracking-wider pt-4">
           Press <kbd className="px-1.5 py-0.5 bg-white/20 text-white rounded font-mono font-bold">ENTER</kbd> to respawn or <kbd className="px-1.5 py-0.5 bg-[#fabb15] text-black rounded font-mono font-bold">M</kbd> for Simple Mode.
         </p>
       </div>
