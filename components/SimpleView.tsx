@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Code2, 
   CheckCircle2, 
@@ -18,23 +18,25 @@ import {
   Send, 
   Mail, 
   Download, 
-  ExternalLink,
-  ChevronUp,
-  Gamepad2,
-  FileText,
-  Wrench,
-  Cpu,
-  Server,
-  Smartphone,
-  Layers,
-  Cloud,
-  ShieldCheck,
-  Terminal,
-  Calendar,
-  Database,
-  Lock,
-  BarChart3,
-  LayoutDashboard
+  ExternalLink, 
+  ChevronUp, 
+  Gamepad2, 
+  FileText, 
+  Wrench, 
+  Cpu, 
+  Server, 
+  Smartphone, 
+  Layers, 
+  Cloud, 
+  ShieldCheck, 
+  Terminal, 
+  Calendar, 
+  Database, 
+  Lock, 
+  BarChart3, 
+  LayoutDashboard,
+  Menu,
+  X
 } from "lucide-react";
 import GtaModal from "./GtaModal";
 import { ModeToggleSwitch, SoundMuteButton } from "./GtaLayout";
@@ -852,20 +854,59 @@ export default function SimpleView() {
   const router = useRouter();
   const [selectedCard, setSelectedCard] = useState<SimpleCardItem | null>(null);
   const [activeSection, setActiveSection] = useState<string>("about");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [isScrolledPastTop, setIsScrolledPastTop] = useState<boolean>(false);
+
+  const currentSectionItem = SIMPLE_NAV_SECTIONS.find(s => s.id === activeSection) || SIMPLE_NAV_SECTIONS[0];
+
+  // In the mobile floating capsule:
+  // - When at the top of the page (<70px scroll), show "HAZEEQ NAJMUDDIN" in place of "ABOUT".
+  // - When the user scrolls down, "HAZEEQ NAJMUDDIN" hides.
+  // - As subsequent sections come into view (Experience, Education, etc.), the section title replaces it.
+  const headerCenterTitle = 
+    activeSection === "about"
+      ? (isScrolledPastTop ? null : "HAZEEQ NAJMUDDIN")
+      : (currentSectionItem?.label || null);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   // Track active section on scroll
   useEffect(() => {
     const sectionIds = ["about", "work", "education", "projects", "certs", "life", "connect"];
 
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolledPastTop(currentScrollY > 70);
+
       // If scrolled near bottom of page, activate last section ('connect')
-      const isAtBottom = window.innerHeight + Math.round(window.scrollY) >= document.documentElement.scrollHeight - 120;
+      const isAtBottom = window.innerHeight + Math.round(currentScrollY) >= document.documentElement.scrollHeight - 120;
       if (isAtBottom) {
         setActiveSection("connect");
         return;
       }
 
-      const scrollPosition = window.scrollY + 250; // Offset for sticky header
+      const scrollPosition = currentScrollY + 250; // Offset for sticky header
       
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const id = sectionIds[i];
@@ -912,9 +953,9 @@ export default function SimpleView() {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#fabb15] selection:text-black pb-20">
       
       {/* ------------------------------------------------------------- */}
-      {/* STICKY RECRUITER NAVIGATION HEADER */}
+      {/* DESKTOP RECRUITER NAVIGATION HEADER (lg and up) */}
       {/* ------------------------------------------------------------- */}
-      <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+      <header className="hidden lg:flex sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-3.5 items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           {/* Pricedown Emblem Badge */}
           <div className="w-8 h-8 bg-gradient-to-br from-[#fabb15] to-[#c79207] text-black font-gta font-bold flex items-center justify-center text-xl rounded-sm shadow-md">
@@ -931,7 +972,7 @@ export default function SimpleView() {
         </div>
 
         {/* Center Quick Jump Section Pills */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 py-1">
+        <nav className="flex items-center gap-1 xl:gap-2 py-1">
           {SIMPLE_NAV_SECTIONS.map((sec) => {
             const isActive = activeSection === sec.id;
             return (
@@ -966,7 +1007,180 @@ export default function SimpleView() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-16 sm:space-y-24">
+      {/* ------------------------------------------------------------- */}
+      {/* MOBILE FLOATING CAPSULE HEADER & EXPANDABLE MENU (lg:hidden)  */}
+      {/* ------------------------------------------------------------- */}
+      {/* Background Overlay when mobile menu is expanded */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Floating Capsule / Expanded Menu Container */}
+      <div 
+        className="fixed left-3.5 right-3.5 z-50 max-w-md mx-auto lg:hidden transition-all duration-300 pointer-events-auto"
+        style={{ top: "max(0.75rem, env(safe-area-inset-top, 12px))" }}
+      >
+        <AnimatePresence mode="wait">
+          {!isMobileMenuOpen ? (
+            /* CLOSED STATE: FLOATING PILL CAPSULE */
+            <motion.div
+              key="mobile-capsule"
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="h-12 px-3.5 rounded-full bg-[#121316]/95 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between gap-2"
+            >
+              {/* Left: GTA Emblem */}
+              <button
+                onClick={scrollToTop}
+                aria-label="Scroll to top"
+                className="flex items-center text-left focus:outline-none shrink-0"
+              >
+                <div className="w-7 h-7 bg-gradient-to-br from-[#fabb15] to-[#c79207] text-black font-gta font-bold flex items-center justify-center text-base rounded shadow-sm shrink-0 active:scale-95 transition-transform">
+                  H
+                </div>
+              </button>
+
+              {/* Center: Dynamic Active Section / Name Indicator */}
+              <div className="flex-1 flex items-center justify-center overflow-hidden px-2 min-h-[24px]">
+                <AnimatePresence mode="wait">
+                  {headerCenterTitle && (
+                    <motion.div
+                      key={headerCenterTitle}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="font-gta tracking-wider text-sm sm:text-base text-[#fabb15] font-bold uppercase truncate text-center"
+                    >
+                      {headerCenterTitle}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Right: Hamburger Toggle Button */}
+              <button
+                onClick={() => {
+                  gtaSound.playSelect();
+                  setIsMobileMenuOpen(true);
+                }}
+                aria-label="Open mobile navigation menu"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 hover:text-white hover:bg-white/10 active:scale-95 transition-all shrink-0"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+            </motion.div>
+          ) : (
+            /* OPEN STATE: EXPANDED MENU CARD */
+            <motion.div
+              key="mobile-expanded"
+              initial={{ opacity: 0, y: -10, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.96 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="p-3.5 rounded-3xl bg-[#121316]/98 backdrop-blur-2xl border border-white/15 shadow-[0_12px_48px_rgba(0,0,0,0.8)] flex flex-col"
+            >
+              {/* Top Header Row: Logo, Active Section, Close Button */}
+              <div className="flex items-center justify-between px-1 py-1">
+                <button
+                  onClick={() => {
+                    scrollToTop();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-2 text-left focus:outline-none shrink-0"
+                >
+                  <div className="w-7 h-7 bg-gradient-to-br from-[#fabb15] to-[#c79207] text-black font-gta font-bold flex items-center justify-center text-base rounded shadow-sm shrink-0">
+                    H
+                  </div>
+                  <span className="font-gta text-white text-xs sm:text-sm font-bold tracking-wider whitespace-nowrap">
+                    HAZEEQ NAJMUDDIN
+                  </span>
+                </button>
+
+                <div className="font-gta tracking-wider text-sm text-[#fabb15] font-bold uppercase">
+                  {currentSectionItem.label}
+                </div>
+
+                <button
+                  onClick={() => {
+                    gtaSound.playSelect();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  aria-label="Close mobile navigation menu"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 active:scale-95 transition-all"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Divider */}
+              <div className="h-[1px] bg-white/10 my-2.5" />
+
+              {/* Navigation Section Buttons */}
+              <nav className="flex flex-col gap-1 py-1">
+                {SIMPLE_NAV_SECTIONS.map((sec) => {
+                  const isActive = activeSection === sec.id;
+                  return (
+                    <button
+                      key={sec.id}
+                      onClick={() => {
+                        gtaSound.playSelect();
+                        scrollToSection(sec.id);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`w-full text-left px-3.5 py-2.5 rounded-xl font-gta text-sm tracking-wider font-bold transition-all flex items-center justify-between ${
+                        isActive
+                          ? "bg-[#fabb15] text-black shadow-md font-extrabold"
+                          : "text-gray-300 hover:text-white hover:bg-white/5 active:bg-white/10"
+                      }`}
+                    >
+                      <span>{sec.label}</span>
+                      {isActive && (
+                        <span className="w-2 h-2 rounded-full bg-black shrink-0" />
+                      )}
+                    </button>
+                  );
+                })}
+              </nav>
+
+              {/* Divider */}
+              <div className="h-[1px] bg-white/10 my-2.5" />
+
+              {/* Bottom Controls: Switch to GTA Mode + Sound Toggle */}
+              <div className="flex items-center gap-2 pt-0.5">
+                <button
+                  onClick={() => {
+                    gtaSound.playToggle();
+                    setIsMobileMenuOpen(false);
+                    router.push("/");
+                  }}
+                  className="flex-1 py-2.5 px-4 bg-[#fabb15] hover:bg-[#e0a710] text-black font-gta text-xs sm:text-sm font-bold tracking-wider rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all active:scale-95"
+                >
+                  <Gamepad2 className="w-4 h-4 shrink-0" />
+                  <span>SWITCH TO GTA MODE</span>
+                </button>
+
+                <div className="p-1 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                  <SoundMuteButton />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 lg:pt-10 space-y-16 sm:space-y-24">
 
         {/* ------------------------------------------------------------- */}
         {/* SECTION 1: HERO / RECRUITER SUMMARY (#about) */}
