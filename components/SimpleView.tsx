@@ -36,7 +36,8 @@ import {
   BarChart3, 
   LayoutDashboard,
   Menu,
-  X
+  X,
+  Laptop
 } from "lucide-react";
 import GtaModal from "./GtaModal";
 import { ModeToggleSwitch, SoundMuteButton } from "./GtaLayout";
@@ -777,9 +778,9 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
     badge: "GOOGLE UX",
     badgeColor: "bg-purple-600",
     badgeTextColor: "text-white",
-    description: "Certified by Google in Foundations of UX Design, Empathize/Define/Ideate, and Build Wireframes & Low-Fidelity Prototypes.",
+    description: "Certified by Google in Foundations of UX Design, Empathize/Define/Ideate, Wireframes & Prototypes, and Conduct UX Research.",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000",
-    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026), 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026), and 'Build Wireframes and Low-Fidelity Prototypes' (September 2026). Covers user-centered design, empathy mapping, user personas, storyboarding, paper wireframing, and interactive prototyping in Figma.",
+    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026), 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026), 'Build Wireframes and Low-Fidelity Prototypes' (September 2026), and 'Conduct UX Research and Test Early Concepts' (September 2026). Covers user-centered design, empathy mapping, user personas, storyboarding, paper wireframing, interactive prototyping in Figma, usability studies, and research synthesis.",
     highlights: [
       {
         title: "Foundations of User Experience (UX) Design",
@@ -795,13 +796,19 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
         title: "Wireframing & Low-Fidelity Prototyping",
         desc: "Creating storyboards, paper wireframes, digital wireframes, and interactive low-fidelity prototypes in Figma.",
         icon: <Code2 className="w-4 h-4 text-[#2ecc71]" />
+      },
+      {
+        title: "Conduct UX Research & Test Early Concepts",
+        desc: "Planning & conducting moderated and unmoderated usability studies, affinity diagramming, and synthesizing actionable insights.",
+        icon: <Laptop className="w-4 h-4 text-purple-400" />
       }
     ],
-    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Storyboarding", "Usability Testing"],
+    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Storyboarding", "Usability Testing", "UX Research"],
     badgeLinks: [
       { label: "VERIFY FOUNDATIONS OF UX", url: "https://www.coursera.org/account/accomplishments/verify/85A0AOC3RPPJ" },
       { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" },
-      { label: "VERIFY WIREFRAMES & PROTOTYPES", url: "https://coursera.org/share/7d2bda6a1d4b6f618ad91ff048555fe8" }
+      { label: "VERIFY WIREFRAMES & PROTOTYPES", url: "https://coursera.org/share/7d2bda6a1d4b6f618ad91ff048555fe8" },
+      { label: "VERIFY CONDUCT UX RESEARCH", url: "https://coursera.org/share/83a01b78ff6657c3ad69a95f4a04e033" }
     ]
   },
   {
