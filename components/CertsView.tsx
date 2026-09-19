@@ -130,16 +130,19 @@ const CERTS: CertItem[] = [
   },
   {
     id: "google-ux",
-    title: "GOOGLE UX DESIGN CERTIFICATION",
-    subtitle: "Google via Coursera UX Professional Courses (Jun - Sep 2026)",
+    title: "GOOGLE UX DESIGN PROFESSIONAL CERTIFICATE",
+    subtitle: "Google via Coursera Professional Certificate (Jun - Sep 2026)",
     badge: "GOOGLE UX",
     badgeColor: "bg-purple-600",
     badgeText: "text-white",
     description1: "Select or press ENTER to view Google UX Design certifications.",
-    description2: "Certified by Google via Coursera across 6 UX Professional Courses: Foundations, UX Process, Wireframing, UX Research, High-Fidelity Figma Prototyping, and Dynamic Web UI (Sep 2026).",
-    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2000",
-    thumb: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600",
-    overview: "Completed 6 official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026), 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026), 'Build Wireframes and Low-Fidelity Prototypes' (September 2026), 'Conduct UX Research and Test Early Concepts' (September 2026), 'Create High-Fidelity Designs and Prototypes in Figma' (September 2026), and 'Build Dynamic User Interfaces (UI) for Websites' (September 2026). Covers user-centered design, empathy mapping, personas, storyboards, low-to-high fidelity Figma prototyping, usability testing, design systems, and responsive dynamic web UI design.",
+    description2: "Officially certified by Google with the full 8-course Google UX Design Professional Certificate covering user research, Figma prototyping, dynamic web UI, social good UX, and career readiness (Sep 2026).",
+    image: "/Cert_Google_UX.webp",
+    thumb: "/Cert_Google_UX.webp",
+    badgeUrl: "https://coursera.org/share/6f2e8634c90f95a73015407e37009484",
+    modalImages: ["/Cert_Google_UX.webp"],
+    modalImageTitle: "OFFICIAL GOOGLE UX DESIGN PROFESSIONAL CERTIFICATE",
+    overview: "Successfully earned the comprehensive Google UX Design Professional Certificate (8 Courses developed by Google). Fully equipped with end-to-end UX/UI competencies: empathizing with users, defining pain points, ideating design solutions, creating wireframes and interactive high-fidelity prototypes in Figma, conducting usability studies, designing dynamic responsive web interfaces, and building portfolio-ready social good applications.",
     highlights: [
       {
         title: "Foundations of User Experience (UX) Design",
@@ -174,6 +177,7 @@ const CERTS: CertItem[] = [
     ],
     skills: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "High-Fidelity UI", "Wireframing", "Storyboarding", "Usability Testing", "UX Research", "Responsive Web Design"],
     badgeLinks: [
+      { label: "VERIFY PROFESSIONAL CERTIFICATE (8 COURSES)", url: "https://coursera.org/share/6f2e8634c90f95a73015407e37009484" },
       { label: "VERIFY FOUNDATIONS OF UX", url: "https://www.coursera.org/account/accomplishments/verify/85A0AOC3RPPJ" },
       { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" },
       { label: "VERIFY WIREFRAMES & PROTOTYPES", url: "https://coursera.org/share/7d2bda6a1d4b6f618ad91ff048555fe8" },
