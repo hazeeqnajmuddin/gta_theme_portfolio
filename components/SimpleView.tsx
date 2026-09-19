@@ -778,9 +778,9 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
     badge: "GOOGLE UX",
     badgeColor: "bg-purple-600",
     badgeTextColor: "text-white",
-    description: "Certified by Google in Foundations of UX Design, Empathize/Define/Ideate, Wireframes & Prototypes, and Conduct UX Research.",
+    description: "Certified by Google across 6 UX Professional Courses: Foundations, UX Process, Wireframing, UX Research, High-Fidelity Figma, and Dynamic Web UI.",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000",
-    overview: "Completed official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026), 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026), 'Build Wireframes and Low-Fidelity Prototypes' (September 2026), and 'Conduct UX Research and Test Early Concepts' (September 2026). Covers user-centered design, empathy mapping, user personas, storyboarding, paper wireframing, interactive prototyping in Figma, usability studies, and research synthesis.",
+    overview: "Completed 6 official Google UX Design professional courses via Coursera: 'Foundations of User Experience (UX) Design' (June 2026), 'Start the UX Design Process: Empathize, Define, and Ideate' (July 2026), 'Build Wireframes and Low-Fidelity Prototypes' (September 2026), 'Conduct UX Research and Test Early Concepts' (September 2026), 'Create High-Fidelity Designs and Prototypes in Figma' (September 2026), and 'Build Dynamic User Interfaces (UI) for Websites' (September 2026). Covers user-centered design, empathy mapping, personas, storyboards, low-to-high fidelity Figma prototyping, usability testing, design systems, and responsive dynamic web UI design.",
     highlights: [
       {
         title: "Foundations of User Experience (UX) Design",
@@ -801,14 +801,26 @@ const CERTIFICATIONS_ITEMS: SimpleCardItem[] = [
         title: "Conduct UX Research & Test Early Concepts",
         desc: "Planning & conducting moderated and unmoderated usability studies, affinity diagramming, and synthesizing actionable insights.",
         icon: <Laptop className="w-4 h-4 text-purple-400" />
+      },
+      {
+        title: "High-Fidelity Designs & Figma Prototypes",
+        desc: "Building visual design mockups, components, design systems, visual hierarchy, and interactive high-fidelity prototypes in Figma.",
+        icon: <Layers className="w-4 h-4 text-[#fabb15]" />
+      },
+      {
+        title: "Build Dynamic User Interfaces (UI) for Websites",
+        desc: "Designing responsive website layouts, information architectures, navigation systems, and cross-platform web interfaces.",
+        icon: <CheckCircle2 className="w-4 h-4 text-[#00a8ff]" />
       }
     ],
-    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "Wireframing", "Storyboarding", "Usability Testing", "UX Research"],
+    tags: ["Google UX Design", "Empathy Mapping", "User Personas", "Figma Prototyping", "High-Fidelity UI", "Wireframing", "Storyboarding", "Usability Testing", "UX Research", "Responsive Web Design"],
     badgeLinks: [
       { label: "VERIFY FOUNDATIONS OF UX", url: "https://www.coursera.org/account/accomplishments/verify/85A0AOC3RPPJ" },
       { label: "VERIFY UX DESIGN PROCESS", url: "https://www.coursera.org/account/accomplishments/verify/IUC2I6UABYI2" },
       { label: "VERIFY WIREFRAMES & PROTOTYPES", url: "https://coursera.org/share/7d2bda6a1d4b6f618ad91ff048555fe8" },
-      { label: "VERIFY CONDUCT UX RESEARCH", url: "https://coursera.org/share/83a01b78ff6657c3ad69a95f4a04e033" }
+      { label: "VERIFY CONDUCT UX RESEARCH", url: "https://coursera.org/share/83a01b78ff6657c3ad69a95f4a04e033" },
+      { label: "VERIFY HIGH-FIDELITY FIGMA", url: "https://coursera.org/share/f31c7f1bb788899ff2261a8942058e17" },
+      { label: "VERIFY DYNAMIC UI FOR WEBSITES", url: "https://coursera.org/share/2d95b10a4ca55b28cfe922dba919da6b" }
     ]
   },
   {
